@@ -1,0 +1,64 @@
+.pizzaday{
+  background-image: url(https://demothemedh.b-cdn.net/piizalian/wp-content/uploads/2021/03/h1_bg-2.jpg);
+  background-position: center center;
+  background-size: cover;
+  height: 500px;
+  overflow: hidden;
+  transition: background 0.3s,border 0.3s,border-radius 0.3s,box-shadow 0.3s;
+  margin-top: 0;
+  margin-bottom: 80px;
+  .info{
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.motoimg{
+  position: relative;
+  left: -320px;
+}
+
+.pizzaday-title,
+.pizzaday-subtitle,
+.pizzaday-pretitle{
+  text-align: center;
+  color: white;
+  font-weight: 700;
+}
+.pizzaday-pretitle{
+  font-size: 24px;
+}
+.pizzaday-subtitle{
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.pizzaday-title{
+  font-size: 48px;
+
+}
+
+button.pizzaday-footer{
+  background-color: $p-red;
+  // border: 1px solid $piz--border;
+  border-radius: 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  width: 163px;
+  justify-content: center;
+  width: 200px;
+  margin-bottom: 24px;
+  
+  color: white ;
+  &:hover{
+    background-color: $piz--primary_hover;
+    color: white ;
+  }
+}

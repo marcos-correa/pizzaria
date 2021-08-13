@@ -1,0 +1,165 @@
+/*= Flavor Menu =*/
+.flavor-container{
+  @include pad-sides-default;
+  margin: 80px 0;
+}
+
+.flavor-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &-order{
+    flex-direction: row;
+
+  }
+  .flavor-pretitle{
+    font-size: 14px;
+    color: $p-red;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  .flavor-title{    
+    font-size: 36px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    color: #333333;
+  }
+  .flavor-subtitle{
+    font-size: 16px;
+    color: $piz-light;
+  }
+}
+.item-flavor{
+  &-title{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: black;
+    &:hover{
+      color: $p-red;
+    }
+  }
+  &-subtitle{
+    font-size: 14px;
+    color: $piz-light;
+    &:hover{
+      color: $p-red;
+    }
+  }
+  &-price{
+    font-size: 18px;
+    color: $p-red;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+}
+
+
+.flavor-content{
+  list-style-type: none;
+}
+
+
+.flavor-item{
+  list-style-type: none;
+  cursor: pointer;
+  &-view{
+    display: none;
+    position: absolute;
+    top: 100px;
+    justify-content: space-between;
+    .view{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px;
+    }
+  }
+  &-container{
+    border: 2px dashed $piz-border;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover{
+    .flavor-item-view{
+      display: flex;
+    }
+    .flavor-item-container{
+      border: 2px dashed $p-red;
+      border-radius: 4px;  
+    }
+  }
+}
+
+button.flavor{
+  background-color: white;
+  border: 1px solid $piz--border;
+  border-radius: 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  width: 163px;
+  justify-content: center;
+  width: 80%;
+  margin-bottom: 24px;
+  
+  &:hover{
+    background-color: $piz--primary_hover;
+    color: white ;
+  }
+  &.view{
+    margin-bottom: 5px;
+    height: 55px;
+    width: 55px;
+    color: #333333;
+    &:hover{
+      border: 1px solid $piz--primary_hover;
+      color: white ;
+    }
+  }
+}
+
+button.flavor-footer{
+  background-color: white;
+  border: 1px solid $piz--border;
+  border-radius: 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  width: 163px;
+  justify-content: center;
+  width: 200px;
+  margin-bottom: 24px;
+  
+  &:hover{
+    background-color: $piz--primary_hover;
+    color: white ;
+  }
+}
+.view-icon{
+  font-size: 20px;
+}
+
+.nav-item{
+  font-size: 24px;
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  &.active, &:hover{
+    border-bottom: 2px solid $p-red;
+  }
+}
+
+.carousel{
+  &-item{
+    overflow: hidden;
+  }
+}
+li.bullet-carousel{
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}

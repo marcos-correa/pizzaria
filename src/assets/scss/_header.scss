@@ -1,0 +1,261 @@
+
+/*== Navs ==*/
+.nav{
+  &bar {
+    padding: 0 30px;
+    min-height: 100px;
+  }
+  &-info{
+    padding: 0 30px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    .info{
+      color: white;
+      &-address{
+        .icon{
+
+          .small-icon{
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+          } 
+        }
+      
+      }
+      &-contact{
+        .order{
+          display: flex;
+          align-items: center;
+        }
+
+      }
+    }
+  }
+  &-menu {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0;
+  justify-content: space-between;
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+    &-link{
+    padding: 0;
+    align-items: center;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    @media (max-width: 700px){
+      display: grid;
+      align-items: flex-end;
+      grid-template-areas:
+          "val doc dad aval"
+          "ser cha and .";
+      margin-block-end: 0;
+      list-style-type: none;
+      margin: 0 1rem;
+    }
+  }
+  &-footer {
+    padding: 1.3rem 0rem;
+    @media (max-width: 700px){
+      .container{
+      padding: 0 1rem;
+      }
+    }
+  }
+  &-item-evalue {
+    padding: 0;
+    align-items: center;
+    &:hover {
+    text-decoration: none; }
+  }
+  &-item-info{
+    padding: .7rem 0rem;
+    border-width: .2rem;	
+    &:hover {
+    border-bottom: 0.2em solid $terciary; }
+    @media (max-width: 700px){
+          padding: .2rem .2rem;
+          border-width: .2rem;
+      }
+    @media (max-width: 350px){
+      visibility: hidden;
+      display: none;
+    }
+  }
+  
+}
+
+// DropDown
+.drop-pizz{
+  background-color: $p-red;
+  border: $p-red;
+  font: $default;
+  font-weight: 600;
+  &:active{
+    box-shadow: none !important;
+  }
+  &:hover{
+    color: $p-yellow;
+  }
+  &-contact{
+    background-color: $p-red;
+    border: $p-red;
+    font: $default;
+    font-size: 15px;
+    // font-weight: 600;
+  }
+}
+.btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show>.btn-danger.dropdown-toggle{
+  background-color: $p-red;
+  box-shadow: transparent;
+}
+.btn-danger.focus, .btn-danger:focus{
+  box-shadow: none;
+}
+
+/*== Icons ==*/
+.iconify {
+    color: $primary;
+    margin-right: 0.5rem !important;
+    width: 16px;
+
+  &.scooter{
+    width: 22px;
+  }
+}
+
+/*== Menu ==*/
+
+// ul {
+// 	li {
+// 		padding: 1rem 0;
+// 		border-bottom: .3em solid white; 
+// 		&.active {
+// 			border-bottom: 0.3em solid $primary; }
+// 		&:hover {
+// 			border-bottom: 0.3em solid $primary; 
+// 			text-decoration: none;	
+// 		}
+// 		@media (max-width: 700px){
+// 			padding: .4rem .5rem;
+// 		}
+// 	}
+// 	#circle {
+// 		left: .2rem;
+// 		top: .6rem;
+// 		position: absolute;
+// 	}
+// 	#number {
+// 		position: absolute;
+// 		color: white;
+// 		font-size: 10px;
+// 		left: 0.5rem !important;
+// 		top: .65rem;
+// 		font-weight: 500;
+// 		cursor: pointer; 
+// 	}
+// 	#evaluete{
+// 		&:hover {
+// 		border-color: white; }
+// 	}
+// }   
+  
+/*== Company ==*/
+.company {
+	padding-right: 2rem;
+	border-width: 50%; }
+
+.rounded-circle {
+	padding: .2rem;
+	margin-right: 0.5rem !important; }
+
+.status {
+	padding-right: 1rem;
+	padding-left: 2rem; }
+
+.header-company-status img {
+	width: 32px; }
+
+.company, .status {
+	display: flex;
+	flex-direction: column; }
+
+.services{
+	grid-area: ser;
+}
+.chats {
+	grid-area: cha;
+}
+.progress-menu{
+	grid-area: and;
+}
+.values{
+	grid-area: val;
+}
+.documents{
+	grid-area: doc;
+}
+.datas{
+	grid-area: dad;
+}
+.evaluetes{
+	grid-area: aval;
+}
+
+.divisors-content{
+  background-color: $p-red;
+  padding: 2px 30px;
+  .divisor{
+    margin: 0;
+    background-color: $psec-red;
+  }
+}
+
+.navbar-sec{
+  justify-content: flex-end;
+  .icon{
+    color: white;
+    cursor: pointer;
+    margin-left: 17px;
+    font-size: 22px;
+    &:hover{
+      color: $p-yellow;
+    }
+  }
+  .count-heart{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    font-family: "Open Sans";
+    left: -9px;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: $piz--secondary;
+  }
+}
+.chart-button{
+  background-color: $piz-secondary;
+  border-radius: 999px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  &:hover{
+    background-color: $piz-secondary_hover;
+  }
+  &-icon{
+    margin-right: 6px;
+  }
+}

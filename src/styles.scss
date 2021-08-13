@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/scss/base'; 
+
+:root{
+font-family: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+
+/*== Styles ==*/
+body {
+  background-color: white;
+  font-family: $default;
+}
+
+
+
+/*== Backgrounds ==*/
+.bg {
+  &-primary {
+    background-color: $primary !important; 
+  }
+  &-secondary{
+    background-color: $secondary !important;}
+  &-light {
+    background-color: $quaternary !important; 
+    @media (max-width: 900px){
+          margin: 0 .5rem;
+      }
+  }
+  &-footer {
+    background-color: $secondary !important; }
+  }
+/*== containers ==*/
+.container {
+  padding: 0;
+  max-width: 860px; 
+  &-fluid {
+    padding-left: 0;
+    padding-right: 0; 
+  }
+  &-message-number {
+    position: relative;
+    height: 15px;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+}
+
+span{
+  font-size: 15px;
+  .bold{
+    font-weight: 700;
+  }
+}
+  /*== H's ==*/
+h2, h6, h4 {
+  margin-bottom: 0;
+  font-weight: 300; }
+h6 {
+  font-size: .8rem; 
+  @media (max-width:700px){
+    font-size: .6rem;
+  }
+}
+h4 {
+  font-size: 1rem;
+  color: $primary; 
+  &.status{
+    color: $terciary; 
+  }
+  @media (max-width:700px){
+    font-size: .8rem;
+  }
+}
+

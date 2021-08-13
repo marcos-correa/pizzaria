@@ -1,0 +1,109 @@
+.promo-container{
+  @include pad-sides-default;
+  margin: 40px 0;
+  height: 366px;
+}
+
+.promo{
+  &-primary{
+    background-color: $p-green;
+    &-container{
+      display: flex;
+      .promo-wrapper-text{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  &-secondary{
+    background-color: $piz--secondary;
+    &-container{
+      display: flex;
+      .promo-wrapper-text{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+h1.promo{
+  font-size: 48px;
+  color: $promo-yellow;
+  font-weight: 700;
+  word-break: break-space;
+  &.sec{
+    color: #00a850;
+  }
+}
+h2.promo{
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  word-break: break-space;
+  &.sec{
+    color: black;
+  }
+}
+h5.promo{
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  word-break: break-space;
+  margin-bottom: 45px;
+  &.sec{
+    color: #333333;
+  }
+}
+button.order{
+  background-color: white;
+  border-radius: 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  width: 163px;
+  justify-content: center;
+  
+  &:hover{
+    background-color: $piz--primary_hover;
+    color: white ;
+  }
+}
+.burger {
+
+  &-img{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-price{
+    position: absolute;
+    top: 15%;
+    width: 100px ;
+    height: 100px ;
+    background-color: $promo-yellow;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    &-wrapper{
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-label{
+      font-size: 18px;
+      font-weight: 700;
+      // line-height: 18px;
+    }
+    &-amount{
+      font-size: 36px;
+      line-height: 36px;
+      font-weight: 700;
+      color: $p-red;
+    }
+
+  }
+}

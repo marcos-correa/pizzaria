@@ -1,0 +1,56 @@
+// Color Variables
+$primary: #c6202e;
+$secondary: #d6e664;
+$terciary: #343a40;
+$quaternary: #f2f2f2;
+
+$p-red: #c6202e;
+$p-yellow: #d6e664;
+$p-green:#22a850;
+$p-gray: #c6202e;
+
+$psec-yellow: #f7f2e2;
+$psec-red: #d34444;
+
+$piz-primary: #C6202E;
+$piz-primary_hover: #92202e;
+$piz-secondary: #D6E664;
+$piz-secondary_hover: #9ba849;
+$piz-text: #333;
+$piz-accent: #000;
+$piz-border: #E0E0E0;
+$piz-light: #828282;
+
+$piz--primary: #C6202E;
+$piz--primary_hover: #92202e;
+$piz--secondary: #D6E664;
+$piz--secondary_hover: #9ba849;
+$piz--text: #333333;
+$piz--accent: #000;
+$piz--border: #E0E0E0;
+$piz--light: #828282;
+
+$promo-yellow: #ffc900;
+
+.text-white{
+  color: white;
+}
+
+@mixin pad-sides-default{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/*== Fonts ==*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+//
+$roboto: 'Roboto', sans-serif;
+$lato: 'Lato', sans-serif;
+$default: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+
+
+@media (max-width: 900px){
+.bg-light {
+    margin: 0 1rem;
+}
+}
