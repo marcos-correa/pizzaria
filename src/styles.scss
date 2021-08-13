@@ -1,18 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-@import './assets/scss/base'; 
-
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"); // Bootstrap
+@import '/src/assets/scss/base';
 :root{
 font-family: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
-
 
 /*== Styles ==*/
 body {
   background-color: white;
   font-family: $default;
 }
-
-
 
 /*== Backgrounds ==*/
 .bg {
@@ -72,4 +68,20 @@ h4 {
     font-size: .8rem;
   }
 }
+
+
+// @import 'base'
+@import '/src/assets/scss/header';
+
+@import '/src/assets/scss/items';
+
+@import '/src/assets/scss/promo';
+
+@import '/src/assets/scss/flavor';
+
+@import '/src/assets/scss/pizzaday';
+
+// @import 'chat';
+
+// @import 'footer';
 
