@@ -30,13 +30,17 @@ import {InputTextModule} from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { EnderecoComponent } from './endereco/endereco.component';
+// import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     InicialComponent,
-    ListaComponent
+    ListaComponent,
+    EnderecoComponent
   ],
   imports: [
+    // HttpClientModule,
     CommonModule,
     PizzariaRoutingModule,
     FormsModule,

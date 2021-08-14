@@ -61,19 +61,10 @@ export class ListaComponent implements OnInit {
   }
 
   saveProduct(){
-      this.submitted = true;
-
-
-      
-      // if(!this.invalidName()){
-      //   this.pizza.id = this.createId();
-      //   this.pizza.image = this.createImage();
-      //   this.products.push(this.pizza);
-      // }
-      // this.products = [...this.products];
-      // this.productDialog = false;
-      // this.pizza = {};
-
+    if(this.invalidName()){
+      return;
+    }
+    this.submitted = true;
 
     if(this.pizza.name){
       if (this.pizza.name.trim() && this.pizza.id) {
@@ -95,7 +86,7 @@ export class ListaComponent implements OnInit {
           this.productDialog = false;
           this.pizza = {};
       }
-    }
+  }
 
 
   createId(): string {

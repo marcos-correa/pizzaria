@@ -1,12 +1,12 @@
 <!-- <div class="card"> -->
 <p-toolbar styleClass="mb-4">
   <ng-template pTemplate="left">
-    <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" label="nova opção de pizza" (click)="novaPizza()"></button>
+    <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" label="ADICIONAR NOVA PIZZA" (click)="novaPizza()"></button>
     <!-- <button pButton pRipple icon="pi pi-plus" label="Click"></button> -->
   </ng-template>
 </p-toolbar>
 <p-table #dt [value]="products" [rows]="10" [paginator]="true"
-  [globalFilterFields]="['name','country.name','representative.name','status']" [(selection)]="selectedProducts"
+  [(selection)]="selectedProducts"
   [rowHover]="true" dataKey="id" [showCurrentPageReport]="true">
 
 
@@ -22,13 +22,13 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 3rem">
+      <!-- <th style="width: 3rem">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th> -->
+      <th pSortableColumn="name">Pizza <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
-      </th>
-      <th>Image</th>
-      <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon>
+      <th>Imagem</th>
+      <th pSortableColumn="price">Preço <p-sortIcon field="price"></p-sortIcon>
       </th>
       <!-- <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon>
       </th> -->
@@ -41,17 +41,17 @@
   </ng-template>
   <ng-template pTemplate="body" let-pizza>
     <tr>
-        <td>
+        <!-- <td>
             <p-tableCheckbox [value]="pizza"></p-tableCheckbox>
-        </td>
+        </td> -->
         <td>{{pizza.name}}</td>
         <td><img [src]="'assets/images/' + pizza.image" [alt]="pizza.name" width="100" class="p-shadow-4" /></td>
         <td>R$ {{ pizza.price|number:'1.2-2'}}</td>
-        <td>{{pizza.category}}</td>
+        <!-- <td>{{pizza.category}}</td>
         <td>
 
-        </td>
-        <td><span [class]="'pizza-badge status-' + (pizza.inventoryStatus ? pizza.inventoryStatus.toLowerCase() : '')">{{pizza.inventoryStatus}}</span></td>
+        </td> -->
+        <!-- <td><span [class]="'pizza-badge status-' + (pizza.inventoryStatus ? pizza.inventoryStatus.toLowerCase() : '')">{{pizza.inventoryStatus}}</span></td> -->
         <td>
             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(pizza)"></button>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(pizza)"></button>
@@ -64,14 +64,11 @@
       </div>
   </ng-template>
 </p-table>
-<!-- 
-<p-dialog header="Title" [(visible)]="productDialog">
-  Content
-</p-dialog> -->
+
 
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalhes da nova pizza" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <img [src]="'assets/images/' + pizza.image" [alt]="pizza.image" class="pizza-image" *ngIf="pizza.image">
+        <img [src]="'assets/images/' + pizza.image" [alt]="pizza.image" class="pizza-image" width="300px"  *ngIf="pizza.image">
         <div class="p-field d-flex flex-column mb-2">
             <label for="name">Nome da pizza <br> 
               <span class="p-small">
@@ -86,46 +83,13 @@
             <label for="description">Descrição</label>
             <textarea id="description" pInputTextarea [(ngModel)]="pizza.description" required rows="3" cols="20"></textarea>
         </div>
-        <!-- <div class="p-field">
-            <label for="inventoryStatus">Inventory Status</label>
-            <p-dropdown [(ngModel)]="pizza.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
-                <ng-template let-option pTemplate="item">
-                    <span [class]="'pizza-badge status-' + option.value">{{option.label}}</span>
-                </ng-template>
-            </p-dropdown>
-        </div> -->
-
-        <!-- <div class="p-field">
-            <label class="p-mb-3">Category</label>
-            <div class="p-formgrid p-grid">
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="pizza.category"></p-radioButton>
-                    <label for="category1">Accessories</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="pizza.category"></p-radioButton>
-                    <label for="category2">Clothing</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="pizza.category"></p-radioButton>
-                    <label for="category3">Electronics</label>
-                </div>
-                <div class="p-field-radiobutton p-col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="pizza.category"></p-radioButton>
-                    <label for="category4">Fitness</label>
-                </div>
-            </div>
-        </div> -->
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="price">Preço</label>
                 <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
             </div>
-            <!-- <div class="p-field p-col">
-                <label for="quantity">Quantity</label>
-                <p-inputNumber id="quantity" [(ngModel)]="pizza.quantity"></p-inputNumber>
-            </div> -->
+            
         </div>
     </ng-template>
     
@@ -134,5 +98,3 @@
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
     </ng-template>
 </p-dialog> 
-<!-- 
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog> -->

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +9,8 @@ import { AppComponent } from './app.component';
 
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
-ToolbarModule
+import { CommonModule } from '@angular/common';
+// ToolbarModule
 
 @NgModule({
   declarations: [
@@ -18,11 +20,14 @@ ToolbarModule
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-
+    
     ButtonModule,
-    ToolbarModule
+    ToolbarModule,
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
