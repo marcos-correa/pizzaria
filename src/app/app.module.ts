@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-// ToolbarModule
 
 @NgModule({
   declarations: [
