@@ -51,9 +51,6 @@ export class ListaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logar(){
-    this.pizzariaService.logar()
-  }
   deleteProduct(pizza:any){
     this.products = this.products.filter(val => val.id !== pizza.id);
     this.pizza = {};

@@ -6,7 +6,6 @@ import {map} from 'rxjs/operators';
 })
 export class PizzariaService {
   products:any[];
-
   constructor(
     private http: HttpClient,
     ) { 
@@ -133,9 +132,6 @@ export class PizzariaService {
       }
   ]
 
-  }
-  logar(){
-    this.userlogado = true
   }
 
   getPizzas(){
