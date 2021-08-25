@@ -6,9 +6,10 @@ import {map} from 'rxjs/operators';
 })
 export class PizzariaService {
   products:any[];
+
   constructor(
     private http: HttpClient,
-  ) { 
+    ) { 
     this.products = [
       {
         "id": "1",
@@ -130,11 +131,11 @@ export class PizzariaService {
         "inventoryStatus": "INSTOCK",
         "rating": 4
       }
-  
-  
   ]
 
-
+  }
+  logar(){
+    this.userlogado = true
   }
 
   getPizzas(){

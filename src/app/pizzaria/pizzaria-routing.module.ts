@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'lista',
     component: ListaComponent
+  },
+  {
+    path: 'endereco',
+    component: ListaComponent
   }
 ];
 

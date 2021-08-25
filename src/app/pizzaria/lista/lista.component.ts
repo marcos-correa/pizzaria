@@ -44,11 +44,15 @@ export class ListaComponent implements OnInit {
     this.pizza = {}
     this.productDialog = false;
     this.selectedProducts = []
-    this.products = this.pizzariaService.getPizzas();
+    this.products = this.pizzariaService.getPizzas();//[{}{}]
    }
 
 
   ngOnInit(): void {
+  }
+
+  logar(){
+    this.pizzariaService.logar()
   }
   deleteProduct(pizza:any){
     this.products = this.products.filter(val => val.id !== pizza.id);
