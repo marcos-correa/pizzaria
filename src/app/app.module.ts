@@ -1,7 +1,11 @@
+import { FormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {ToastModule} from 'primeng/toast';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,9 +28,12 @@ import { CommonModule } from '@angular/common';
     ButtonModule,
     ToolbarModule,
     CommonModule,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
+    ToastModule
   ],
   providers: [
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
+import { CatalogoComponent } from './catalogo/catalogo.component';
+import { ContatoComponent } from './contato/contato.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,7 +15,15 @@ const routes: Routes = [
   {
     path: 'lista',
     component: ListaComponent
-  }
+  },
+  {
+    path: 'contato',
+    component: ContatoComponent
+  },
+  {
+    path: 'catalogo',
+    component: CatalogoComponent
+  },
 ];
 
 @NgModule({
