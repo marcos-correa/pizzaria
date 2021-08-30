@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { PizzariaService } from './../pizzaria.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -7,7 +8,6 @@ import { Pizza } from './pizza';
 // import { ConfirmationService } from 'primeng/api';
 // import { MessageService } from 'primeng/api';
 // import { PizzariaService } from '../pizzaria.service';
-
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
@@ -34,6 +34,7 @@ export class ListaComponent implements OnInit {
   
   constructor(
     private pizzariaService: PizzariaService, 
+    private UserService: UserService
     // private messageService: MessageService, 
     // private confirmationService: ConfirmationService
     ) {

@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ToastModule} from 'primeng/toast';
 
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -33,7 +32,7 @@ import { CommonModule } from '@angular/common';
     ToastModule
   ],
   providers: [
-    MessageService
+    MessageService, 
   ],
   bootstrap: [AppComponent]
 })
