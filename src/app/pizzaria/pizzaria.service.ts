@@ -1,144 +1,52 @@
+import { PizzasService } from './../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
+import { Pizza } from './lista/pizza';
 @Injectable({
   providedIn: 'root'
 })
 export class PizzariaService {
-  products:any[];
+  favoritas:number;
+  
+  pizzas:Pizza[];
+  carrinho: Pizza[];
+
+
+  valorTotal: number;
+  valorTotalComDesconto: number;
+  descontoAplicado: Boolean;
   constructor(
     private http: HttpClient,
+    private pizzasService: PizzasService
   ) { 
-    this.products = [
-      {
-        "id": "1",
-        "code": "acvx872gc",
-        "name": "Fantastic Iron Shoes",//
-        "description": "Product Description",
-        "image": "p1-480x480.jpg",//
-        "price": 187,//
-        "category": "PIZZA",//
-        "quantity": 35,
-        "inventoryStatus": "INSTOCK",
-        "rating": 3
-      },
-      {
-        "id": "2",
-        "code": "tx125ck42",
-        "name": "Sleek Iron Clock",
-        "description": "Product Description",
-        "image": "p2-480x480.jpg",
-        "price": 198,
-        "category": "PIZZA",
-        "quantity": 15,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4
-      },
-      {
-        "id": "3",
-        "code": "gwuby345v",
-        "name": "Gorgeous Silk Plate",
-        "description": "Product Description",
-        "image": "p3-480x480.jpg",
-        "price": 194,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4
-      },
-      {
-        "id": "4",
-        "code": "kishj335v",
-        "name": "Fantastic Marble Bag",
-        "description": "Product Description",
-        "image": "p4-480x480.jpg",
-        "price": 104,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4,
-      },
-      {
-        "id": "5",
-        "code": "babylie222v",
-        "name": "Small Cotton Plate",
-        "description": "Product Description",
-        "image": "p5-480x480.jpg",
-        "price": 183,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4,
-      },
-      {
-        "id": "6",
-        "code": "where569v",
-        "name": "Incredible Rubber Coat",
-        "description": "Product Description",
-        "image": "p6-480x480.jpg",
-        "price": 187,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryS4tatus": "INSTOCK",
-        "rating": 4,
-      },
-      {
-        "id": "7",
-        "code": "forever111v",
-        "name": "Durable Steel Chair",
-        "description": "Product Description",
-        "image": "p7-480x480.jpg",
-        "price": 120,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4,
-      },
-      {
-        "id": "8",
-        "code": "juststo456v",
-        "name": "Ergonomic Marble Lamp",
-        "description": "Product Description",
-        "image": "p8-480x480.jpg",
-        "price": 124,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4,
-      },
-      {
-        "id": "9",
-        "code": "tocrying569v",
-        "name": "Mediocre Wool Computer",
-        "description": "Product Description",
-        "image": "p1-480x480.jpg",
-        "price": 104,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 5
-      },
-      {
-        "id": "10",
-        "code": "wegotta888v",
-        "name": "Lightweight Wool Car",
-        "description": "Product Description",
-        "image": "p1-480x480.jpg",
-        "price": 199,
-        "category": "PIZZA",
-        "quantity": 25,
-        "inventoryStatus": "INSTOCK",
-        "rating": 4
-      }
-  
-  
-  ]
+    this.pizzas = this.pizzasService.getPizzas()
+    this.carrinho = []
 
 
+    this.valorTotal = 0;
+    this.valorTotalComDesconto = 0;
+    this.favoritas = 0;
+    this.descontoAplicado = false;
   }
 
   getPizzas(){
-    return this.products
+    return this.pizzas
+  }
+
+  getPizzasNoCarrinho(){
+    return this.carrinho
+  }
+  setPizzasNoCarrinho(pizzas: Pizza[]){
+    this.carrinho = pizzas;
+  }
+  
+  getTotalPizzasNoCarrinho(){
+    let carrinho = 0;
+    for(let pizza of this.carrinho){
+      carrinho += pizza.quantity
+    }
+    return carrinho
   }
 
   getEndereco(cep:string){
@@ -147,4 +55,74 @@ export class PizzariaService {
       return res;
     })); 
   }
+
+  getFavoritas(){
+    //todo: favorite
+    return this.favoritas;
+  }
+
+  adicionarAoCarrinho(pizza:Pizza){
+    let mensagem = ''
+    if (pizza.id){
+      let pizza_existe_no_carrinho = this.carrinho.filter(piz => piz.id == pizza.id)//[{}] length == 1
+      if(pizza_existe_no_carrinho.length>0){
+        let i = this.findIndexById(pizza.id);
+        this.carrinho[i].quantity++
+      }else{
+        pizza.quantity = 1;
+        this.carrinho.push(pizza)
+      }
+      mensagem = 'Pizza adicionada ao carrinho'
+    }
+    this.valorTotalCarrinho();
+    return mensagem;
+  }
+
+  valorTotalCarrinho(){
+    this.valorTotal = 0;
+    for(let pizza of this.carrinho){
+      this.valorTotal += pizza.quantity*pizza.price
+      this.valorTotalComDesconto = this.valorTotal;
+    }
+    if(this.descontoAplicado){
+      this.valorTotalComDesconto = this.valorTotal - (this.valorTotal*0.15)
+    }
+  }
+
+  getDescontoAplicado(){
+    return this.descontoAplicado;
+  }
+  getValorCarrinho(){
+    if(this.descontoAplicado){
+      this.valorTotalCarrinho()
+      return this.valorTotalComDesconto
+    }else{
+      return this.valorTotal
+    }
+  }
+  
+
+  setDescontoAplicado(descontoAplicado: Boolean){
+    this.descontoAplicado = descontoAplicado
+  }
+  
+  getValorTotalComDesconto(){
+    return this.valorTotalComDesconto
+  }
+  getValorTotal(){
+    return this.valorTotal;
+  }
+
+  findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.carrinho.length; i++) {
+        if (this.carrinho[i].id === id) {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+  } 
+  
 }

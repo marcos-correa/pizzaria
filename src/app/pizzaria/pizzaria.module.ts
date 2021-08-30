@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PizzariaRoutingModule } from './pizzaria-routing.module';
 import { InicialComponent } from './inicial/inicial.component';
@@ -18,7 +18,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 
 
 
-import {ToastModule} from 'primeng/toast';
 import {FileUploadModule} from 'primeng/fileupload';
 
 import {SliderModule} from 'primeng/slider';
@@ -29,18 +28,20 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { MessageService } from 'primeng/api';
 import { EnderecoComponent } from './endereco/endereco.component';
-// import { HttpClientModule } from '@angular/common/http';
+import { ContatoComponent } from './contato/contato.component';
+import { CatalogoComponent } from './catalogo/catalogo.component';
+
 
 @NgModule({
   declarations: [
     InicialComponent,
     ListaComponent,
-    EnderecoComponent
+    EnderecoComponent,
+    ContatoComponent,
+    CatalogoComponent,
   ],
   imports: [
-    // HttpClientModule,
     CommonModule,
     PizzariaRoutingModule,
     FormsModule,
@@ -51,12 +52,12 @@ import { EnderecoComponent } from './endereco/endereco.component';
     DialogModule,
     InputNumberModule,
     InputTextareaModule,
-    ToastModule,
     FileUploadModule,
     DropdownModule,
-    ProgressBarModule
+    ProgressBarModule,
+    // FormBuilder,
+    ReactiveFormsModule
 
   ],
-  // exports:[ListaComponent]
 })
 export class PizzariaModule { }

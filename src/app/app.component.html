@@ -1,1 +1,106 @@
+
+<header style="position:sticky;top: -75px;z-index: 999;">
+    <div class="container-fluid">
+        <header class="bg-primary nav-info">
+          <div class="info d-flex justify-content-between w-100">
+            <div class="info-address">
+              <div class="icon">
+                <img src="../../../assets/svg/map-marker.svg" class="iconify">
+                <span>Corso Itali Aa Naples, Az 85022</span>
+              </div>
+
+
+            </div>
+            
+            <div class="info-contact d-flex">
+              <div class="order mr-2">
+                <img src="../../../assets/svg/scooter.svg" class="iconify scooter">
+                <span>
+                  Call and Order: 
+                  <a class="text-white text-decoration-none" href="#">
+                    <span class="bold">
+                      +1 718-904-4450
+                    </span>
+                  </a>
+                </span>
+              </div>
+              
+              <div class="social d-flex align-items-center">
+                <div class="mx-2">
+                  <i class="fab fa-facebook"></i>
+                </div>
+                <div  class="mr-2">
+                  <i class="fab fa-twitter-square"></i>
+                </div>
+                <div  class="mr-2">
+                  <i class="fab fa-wordpress"></i>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="divisors-content">
+          <hr class="divisor">
+        </div>
+        
+        <div class="divisors-content">
+          <hr class="divisor">
+        </div>
+
+        <nav class="navbar bg-primary border-bottom">
+          <div class="container-fluid">
+            <div class="row no-gutters w-100">
+              <div class="col-3">
+                <img src="https://demothemedh.b-cdn.net/piizalian/wp-content/uploads/2021/02/pizzalian-logo.svg" alt="" data-ll-status="loaded">
+              </div>
+              <div class="col-6 d-flex justify-content-center">
+                
+                <button  [routerLink]="''"  type="button" class="btn btn-danger drop-pizz">
+                  Home
+                </button>
+ 
+                <button  [routerLink]="'catalogo'" type="button" class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pizzas
+                </button>
+
+                <button [routerLink]="'contato'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Contato
+                </button>
+
+              </div>
+              <div class="col-3 navbar-sec d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <div class="icon">
+                    <i class="fas fa-search"></i>
+                  </div>
+                  <div class="icon">
+                    <i class="far fa-user"></i>
+                  </div>
+                  <div class="icon heart">
+                    <i class="far fa-heart"></i>
+                  </div>
+                  <span class="count-heart">{{getNumbers()}}</span>
+                </div>
+                <div class="py-2 d-flex align-items-center justify-content-center">
+                  <button [routerLink]="'lista'" class="btn btn-warning chart-button">
+                    <div class=" chart-button-icon">
+                      <i class="fas fa-shopping-cart"></i>
+                    </div>
+
+                    {{getTotalPizzasNoCarrinho()}} itens: R$ {{getValorCarrinho()|number:'1.2-2'}}
+                    <!-- 0 items: $ 0.00 -->
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </div>
+</header>
+
+
 <router-outlet></router-outlet>
+
+<p-toast></p-toast>
