@@ -1,0 +1,147 @@
+<!-- <div class="card"> -->
+<!-- <p-toolbar styleClass="mb-4">
+  <ng-template pTemplate="left">
+    <button pButton pRipple icon="pi pi-plus" class="p-button-success mr-2" label="ADICIONAR NOVA PIZZA" (click)="novaPizza()"></button>
+    <button pButton pRipple icon="pi pi-plus" label="Click"></button>
+  </ng-template>
+</p-toolbar> -->
+<div *ngIf="pizzas.length == 0" class="flavor-header mt-4">
+  <p class="flavor-title">
+    As pizzas escolhidas aparecerão aqui.
+  </p>
+  <button [routerLink]="'/catalogo'" pButton type="button" class="ml-3">ESCOLHER PIZZA</button>
+
+  <!-- <app-catalogo></app-catalogo> -->
+</div>
+<div *ngIf="pizzas.length > 0" class="p-5">
+  <p-table #dt [value]="pizzas" [rows]="10" [paginator]="true"
+    [(selection)]="selectedProducts"
+    [rowHover]="true" dataKey="id" [showCurrentPageReport]="true">
+  
+  
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <!-- <h5 class="p-m-0">Manage Products</h5> -->
+        <!-- <span class="p-input-icon-left"> -->
+          <!-- <i class="pi pi-search"></i> -->
+          <!-- <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..." /> -->
+        <!-- </span> -->
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> -->
+        <th pSortableColumn="name">Pizza <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th>Imagem</th>
+        <th pSortableColumn="price">Preço <p-sortIcon field="price"></p-sortIcon>
+        <th>Preço total</th>
+        <th>Quantidade
+        </th>
+        <!-- <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
+        </th> -->
+        <!-- <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
+        </th> -->
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pizza>
+      <tr>
+          <!-- <td>
+              <p-tableCheckbox [value]="pizza"></p-tableCheckbox>
+          </td> -->
+          <td>{{pizza.name}}</td>
+          <td><img [src]="'assets/images/' + pizza.image" [alt]="pizza.name" width="100" class="p-shadow-4" /></td>
+          <td>
+            <div class="d-flex flex-column">
+              <div>
+                R$ {{ pizza.price|number:'1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex flex-column">
+              <div>
+                R$ {{pizza.price*pizza.quantity|number:'1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex">
+              <button (click)="decrementarUnidade(pizza)"pButton pRipple icon="pi pi-minus" class="p-button-rounded p-button-warning"></button>
+              <h2 class="m-3 my-0"> {{pizza.quantity}} </h2>
+              <button (click)="acrescentarUnidade(pizza)" pButton icon="pi pi-plus"class="p-button-rounded p-button-success"></button>
+            </div>
+          </td>
+          <!-- <td><span [class]="'pizza-badge status-' + (pizza.inventoryStatus ? pizza.inventoryStatus.toLowerCase() : '')">{{pizza.inventoryStatus}}</span></td> -->
+          <td>
+              <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(pizza)"></button> -->
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(pizza)"></button>
+          </td>
+      </tr>
+  </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            Total de pizzas para comprar: {{pizzas ? pizzas.length : 0 }}
+        </div>
+    </ng-template>
+  </p-table>
+  <div class="d-flex align-items-center mt-3">
+    Cupom de desconto:
+    <input type="text" pInputText class="ml-3" [(ngModel)]="cupom" autofocus/>
+    <button (click)="aplicarDesconto()"pButton type="button" class="ml-3">APLICAR DESCONTO</button>
+    <div class="d-flex ml-auto align-items-end">
+      <div class="d-flex flex-column">
+        <div class="mr-3" *ngIf="descontoAplicado">Cupom UTFPR aplicado</div>  
+        <div class="mr-3" *ngIf="descontoAplicado">Desconto de 15% sobre o valor total:</div>  
+      </div>
+      <div class="d-flex flex-column">
+        <span>Valor Total</span>
+        <s *ngIf="getValorTotal() != getValorCarrinho()">
+          R$ {{getValorTotal()|number:'1.2-2'}}
+        </s>
+       R$ {{getValorCarrinho()|number:'1.2-2'}}
+      </div>
+    
+    </div>
+  
+  </div>
+
+</div>
+
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalhes da nova pizza" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <img [src]="'assets/images/' + pizza.image" [alt]="pizza.image" class="pizza-image" width="300px"  *ngIf="pizza.image">
+        <div class="p-field d-flex flex-column mb-2">
+            <label for="name">Nome da pizza <br> 
+              <span class="p-small">
+                (Não é permitido acento, números ou caracteres especiais)
+              </span>
+            </label>
+            <input type="text" pInputText id="name" [(ngModel)]="pizza.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !pizza.name">O nome é obrigatório</small>
+            <small class="p-error" *ngIf="invalidName()">Nome inválido</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Descrição</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="pizza.description" required rows="3" cols="20"></textarea>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">Preço</label>
+                <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
+            </div>
+            
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </ng-template>
+</p-dialog> 

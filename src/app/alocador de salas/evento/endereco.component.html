@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-4">
+      <div class="d-flex flex-column">
+
+        <label for="">
+          Digite o CEP
+        </label>
+        <input type="text" [(ngModel)]="valorcep" (ngModelChange)="validateCep()"(blur)="buscaCep()" (keyup.enter)="buscaCep()">
+        <span *ngIf="invalidcpf && isValidCep() ">
+          CEP não encontrado
+        </span>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="d-flex flex-column">
+
+        <label for="">Rua</label>
+        <input type="text" [(ngModel)]="endereco.logradouro"
+          [disabled]="isValidCep()&& this.endereco.logradouro!== undefined">
+        <div class="d-flex justify-content-between mt-3">
+          <div class="d-flex flex-column">
+            <label>Bairro</label>
+            <input type="text" [(ngModel)]="endereco.bairro"
+              [disabled]="isValidCep()&& this.endereco.bairro!== undefined">
+          </div>
+          <div class="d-flex flex-column">
+            <label >Cidade</label>
+            <input type="text" [(ngModel)]="endereco.localidade"
+              [disabled]="isValidCep() && this.endereco.localidade!== undefined">
+          </div>
+          <div class="d-flex flex-column">
+            <label>Estado</label>
+            <input type="text" [(ngModel)]="endereco.uf" [disabled]="isValidCep()&& this.endereco.uf !== undefined">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
