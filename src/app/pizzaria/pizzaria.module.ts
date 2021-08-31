@@ -31,6 +31,7 @@ import { ConfirmationService } from 'primeng/api';
 import { EnderecoComponent } from './endereco/endereco.component';
 import { ContatoComponent } from './contato/contato.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     EnderecoComponent,
     ContatoComponent,
     CatalogoComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

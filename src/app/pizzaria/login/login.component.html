@@ -1,0 +1,21 @@
+<div class="container">
+    <h5>Login</h5>
+<form>
+    <div class="mb-3">
+      <label for="usuario" class="form-label">Email</label>
+      <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" [(ngModel)]="usuario.login">
+    </div>
+    <div class="mb-3">
+      <label for="senha" class="form-label">Senha</label>
+      <input type="senha" class="form-control" id="senha"  [(ngModel)]="usuario.senha">
+    </div>
+    
+    <button type="submit" class="btn btn-primary text-center" (click)="fazerLogin()">Login</button>
+    <div class="text-center">
+        <p>Não tem cadastro? <a href="/contato">Cadastrar</a></p>
+      </div>
+  </form>
+
+</div>
+
+
