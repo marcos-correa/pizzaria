@@ -1,3 +1,4 @@
+import { PizzariaModule } from './pizzaria/pizzaria.module';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,14 +7,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ToastModule} from 'primeng/toast';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-// ToolbarModule
+// import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {DialogModule} from 'primeng/dialog';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,11 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    PizzariaModule
+
+
   ],
   providers: [
     MessageService, 

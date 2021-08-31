@@ -2,6 +2,7 @@ import { UserService } from './../../services/user.service';
 import { PizzariaService } from './../pizzaria.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+
 import { Pizza } from './pizza';
 // import { Product } from '../../domain/product';
 // import { ProductService } from '../../service/productservice';
@@ -15,7 +16,7 @@ import { Pizza } from './pizza';
 })
 export class ListaComponent implements OnInit {
 
-  productDialog: boolean;
+  modalFinalizar: boolean;
   // selectedProducts: any[];
   submitted: boolean;
   pizza!: Pizza;
@@ -34,8 +35,8 @@ export class ListaComponent implements OnInit {
   
   constructor(
     private pizzariaService: PizzariaService, 
-    private UserService: UserService
-    // private messageService: MessageService, 
+    private userService: UserService,
+    public messageService: MessageService, 
     // private confirmationService: ConfirmationService
     ) {
       this.productPrice = ''
@@ -46,7 +47,7 @@ export class ListaComponent implements OnInit {
       this.productPrice = ''
       this.submitted = false;
       // this.pizza = null;
-      this.productDialog = false;
+      this.modalFinalizar = false;
       this.selectedProducts = []
       this.pizzas = this.pizzariaService.getPizzasNoCarrinho();
       this.valorCarrinho = 0
@@ -124,7 +125,7 @@ export class ListaComponent implements OnInit {
   novaPizza(){
     this.pizza = {quantity:0,price: 0};
     this.submitted = false;
-    this.productDialog = true;
+    this.modalFinalizar = true;
   }
 
   saveProduct(){
@@ -150,7 +151,7 @@ export class ListaComponent implements OnInit {
       }
 
           this.pizzas = [...this.pizzas];
-          this.productDialog = false;
+          this.modalFinalizar = false;
           // this.pizza = {};
       }
   }
@@ -175,11 +176,11 @@ export class ListaComponent implements OnInit {
  
   editProduct(pizza: Pizza) {
     this.pizza = {...pizza};
-    this.productDialog = true;
+    this.modalFinalizar = true;
   }
 
   hideDialog(){
-    this.productDialog = false;
+    this.modalFinalizar = false;
   }
 
   invalidName(){
@@ -208,5 +209,24 @@ export class ListaComponent implements OnInit {
 
   getTotalPizzasNoCarrinho(){
     return this.pizzariaService.getTotalPizzasNoCarrinho();
+  }
+
+  isLogado(){
+    return this.userService.isLogado()
+  }
+
+  finalizarCompra(){
+    if(this.isLogado()){
+      this.limparCarrinho()
+      this.messageService.add({severity:'success', summary:'Compra finalizada', life: 3000});
+    }else{
+      this.modalFinalizar = true
+    }
+  }
+
+  limparCarrinho(){
+   this.pizzariaService.setPizzasNoCarrinho([])
+   this.pizzariaService.valorTotalCarrinho()
+   this.pizzas = this.pizzariaService.getPizzasNoCarrinho()
   }
 }

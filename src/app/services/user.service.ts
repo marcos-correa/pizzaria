@@ -13,11 +13,32 @@ export class UserService {
   users: User[];
   cadastro!: User[];
 
+  adminuser = {
+    nome:'Administrador',
+    cpf:'0000000', 
+    telefone:'string', 
+    email:'admin@admin.com',
+    aniversario:'string',
+    senha:'123456', 
+    endereco: {
+        cep:'831654651',
+        logradouro:'',
+        numero:'',
+        complemento:'',
+        cidade:'',
+        bairro:'',
+        estado:'',
+    }
+  }
+
   constructor(
     private router: Router
   ) {
     this.logado = false
     this.users = []
+    this.users.push(this.adminuser)
+    this.cadastro = []
+    this.cadastro.push(this.adminuser)
     
   }
 
@@ -27,6 +48,10 @@ export class UserService {
 
   clickCadastrar(){
 
+  }
+
+  getUsuarioAtual(){
+    return this.cadastro[0]
   }
 
   cadastrarUsuario(formularioValue:User){
@@ -39,7 +64,7 @@ export class UserService {
   
 
   logarUsuario(usuario:Usuario){
-    let mensagem = ''
+    let mensagem = 'Inicial'
     if (usuario.login){
       this.cadastro = this.users.filter(cad => cad.email == usuario.login)
         console.log(this.cadastro);
@@ -59,17 +84,21 @@ export class UserService {
       }else{
         mensagem = 'Usuario não encontrado'
       }
-      
+    }else{
+      mensagem = 'Campo vazio'
     }
-   
-      return mensagem;
-    } 
+    return mensagem;
+  } 
   
 
-  // deslogarUsuario(){
-  //   this.logado = false;
-  // }
-  // getNomeUsuario(){
-
-  // }
+  deslogarUsuario(){
+    this.logado = false;
+    this.cadastro = []
+  }
+  getNomeUsuarioLogado(){
+    if(this.isLogado()){
+      return this.cadastro[0].nome?.split(' ')[0]
+    }
+    return ''
+  }
 }

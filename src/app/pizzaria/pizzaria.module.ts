@@ -63,5 +63,8 @@ import { ContatoComponent } from './contato/contato.component';
     ReactiveFormsModule
 
   ],
+  exports:[
+    LoginComponent
+  ]
 })
 export class PizzariaModule { }

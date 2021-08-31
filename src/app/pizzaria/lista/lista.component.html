@@ -113,8 +113,10 @@
 </div>
 
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalhes da nova pizza" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
+<button *ngIf="pizzas.length > 0"  pButton type="button" class="ml-3" (click)="finalizarCompra()">FINALIZAR COMPRA</button>
+
+<p-dialog [(visible)]="modalFinalizar" [style]="{width: '450px'}" header="Login necessário" [modal]="true" styleClass="p-fluid">
+    <!-- <ng-template pTemplate="content">
         <img [src]="'assets/images/' + pizza.image" [alt]="pizza.image" class="pizza-image" width="300px"  *ngIf="pizza.image">
         <div class="p-field d-flex flex-column mb-2">
             <label for="name">Nome da pizza <br> 
@@ -138,10 +140,16 @@
             </div>
             
         </div>
-    </ng-template>
+    </ng-template> -->
     
-    <ng-template pTemplate="footer">
+    
+    Para finalizar a compra, você precisa estar logado.
+    
+    <app-login *ngIf="!isLogado()"></app-login>
+    <div *ngIf="isLogado()"> Compra finalizada</div>
+    
+    <!-- <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-    </ng-template>
+    </ng-template> -->
 </p-dialog> 

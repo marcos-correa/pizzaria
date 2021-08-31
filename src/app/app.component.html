@@ -55,7 +55,7 @@
               <div class="col-3">
                 <img src="https://demothemedh.b-cdn.net/piizalian/wp-content/uploads/2021/02/pizzalian-logo.svg" alt="" data-ll-status="loaded">
               </div>
-              <div class="col-6 d-flex justify-content-center">
+              <div class="col-auto flex-fill d-flex justify-content-center">
                 
                 <button  [routerLink]="''"  type="button" class="btn btn-danger drop-pizz">
                   Home
@@ -78,14 +78,17 @@
                 </button>
 
               </div>
-              <div class="col-3 navbar-sec d-flex align-items-center">
+              <div class="col-auto navbar-sec d-flex align-items-center">
                 <div class="d-flex align-items-center">
                   <div class="icon">
                     <i class="fas fa-search"></i>
                   </div>
-                  <div class="icon">
+                  <div class="icon" (click)="toggleModal()">
                     <i class="far fa-user"></i>
                   </div>
+                  <span *ngIf="isLogado()" class="ml-2 text-user-name">
+                    {{getNomeUsuarioLogado()}}
+                  </span>
                   <div class="icon heart">
                     <i class="far fa-heart"></i>
                   </div>
@@ -107,7 +110,31 @@
         </nav>
     </div>
 </header>
+<p-dialog  #modalId [(visible)]="modal" [style]="{width: '40vw'}">
+  <ng-template pTemplate="header">
+    Login
+  </ng-template>
+  <app-login (logado)="fecharModal()"></app-login>
+</p-dialog>
 
+<p-dialog [(visible)]="modalLogado" [style]="{width: '40vw'}">
+  <ng-template pTemplate="header">
+    Perfil
+
+    Nome: {{this.usuarioAtual?.nome }}
+    Email: {{this.usuarioAtual?.email }}
+  </ng-template>
+  <button type="submit" class="btn btn-primary text-center" (click)="deslogar()">Sair</button>
+
+  <!-- <app-login></app-login> -->
+</p-dialog>
+
+<p-dialog [(visible)]="modalCadastro" [style]="{width: '50vw'}">
+  <ng-template pTemplate="header">
+    Cadastro
+  </ng-template>
+  <!-- <app-login></app-login> -->
+</p-dialog>
 
 <router-outlet></router-outlet>
 
