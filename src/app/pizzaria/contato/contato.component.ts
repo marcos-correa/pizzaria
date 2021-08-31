@@ -22,10 +22,22 @@ export class ContatoComponent implements OnInit {
   ) { 
 
     this.formulario = this.formBuilder.group({
-      nome: [null, [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
-      cpf: [null, [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
-      email: [null, [Validators.required, Validators.email]],
-      telefone: [null, [Validators.required, Validators.pattern("[0-9]+$")]]
+      nome: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
+      cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
+      aniversario: ['', [Validators.required] ],
+      senha: ['', [Validators.required] ],
+      endereco: this.formBuilder.group({
+        cep: ['', [Validators.required]],
+        numero: ['', Validators.required],
+        complemento: [''],
+        logradouro: ['', Validators.required],
+        bairro: ['', Validators.required],
+        cidade: ['', Validators.required],
+        estado: ['', Validators.required]
+      }),
+
   })
   }
 
@@ -33,7 +45,7 @@ export class ContatoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formulario);
+    //console.log(this.formulario);
     this.userService.cadastrarUsuario(this.formulario.value);
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value)).pipe(map(res => res)).subscribe(dados => {
       console.log(dados);
@@ -65,9 +77,6 @@ export class ContatoComponent implements OnInit {
       .then((cep:Cep) => this.cep = cep);
   }
 
-  click(){
-    console.log("click");
-    // this.modalService.showConfirm('Confirmado','Tem certeza que deseja remover');
-  }
+  
   
 }
