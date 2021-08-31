@@ -1,7 +1,7 @@
 import { MessageService } from 'primeng/api';
 import { Pizza } from '../lista/pizza';
 import { PizzariaService } from './../pizzaria.service';
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 
 @Component({
   selector: 'app-catalogo',
@@ -14,9 +14,14 @@ export class CatalogoComponent implements OnInit {
     {label: "Nome", value: "name"},
     {label: "Preço", value: "price"}
   ]
+
+  @Input() quantidade: Number;
   selectedOrder: any;
   modal: Boolean;
   pizza!: Pizza;
+
+  @Input() showOrder: Boolean;
+  @Input() paginaIcial: Boolean;
 
   constructor(
     private pizzariaService: PizzariaService,
@@ -26,6 +31,10 @@ export class CatalogoComponent implements OnInit {
     this.alterarOrdem({label: "Nome", value: "name"});
     this.modal = false;
 
+    this.quantidade = 29;
+    this.showOrder = true;
+    this.paginaIcial = false;
+    
   }
 
   ngOnInit(): void {

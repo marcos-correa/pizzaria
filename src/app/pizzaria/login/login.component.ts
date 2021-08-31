@@ -12,12 +12,15 @@ import { Usuario } from '../../services/usuario';
 })
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
+  passwordType:Boolean
 
   @Output() logado = new EventEmitter();
   
   constructor(
     private userService:UserService,
-    public messageService: MessageService) { }
+    public messageService: MessageService) { 
+      this.passwordType = true;
+    }
 
   ngOnInit(): void {
   }
@@ -33,6 +36,18 @@ export class LoginComponent implements OnInit {
     }
     
   }
+  getTypeInput(){
+    if(this.passwordType){
+      return 'password'
+    }else{
+      return 'text'
+    }
+  }
+  toogleType(){
+    this.passwordType = !this.passwordType
+  }
+
+
 
 }
 

@@ -73,26 +73,24 @@
                   Contato
                 </button>
 
-                <button [routerLink]="'login'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Login
-                </button>
-
               </div>
               <div class="col-auto navbar-sec d-flex align-items-center">
                 <div class="d-flex align-items-center">
-                  <div class="icon">
+                  <div class="icon" hidden>
                     <i class="fas fa-search"></i>
                   </div>
-                  <div class="icon" (click)="toggleModal()">
-                    <i class="far fa-user"></i>
+                  <div class="icon mx-5 d-flex align-items-center" (click)="toggleModal()">
+                    <div>
+                      <i class="far fa-user"></i>
+                    </div>
+                    <span *ngIf="isLogado()" class="ml-2 text-user-name">
+                      {{getNomeUsuarioLogado()}}
+                    </span>
                   </div>
-                  <span *ngIf="isLogado()" class="ml-2 text-user-name">
-                    {{getNomeUsuarioLogado()}}
-                  </span>
-                  <div class="icon heart">
+                  <div class="icon heart" hidden>
                     <i class="far fa-heart"></i>
                   </div>
-                  <span class="count-heart">{{getNumbers()}}</span>
+                  <span class="count-heart" hidden>{{getNumbers()}}</span>
                 </div>
                 <div class="py-2 d-flex align-items-center justify-content-center">
                   <button [routerLink]="'lista'" class="btn btn-warning chart-button">
@@ -120,11 +118,16 @@
 <p-dialog [(visible)]="modalLogado" [style]="{width: '40vw'}">
   <ng-template pTemplate="header">
     Perfil
-
-    Nome: {{this.usuarioAtual?.nome }}
-    Email: {{this.usuarioAtual?.email }}
   </ng-template>
-  <button type="submit" class="btn btn-primary text-center" (click)="deslogar()">Sair</button>
+  <div class="d-flex flex-column">
+    <span>
+      Perfil de <strong>{{this.usuarioAtual?.nome }}</strong>
+    </span>
+    <span class="mb-5">
+      Email: {{this.usuarioAtual?.email }}
+    </span>
+    <button type="submit" class="btn btn-primary text-center" (click)="deslogar()">Sair</button>
+  </div>
 
   <!-- <app-login></app-login> -->
 </p-dialog>

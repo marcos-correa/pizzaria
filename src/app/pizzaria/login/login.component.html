@@ -7,10 +7,19 @@
     </div>
     <div class="mb-3">
       <label for="senha" class="form-label">Senha</label>
-      <input type="password" class="form-control" id="senha"  [(ngModel)]="usuario.senha">
-      <span>
-        <i class="fas fa-eye"></i>  
-      </span>
+      <div class="d-flex align-items-center">
+        <input [type]="getTypeInput()" class="form-control" id="senha"  [(ngModel)]="usuario.senha">
+        
+        
+        <span (click)="toogleType()" *ngIf="passwordType" class="eyeclass">
+          <i class="fas fa-eye"></i>  
+        </span>
+
+
+        <span (click)="toogleType()" *ngIf="!passwordType" class="eyeclass">
+          <i class="fas fa-eye-slash"></i>  
+        </span>
+      </div>
     </div>
     
     <button type="submit" class="btn btn-primary text-center" (click)="fazerLogin()">Login</button>

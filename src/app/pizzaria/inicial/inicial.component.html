@@ -41,7 +41,7 @@
   </section>
 
   <!-- Items -->
-  <!-- <section>
+  <section>
     <div class="items-container">
       <div class="items-wrapper">
 
@@ -76,10 +76,10 @@
 
       </div>
       </div>
-  </section> -->
+  </section>
 
   <!-- Promo -->
-  <!-- <section class="promo">
+  <section class="promo">
     <div class="promo-container">
 
       <div class="row no-gutters h-100">
@@ -130,7 +130,7 @@
                   <div class=" chart-button-icon">
                     <i class="fas fa-shopping-cart"></i>
                   </div>
-                  order now
+                  comprar
                 </button>
               </div>
             </div>
@@ -144,11 +144,11 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
  
   <!-- Pizza of the day  -->
-  <!-- <section>
+  <section>
     <div class="pizzaday d-flex align-items-center">
       <div class="info">
         <h1 class="pizzaday-pretitle">
@@ -168,7 +168,7 @@
           <div class="day-button-icon">
             <i class="fas fa-shopping-cart"></i>
           </div>
-          order now
+          comprar
         </button>
       </div>
       <div class="row w-100">
@@ -180,9 +180,14 @@
       </div>
 
     </div>
-  </section> -->
+  </section>
 
   <!-- order -->
+  <app-catalogo 
+    [quantidade]="7" 
+    [showOrder]="false"
+    [paginaIcial]="true"
+  ></app-catalogo>
   <!-- <section class="flavor mb-5">
     <div class="flavor-container ">
       <div class="flavor-header-order">
@@ -398,17 +403,19 @@
 
       </ul>
 
-      <div class="flavor-footer d-flex align-items-center justify-content-center">
-        <button class="btn flavor-footer">
-          <div class=" chart-button-icon">
-            <i class="fas fa-border-all"></i>
-          </div>
-          order now
-        </button>
+        <div class="flavor-footer d-flex align-items-center justify-content-center">
+          <button class="btn flavor-footer">
+            <div class=" chart-button-icon">
+              <i class="fas fa-border-all"></i>
+            </div>
+            order now
+          </button>
+        </div>
       </div>
-    </div>
-  </section> -->
-  <ng-content></ng-content>
+    </section> -->
+
+
+  <!-- <ng-content></ng-content>
     <pre class="mt-4">
       Validação de campos de formulário
       - a cada evento de alteração do valor do input
@@ -420,7 +427,7 @@
       <app-endereco>
   
       </app-endereco>
-    </section>
+    </section> -->
 
   <!-- <section class="m-5">
     <h3>Tabela: Inclusão de item, remoção de item, ordenação e edição. (CRUD)</h3>

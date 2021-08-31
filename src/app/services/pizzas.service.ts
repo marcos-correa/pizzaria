@@ -368,7 +368,7 @@ export class PizzasService {
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
         "rating": 4
-      },
+      }
       
     ]
 
@@ -376,5 +376,11 @@ export class PizzasService {
 
   getPizzas(): Pizza[]{
     return this.pizzas;
+  }
+
+
+  getPizzaByIndex(index: number): Pizza{
+    let pizza = this.pizzas[index]
+    return pizza
   }
 }

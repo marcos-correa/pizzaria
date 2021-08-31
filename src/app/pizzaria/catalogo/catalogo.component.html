@@ -1,6 +1,7 @@
 <section class="flavor mb-5">
   <div class="flavor-container ">
-    <div class="flavor-header">
+    <!-- Página de Catalogo -->
+    <div *ngIf="!paginaIcial" class="flavor-header">
       <p class="flavor-pretitle">
         ESCOLHA O SABOR
       </p>
@@ -12,7 +13,17 @@
       </p>
     </div>
 
-    <div class="d-flex align-items-center mb-4">
+    <!-- Página Inicial -->
+    <div *ngIf="paginaIcial" class="flavor-header">
+      <p class="flavor-pretitle">
+        ESCOLHA O SABOR
+      </p>
+      <p class="flavor-title">
+        AS MELHORES PIZZAS DA SEMANA
+      </p>
+    </div>
+
+    <div *ngIf="showOrder" class="d-flex align-items-center mb-4">
       <h5 class="mr-4 mb-0">
         Ordenar por:
       </h5>
@@ -22,46 +33,50 @@
 
     <ul class="row flavor-content p-0">
 
-      <li *ngFor="let pizza of pizzas" class="col-3 mb-3">
-        <div class="flavor-item">
-          <div class="flavor-item-container d-flex flex-column">
-            <div class="flavor-item-view">
-              <button class="btn flavor view heart">
-                <div class="view-icon">
-                  <i class="far fa-heart"></i>
-                </div>
-              </button>
-              <button class="btn flavor view eye">
-                <div class="view-icon" (click)="toggleModal(pizza)">
-                  <i class="far fa-eye"></i>
-                </div>
-              </button>
-              <button class="btn flavor view copy">
-                <div class="view-icon">
-                  <i class="far fa-copy"></i>
-                </div>
-              </button>
-            </div>
-            <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="">
-            <p class="mb-0 item-flavor-title">
-              {{pizza.name}}
-            </p>
-            <div class="d-flex">
-              <p class="item-flavor-subtitle mr-1">
-                {{pizza.category}}
-              </p>
-            </div>
-            <p class="item-flavor-price">
-              {{pizza.price}}
-            </p>
-            <button (click)="adicionarAoCarrinho(pizza)" class="btn flavor">
-              <div class=" chart-button-icon">
-                <i class="fas fa-shopping-cart"></i>
+      <li *ngFor="let pizza of pizzas ; let i = index" class="col-3 mb-3">
+        <div *ngIf="i <= quantidade">
+          <div class="flavor-item">
+            <div class="flavor-item-container d-flex flex-column">
+              <div class="flavor-item-view">
+                <button class="btn flavor view heart" hidden>
+                  <div class="view-icon">
+                    <i class="far fa-heart"></i>
+                  </div>
+                </button>
+                <button class="btn flavor view eye">
+                  <div class="view-icon" (click)="toggleModal(pizza)">
+                    <i class="far fa-eye"></i>
+                  </div>
+                </button>
+                <button class="btn flavor view copy" hidden>
+                  <div class="view-icon">
+                    <i class="far fa-copy"></i>
+                  </div>
+                  comprar
+                </button>
               </div>
-              comprar
-            </button>
+              <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="">
+              <p class="mb-0 item-flavor-title">
+                {{pizza.name}}
+              </p>
+              <div class="d-flex">
+                <p class="item-flavor-subtitle mr-1">
+                  {{pizza.category}}
+                </p>
+              </div>
+              <p class="item-flavor-price">
+                {{pizza.price}}
+              </p>
+              <button (click)="adicionarAoCarrinho(pizza)" class="btn flavor">
+                <div class=" chart-button-icon">
+                  <i class="fas fa-shopping-cart"></i>
+                </div>
+                comprar
+              </button>
+            </div>
           </div>
         </div>
+
       </li>
     </ul>
 
@@ -77,25 +92,26 @@
   </div>
 </section>
 
+
 <p-dialog #modalId [(visible)]="modal" [style]="{width: '40vw'}">
   <ng-template pTemplate="header">
     <p class="mb-0 item-flavor-title">
-      Nome: {{pizza.name}}
+      Nome: {{pizza?.name}}
     </p>
   </ng-template>
   <div class="row justify-content-between">
       
     <div class="col-md-7">
       <p class="item-flavor-price">
-        Preço: R$ {{pizza.price}}
+        Preço: R$ {{pizza?.price}}
       </p>
 
       <p class="item-flavor-subtitle mr-1">
-        {{pizza.description}}
+        {{pizza?.description}}
       </p>
     </div>
     <div class="col-md-5">
-      <img width="200" src="{{'../../../assets/images/'+pizza.image}}" alt="">
+      <img width="200" src="{{'../../../assets/images/'+pizza?.image}}" alt="">
     </div>
   </div>
 </p-dialog>
