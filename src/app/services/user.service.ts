@@ -58,7 +58,7 @@ export class UserService {
     this.users.push(formularioValue)
 
 
-    console.table(this.users)
+    //console.table(this.users)
     debugger
   }
   
