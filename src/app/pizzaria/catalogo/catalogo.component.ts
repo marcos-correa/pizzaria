@@ -15,6 +15,8 @@ export class CatalogoComponent implements OnInit {
     {label: "Preço", value: "price"}
   ]
   selectedOrder: any;
+  modal: Boolean;
+  pizza!: Pizza;
 
   constructor(
     private pizzariaService: PizzariaService,
@@ -22,6 +24,7 @@ export class CatalogoComponent implements OnInit {
   ) { 
     this.pizzas = this.pizzariaService.getPizzas();//todas as pizzas [{}{}]
     this.alterarOrdem({label: "Nome", value: "name"});
+    this.modal = false;
 
   }
 
@@ -61,6 +64,11 @@ export class CatalogoComponent implements OnInit {
     let mensagem = this.pizzariaService.adicionarAoCarrinho(pizza)
     this.messageService.add({severity:'success', summary:'Pizza adicionada ao carrinho', detail:mensagem, life: 1500});
   } 
+
+  toggleModal(pizza: Pizza){
+    this.modal = true;
+    this.pizza = pizza;
+  }
 
   
  
