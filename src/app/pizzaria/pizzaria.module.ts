@@ -29,9 +29,10 @@ import {InputTextModule} from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { EnderecoComponent } from './endereco/endereco.component';
-import { ContatoComponent } from './contato/contato.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { LoginComponent } from './login/login.component';
+import { ContatoComponent } from './contato/contato.component';
 
 
 @NgModule({
@@ -39,9 +40,10 @@ import { LoginComponent } from './login/login.component';
     InicialComponent,
     ListaComponent,
     EnderecoComponent,
-    ContatoComponent,
+    CadastroComponent,
     CatalogoComponent,
     LoginComponent,
+    ContatoComponent,
   ],
   imports: [
     CommonModule,
