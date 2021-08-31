@@ -1,110 +1,38 @@
 <div class="container">
-  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-    <div class="row">
-      <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('nome')">
-          <label for="nome" class="control-label" >Nome</label>
-          <input type="text" class="form-control" formControlName="nome" name="nome" placeholder="Nome Sobrenome">
-        </div>
-        
-      </div>
+        <div class="row justify-content-between">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nome" class="control-label">Nome</label>
+                    <input type="text" class="form-control" formControlName="nome" name="nome"
+                        placeholder="Nome Sobrenome">
+                </div>
 
-      <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('cpf')">
-          <label for="cpf" class="control-label">CPF</label>
-          <input type="text" class="form-control" formControlName="cpf" name="cpf" placeholder="000.000.000-00">  
-        </div>
-      </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Email</label>
+                    <input type="text" class="form-control" formControlName="email" name="email"
+                        placeholder="nome@email.com">
+                </div>
 
-    </div>
-  
-    <div class="row">
+                <div class="form-group">
+                    <label for="assunto" class="control-label">Assunto</label>
+                    <input type="assunto" class="form-control" formControlName="assunto" name="assunto">
+                </div>
 
-      <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('email')">
-          <label for="email" class="control-label">Email</label>
-          <input type="email" class="form-control" formControlName="email" name="email" placeholder="nome@email.com"> 
-        </div>
-      </div>
+            </div>
 
-      <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('telefone')">
-          <label for="telefone" class="control-label">Telefone</label>
-          <input type="text" class="form-control" formControlName="telefone" name="telefone" placeholder="00000000000"> 
-        </div>
-      </div>
-    </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="texto">Mensagem</label>
+                    <textarea class="form-control" id="mensagem" formControlName="mensagem" rows="6"></textarea>
+                </div>
+                <div class="d-flex flex-row-reverse"> 
+                    <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Submeter</button>
+                </div>
+            </div>
 
-    <div class="row">
-
-      <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('aniversario')">
-          <label for="aniversario" class="control-label">Data Nascimento</label>
-          <input type="aniversario" class="form-control" formControlName="aniversario" name="aniversario" placeholder="00/00/0000"> 
-        </div>
-      </div>
-
-      <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('senha')">
-          <label for="senha" class="control-label">Senha</label>
-          <input type="text" class="form-control" formControlName="senha" name="senha"> 
-        </div>
-      </div>
-    </div>
-
-    <br>
-
-    <div formGroupName="endereco">
-
-      <div class="form-group row">
-        
-        <div class="col-md-6">
-          <label for="complemento" class="control-label">Complemento</label>
-          <input type="text" class="form-control" id="complemento" formControlName="complemento" [(ngModel)]="cep.complemento">
-        </div>
-  
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.cep')">
-          <label for="cep" class="control-label">CEP</label>
-          <input type="text" class="form-control" id="cep" formControlName="cep" [(ngModel)]="cep.cep">
-        </div>
-        
-        <div class="col-md-2">
-          <br>
-          <button type="button" class="btn btn-primary" (click)="buscar()">Buscar</button>
-        </div>
-      </div>
-  
-      <div class="form-group row" >
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.numero')">
-          <label for="numero" class="control-label">Número</label>
-          <input type="text" class="form-control" id="numero" formControlName="numero">
         </div>
 
-        <div class="col-sm-8" [ngClass]="aplicaCssErro('endereco.logradouro')">
-          <label for="rua" class="control-label">Rua</label>
-          <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [(ngModel)]="cep.logradouro">
-        </div>
-      </div>
-  
-      <div class="form-group row">
-        <div class="col-md-5" [ngClass]="aplicaCssErro('endereco.bairro')">
-          <label for="bairro" class="control-label">Bairro</label>
-          <input type="text" class="form-control" id="bairro" formControlName="bairro" [(ngModel)]="cep.bairro">
-        </div>
-  
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.cidade')">
-          <label for="cidade" class="control-label">Cidade</label>
-          <input type="text" class="form-control" id="cidade" formControlName="cidade" [(ngModel)]="cep.cidade">
-        </div>
-  
-        <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.estado')">
-          <label for="estado" class="control-label">Estado</label>
-          <input type="text" class="form-control" id="estado" formControlName="estado" [(ngModel)]="cep.estado">
-        </div>
-      </div>
-    </div>
-
-    <br><button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Submeter</button>  
-  </form>
+    </form>
 </div>

@@ -42,6 +42,8 @@ export class UserService {
     let mensagem = ''
     if (usuario.login){
       this.cadastro = this.users.filter(cad => cad.email == usuario.login)
+        console.log(this.cadastro);
+
       if(this.cadastro.length>0){
         console.log(this.cadastro[0].senha);
         console.log(usuario.senha);
@@ -57,7 +59,9 @@ export class UserService {
       }else{
         mensagem = 'Usuario não encontrado'
       }
+      
     }
+   
       return mensagem;
     } 
   

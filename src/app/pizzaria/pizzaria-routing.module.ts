@@ -1,11 +1,12 @@
 import { CatalogoComponent } from './catalogo/catalogo.component';
-import { ContatoComponent } from './contato/contato.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { InicialComponent } from './inicial/inicial.component';
 import { ListaComponent } from './lista/lista.component';
+import { ContatoComponent } from './contato/contato.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'lista',
     component: ListaComponent
+  },
+  {
+    path: 'cadastro',
+    component: CadastroComponent
   },
   {
     path: 'contato',
