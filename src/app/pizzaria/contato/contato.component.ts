@@ -27,7 +27,7 @@ export class ContatoComponent implements OnInit {
     this.formulario.reset();
     setTimeout(() => {
       this.router.navigate(['/']);
-    }, 1500);
+    }, 2000);
     
   
   }

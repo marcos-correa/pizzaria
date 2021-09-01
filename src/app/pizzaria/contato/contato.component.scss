@@ -1,3 +1,102 @@
 .ng-invalid.ng-touched:not(form){
     border:1px solid red;
 }
+
+.formulario{
+    padding: 30px;
+    margin-bottom: 40px;
+}
+.topo-contato{
+    margin-top: 60px;
+}
+.titulo-contato{
+    font-size: 48px;
+    font-weight: 600;
+    font-family: "Oswald","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.subtitulo-contato{
+    font-family: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-size: 18px;
+}
+
+#icone-servicos i{
+    color: rgb(198, 32, 46);
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+.servico-texto h1{
+    color: rgb(0, 0, 0);
+    font-family: "Oswald", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.servico-texto p{
+    color: rgb(130, 130, 130);
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 14px;
+}
+
+.borda-servico:hover{
+    border-radius: 5px;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: rgb(198, 32, 46);
+    padding-top: 10px;
+    
+   
+}
+.borda-servico{
+    border-color: transparent;
+    padding-top: 14px;
+}
+
+.inscricao h1{
+    color: rgb(0, 0, 0);
+    font-family: "Oswald", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.inscricao p{
+    color: rgb(51, 51, 51);
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 16px;
+}
+
+.inscricao input{
+    display: inline;
+    border:none;
+    border-radius: 20px;
+}
+
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.email-btn{
+    border-radius: 20px;
+    width: 20%;
+    background-color: #C6202E;
+    border-color: #C6202E; 
+}
+
+.email-btn:hover{
+    background-color: rgb(146, 32, 46);
+    border-color: rgb(146, 32, 46);
+    
+}
+
+#envio{
+    border: 1px solid #c0c0c0;
+    border-radius: 20px;
+    width: 80%;
+    padding: 5px;
+    display: flex;
+    height: 52px;
+}
