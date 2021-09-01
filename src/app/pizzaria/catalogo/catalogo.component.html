@@ -50,13 +50,13 @@
                 </button>
                 <button class="btn flavor view copy" hidden>
                   <div class="view-icon">
-                    <i class="far fa-copy"></i>
+                    <i class="far fa-copy" ></i>
                   </div>
                   comprar
                 </button>
               </div>
-              <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="">
-              <p class="mb-0 item-flavor-title">
+              <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="" (click)="toggleModal(pizza)">
+              <p class="mb-0 item-flavor-title" (click)="toggleModal(pizza)">
                 {{pizza.name}}
               </p>
               <div class="d-flex">
@@ -81,8 +81,8 @@
     </ul>
 
 
-    <div class="flavor-footer d-flex align-items-center justify-content-center">
-      <button class="btn flavor-footer" routerLink="/lista">
+    <div *ngIf="paginaIcial" class="flavor-footer d-flex align-items-center justify-content-center">
+      <button class="btn pizzaday-footer" routerLink="/catalogo">
         <div class=" chart-button-icon">
           <i class="fas fa-border-all"></i>
         </div>
