@@ -32,4 +32,10 @@ export class ContatoComponent implements OnInit {
   
   }
 
+  aplicaCssErro(campo: any) {
+    return {
+      'is-invalid': !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched
+    };
+  }
+
 }
