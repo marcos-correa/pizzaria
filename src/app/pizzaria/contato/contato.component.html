@@ -17,13 +17,19 @@
                 <div class="form-group">
                     <label for="nome" class="control-label">Nome</label>
                     <input type="text" class="form-control" formControlName="nome" name="nome"
-                        placeholder="Nome Sobrenome">
+                        placeholder="Nome Sobrenome" [ngClass]="aplicaCssErro('nome')">
+          
+                        <div class="invalid-feedback">
+                          Campo Obrigatório. Aceita apenas letras.
+                        </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="control-label">Email</label>
-                    <input type="text" class="form-control" formControlName="email" name="email"
-                        placeholder="nome@email.com">
+                    <input type="text" class="form-control" formControlName="email" name="email" placeholder="nome@email.com" [ngClass]="aplicaCssErro('email')"> 
+                    <div class="invalid-feedback">
+                      Campo Obrigatório. Digite no formato correto.
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -56,8 +62,8 @@
         <div class="icone-servico d-flex justify-content-around">
           <i class="fas fa-motorcycle"></i>
           <div class="servico-texto">
-            <h1>Free Shipping</h1>
-            <p>Sign up for updates and get free shipping</p>
+            <h1>Entrega grátis</h1>
+            <p>Receba atualizações e frete grátis</p>
           </div>
         </div>
           
@@ -67,8 +73,8 @@
         <div class="icone-servico d-flex justify-content-around">
           <i class="far fa-clock"></i>
           <div class="servico-texto">
-            <h1>Free Shipping</h1>
-            <p>Sign up for updates and get free shipping</p>
+            <h1>Entrega 30min</h1>
+            <p>Entrega super rápida em sua porta</p>
           </div>
         </div>
           
@@ -78,8 +84,8 @@
         <div class="icone-servico d-flex justify-content-around">
           <i class="fas fa-pizza-slice"></i>
           <div class="servico-texto">
-            <h1>Free Shipping</h1>
-            <p>Sign up for updates and get free shipping</p>
+            <h1>Pizza de Qualidade</h1>
+            <p>Uma rede de restaurantes familiares</p>
           </div>
         </div>
       </div>
@@ -90,15 +96,15 @@
       <div class="container-fluid text-center">
         <div class="container inscricao">
           <br><br>
-          <h1>Subscribe to newsletter</h1>
-          <p>Subscribe to receive our weekly Hot Promotion every Monday!</p>
+          <h1>Acopanhe nossas novidades</h1>
+          <p>Inscreva-se para rececer as nossas melhores promoções!</p>
           <br>
           <div>
             <div class="d-flex justify-content-center">
               <form id="envio">
                 <input type="email" class="form-control justify-content-left" id="email-input"
-                  placeholder="Your email adress">
-                <button type="submit" class="btn btn-primary email-btn justify-content-right">Sign up</button>
+                  placeholder="Seu email">
+                <button type="submit" class="btn email-btn justify-content-right">Enviar</button>
               </form>
             </div>
     

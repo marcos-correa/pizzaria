@@ -1,19 +1,36 @@
+<div class="container-fluid topo-contato">
+  <div class="d-flex justify-content-center titulo-contato">
+      <h1 class= titulo-contato>Ainda sem cadastro?</h1>
+  </div>
+  <div class="d-flex justify-content-center">
+      <p class= subtitulo-contato> Inscreva-se para aproveitar nossos produtos</p>
+  </div>
+</div>
+
+
 <div class="container">
   <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+        <div class="form-group">
           <label for="nome" class="control-label" >Nome</label>
-          <input type="text" class="form-control" formControlName="nome" name="nome" placeholder="Nome Sobrenome">
+          <input type="text" class="form-control" formControlName="nome" name="nome" placeholder="Nome Sobrenome" [ngClass]="aplicaCssErro('nome')">
+          
+          <div class="invalid-feedback">
+            Campo Obrigatório. Aceita apenas letras.
+          </div>
         </div>
         
       </div>
 
       <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('cpf')">
+        <div class="form-group" >
           <label for="cpf" class="control-label">CPF</label>
-          <input type="text" class="form-control" formControlName="cpf" name="cpf" placeholder="000.000.000-00">  
+          <input type="text" class="form-control" formControlName="cpf" name="cpf" placeholder="000.000.000-00"  [ngClass]="aplicaCssErro('cpf')">  
+          <div class="invalid-feedback">
+            Campo Obrigatório. Digite como no exemplo.
+          </div>
         </div>
       </div>
 
@@ -22,16 +39,22 @@
     <div class="row">
 
       <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('email')">
+        <div class="form-group">
           <label for="email" class="control-label">Email</label>
-          <input type="email" class="form-control" formControlName="email" name="email" placeholder="nome@email.com"> 
+          <input type="email" class="form-control" formControlName="email" name="email" placeholder="nome@email.com" [ngClass]="aplicaCssErro('email')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Digite no formato correto.
+          </div>
         </div>
       </div>
 
       <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('telefone')">
+        <div class="form-group" >
           <label for="telefone" class="control-label">Telefone</label>
-          <input type="text" class="form-control" formControlName="telefone" name="telefone" placeholder="00000000000"> 
+          <input type="text" class="form-control" formControlName="telefone" name="telefone" placeholder="00000000000" [ngClass]="aplicaCssErro('telefone')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Digite apenas os números.
+          </div>
         </div>
       </div>
     </div>
@@ -39,16 +62,22 @@
     <div class="row">
 
       <div class="col-md-5">
-        <div class="form-group" [ngClass]="aplicaCssErro('aniversario')">
+        <div class="form-group" >
           <label for="aniversario" class="control-label">Data Nascimento</label>
-          <input type="aniversario" class="form-control" formControlName="aniversario" name="aniversario" placeholder="00/00/0000"> 
+          <input type="aniversario" class="form-control" formControlName="aniversario" name="aniversario" placeholder="00/00/0000" [ngClass]="aplicaCssErro('aniversario')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Digite como no exemplo.
+          </div>
         </div>
       </div>
 
       <div class="col-md-7">
-        <div class="form-group" [ngClass]="aplicaCssErro('senha')">
+        <div class="form-group" >
           <label for="senha" class="control-label">Senha</label>
-          <input type="text" class="form-control" formControlName="senha" name="senha"> 
+          <input type="text" class="form-control" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Senha com pelo menos 6 dígitos.
+          </div>
         </div>
       </div>
     </div>
@@ -64,47 +93,52 @@
           <input type="text" class="form-control" id="complemento" formControlName="complemento" [(ngModel)]="cep.complemento">
         </div>
   
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.cep')">
+        <div class="col-md-4" >
           <label for="cep" class="control-label">CEP</label>
-          <input type="text" class="form-control" id="cep" formControlName="cep" [(ngModel)]="cep.cep">
+          <input type="text" class="form-control" id="cep" formControlName="cep" [(ngModel)]="cep.cep"  placeholder="00000-000" [ngClass]="aplicaCssErro('endereco.cep')"> 
+          <div class="invalid-feedback">
+            Campo obrigatório. Digite como no exemplo.
+          </div>
         </div>
         
-        <div class="col-md-2">
-          <br>
-          <button type="button" class="btn btn-primary" (click)="buscar()">Buscar</button>
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="button" class="btn btn-todos" (click)="buscar()">Buscar Cep</button>
         </div>
       </div>
   
       <div class="form-group row" >
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.numero')">
+        <div class="col-md-4" >
           <label for="numero" class="control-label">Número</label>
-          <input type="text" class="form-control" id="numero" formControlName="numero">
+          <input type="text" class="form-control" id="numero" formControlName="numero" [ngClass]="aplicaCssErro('endereco.numero')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Apenas números.
+          </div>
         </div>
 
-        <div class="col-sm-8" [ngClass]="aplicaCssErro('endereco.logradouro')">
+        <div class="col-sm-8" >
           <label for="rua" class="control-label">Rua</label>
           <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [(ngModel)]="cep.logradouro">
         </div>
       </div>
   
       <div class="form-group row">
-        <div class="col-md-5" [ngClass]="aplicaCssErro('endereco.bairro')">
+        <div class="col-md-5" >
           <label for="bairro" class="control-label">Bairro</label>
           <input type="text" class="form-control" id="bairro" formControlName="bairro" [(ngModel)]="cep.bairro">
         </div>
   
-        <div class="col-md-4" [ngClass]="aplicaCssErro('endereco.cidade')">
+        <div class="col-md-4" >
           <label for="cidade" class="control-label">Cidade</label>
           <input type="text" class="form-control" id="cidade" formControlName="cidade" [(ngModel)]="cep.cidade">
         </div>
   
-        <div class="col-md-3" [ngClass]="aplicaCssErro('endereco.estado')">
+        <div class="col-md-3" >
           <label for="estado" class="control-label">Estado</label>
           <input type="text" class="form-control" id="estado" formControlName="estado" [(ngModel)]="cep.estado">
         </div>
       </div>
     </div>
 
-    <br><button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Submeter</button>  
+    <br><button type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>  
   </form>
 </div>

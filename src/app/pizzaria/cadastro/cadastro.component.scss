@@ -1,3 +1,39 @@
 .ng-invalid.ng-touched:not(form){
   border:1px solid red;
 }
+
+
+.topo-contato{
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.titulo-contato{
+  font-size: 48px;
+  font-weight: 600;
+  font-family: "Oswald","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.subtitulo-contato{
+  font-family: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-size: 18px;
+}
+
+.btn-todos{
+  padding: 7px 10px;
+  border-radius: 28px;
+  background-color: #C6202E;
+  border-color: #C6202E;
+  color: white;
+  font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px
+}
+
+.btn-todos:hover{
+  background-color: #92202e;
+  border-color: #92202e;
+}
+
+label {
+  font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 600;
+}

@@ -26,11 +26,11 @@ export class CadastroComponent implements OnInit {
       cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
-      aniversario: ['', [Validators.required] ],
-      senha: ['', [Validators.required] ],
+      aniversario: ['', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)]],
+      senha: ['', [Validators.required, Validators.minLength(6)] ],
       endereco: this.formBuilder.group({
-        cep: ['', [Validators.required]],
-        numero: ['', Validators.required],
+        cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/) ]],
+        numero: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
         complemento: [''],
         logradouro: ['', Validators.required],
         bairro: ['', Validators.required],
@@ -56,17 +56,9 @@ export class CadastroComponent implements OnInit {
 
   }
 
-  verificaValidTouched(campo: any) {
-    console.log("verifica");
-    console.log(this.formulario.get(campo)?.touched);
-    return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
-
-  }
-
   aplicaCssErro(campo: any) {
     return {
-      //'is-invalid': this.verificaValidTouched(campo)
-      //'invalid-feedback': this.verificaValidTouched(campo)
+      'is-invalid': !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched
     };
   }
 
