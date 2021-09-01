@@ -12,7 +12,7 @@ import { Usuario } from '../../services/usuario';
 })
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
-  passwordType:Boolean
+  passwordType:Boolean;
 
   @Output() logado = new EventEmitter();
   

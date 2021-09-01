@@ -14,6 +14,8 @@ import { CepService } from 'src/app/services/cep.service';
 export class CadastroComponent implements OnInit {
   formulario: FormGroup;
   cep = new Cep();
+  passwordType:Boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -37,8 +39,9 @@ export class CadastroComponent implements OnInit {
         cidade: ['', Validators.required],
         estado: ['', Validators.required]
       }),
-
-  })
+      
+    })
+    this.passwordType = true;
   }
 
   ngOnInit(): void {
@@ -62,6 +65,16 @@ export class CadastroComponent implements OnInit {
     };
   }
 
+  getTypeInput(){
+    if(this.passwordType){
+      return 'password'
+    }else{
+      return 'text'
+    }
+  }
+  toogleType(){
+    this.passwordType = !this.passwordType
+  }
 
   buscar() {
     console.log("buscar");

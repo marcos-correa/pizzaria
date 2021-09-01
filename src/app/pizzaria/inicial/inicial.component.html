@@ -49,15 +49,24 @@
           <p class="items-text">Pizzas</p>
         </div>
         <div class="items-inactive">
-          <img src="../../../assets/svg/burger.svg" class="items-icon">
+
+          <svg class="items-inactive-icon">
+            <use [attr.xlink:href]="'assets/svg/items.svg#burger'"></use> 
+          </svg>
+
+
           <p class="items-inactive-text">Burgers</p>
         </div>
         <div class="items-inactive">
-          <img src="../../../assets/svg/salads.svg" class="items-icon">
+          <svg class="items-inactive-icon">
+            <use [attr.xlink:href]="'assets/svg/items.svg#salads'"></use> 
+          </svg>
           <p class="items-inactive-text">Saladas</p>
         </div>
         <div class="items-inactive">
-          <img src="../../../assets/svg/drinks.svg" class="items-icon">
+          <svg class="items-inactive-icon">
+            <use [attr.xlink:href]="'assets/svg/items.svg#drinks'"></use> 
+          </svg>
           <p class="items-inactive-text">Bebidas</p>
         </div>
 
