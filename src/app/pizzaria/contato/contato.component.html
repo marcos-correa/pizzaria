@@ -1,4 +1,15 @@
-<div class="container">
+<div class="container-fluid topo-contato">
+    <div class="d-flex justify-content-center titulo-contato">
+        <h1 class= titulo-contato>Alguma Dúvida?</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p class= subtitulo-contato> Apenas escreva para nós</p>
+    </div>
+</div>
+
+
+<br>
+<div class="container-fluid formulario">
     <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
         <div class="row justify-content-between">
@@ -28,7 +39,7 @@
                     <textarea class="form-control" id="mensagem" formControlName="mensagem" rows="6"></textarea>
                 </div>
                 <div class="d-flex flex-row-reverse"> 
-                    <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Submeter</button>
+                    <button type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Enviar</button>
                 </div>
             </div>
 
@@ -36,3 +47,62 @@
 
     </form>
 </div>
+
+
+<div id="icone-servicos" class="container-lg justify-content-between">
+    <div class="row">
+
+      <div class="col-4 borda-servico">
+        <div class="icone-servico d-flex justify-content-around">
+          <i class="fas fa-motorcycle"></i>
+          <div class="servico-texto">
+            <h1>Free Shipping</h1>
+            <p>Sign up for updates and get free shipping</p>
+          </div>
+        </div>
+          
+      </div>
+     
+      <div class="col-4 borda-servico">
+        <div class="icone-servico d-flex justify-content-around">
+          <i class="far fa-clock"></i>
+          <div class="servico-texto">
+            <h1>Free Shipping</h1>
+            <p>Sign up for updates and get free shipping</p>
+          </div>
+        </div>
+          
+      </div>
+
+      <div class="col-4 borda-servico">
+        <div class="icone-servico d-flex justify-content-around">
+          <i class="fas fa-pizza-slice"></i>
+          <div class="servico-texto">
+            <h1>Free Shipping</h1>
+            <p>Sign up for updates and get free shipping</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="container-fluid text-center">
+        <div class="container inscricao">
+          <br><br>
+          <h1>Subscribe to newsletter</h1>
+          <p>Subscribe to receive our weekly Hot Promotion every Monday!</p>
+          <br>
+          <div>
+            <div class="d-flex justify-content-center">
+              <form id="envio">
+                <input type="email" class="form-control justify-content-left" id="email-input"
+                  placeholder="Your email adress">
+                <button type="submit" class="btn btn-primary email-btn justify-content-right">Sign up</button>
+              </form>
+            </div>
+    
+          </div>
+          <br><br>
+        </div>
+      
