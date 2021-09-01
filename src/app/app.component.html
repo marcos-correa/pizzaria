@@ -121,7 +121,7 @@
   </ng-template>
   <div class="d-flex flex-column">
     <span>
-      Perfil de <strong>{{this.usuarioAtual?.nome }}</strong>
+      <h3>Perfil de <strong>{{this.usuarioAtual?.nome }}</strong></h3>
     </span>
     <span class="mb-5">
       Email: {{this.usuarioAtual?.email }}
@@ -129,14 +129,12 @@
     <button type="submit" class="btn btn-primary text-center" (click)="deslogar()">Sair</button>
   </div>
 
-  <!-- <app-login></app-login> -->
 </p-dialog>
 
 <p-dialog [(visible)]="modalCadastro" [style]="{width: '50vw'}">
   <ng-template pTemplate="header">
     Cadastro
   </ng-template>
-  <!-- <app-login></app-login> -->
 </p-dialog>
 
 <router-outlet></router-outlet>

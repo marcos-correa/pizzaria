@@ -22,6 +22,8 @@ export class CatalogoComponent implements OnInit {
 
   @Input() showOrder: Boolean;
   @Input() paginaIcial: Boolean;
+  @Input() margem: Boolean;
+  @Input() showTitle: Boolean;
 
   constructor(
     private pizzariaService: PizzariaService,
@@ -33,7 +35,9 @@ export class CatalogoComponent implements OnInit {
 
     this.quantidade = 29;
     this.showOrder = true;
+    this.showTitle = true;
     this.paginaIcial = false;
+    this.margem = true;
     
   }
 

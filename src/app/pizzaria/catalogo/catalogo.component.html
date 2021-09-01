@@ -1,7 +1,7 @@
-<section class="flavor mb-5">
+<section class="flavor mb-5" [ngClass]="{'no-margem':!margem}">
   <div class="flavor-container ">
     <!-- Página de Catalogo -->
-    <div *ngIf="!paginaIcial" class="flavor-header">
+    <div *ngIf="!paginaIcial && showTitle" class="flavor-header">
       <p class="flavor-pretitle">
         ESCOLHA O SABOR
       </p>
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Página Inicial -->
-    <div *ngIf="paginaIcial" class="flavor-header">
+    <div *ngIf="paginaIcial && showTitle" class="flavor-header">
       <p class="flavor-pretitle">
         ESCOLHA O SABOR
       </p>
@@ -86,7 +86,7 @@
         <div class=" chart-button-icon">
           <i class="fas fa-border-all"></i>
         </div>
-        all products
+        todas as pizzas
       </button>
     </div>
   </div>

@@ -31,3 +31,20 @@
     margin: 0 0 0 15px;
   }
 }
+
+.items-inactive{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  cursor: not-allowed;
+  &-icon{
+    width: 50px;
+    height: 50px;
+  }
+  &-text{
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 0 15px;
+    color: #9e9e9e;
+  }
+}

@@ -14,8 +14,8 @@ export class PizzasService {
         "code": "acvx872gc",
         "name": "Fantastic Iron Shoes",//
         "description": "Rerum quisquam dolore repellat nihil. Quia quas quia et optio. Dignissimos qui voluptatem et enim corporis nemo. Id laudantium autem est quo aut numquam cum iste.",
-        "image": "p1-480x480.jpg",//
-        "price": 187,//
+        "image": "p1-480x480.png",//
+        "price": 59,//
         "category": "PIZZA",//
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -26,7 +26,7 @@ export class PizzasService {
         "code": "tx125ck42",
         "name": "Sleek Iron Clock",
         "description": "Qui ut neque et minima qui incidunt. Velit et provident ex itaque. Perferendis quasi ducimus et at.",
-        "image": "p2-480x480.jpg",
+        "image": "p2-480x480.png",
         "price": 198,
         "category": "PIZZA",
         "quantity": 1,
@@ -38,7 +38,7 @@ export class PizzasService {
         "code": "gwuby345v",
         "name": "Gorgeous Silk Plate",
         "description": "Totam quam commodi explicabo omnis omnis. Necessitatibus aliquam dolore dolores et eos dolor qui. Esse consequatur reiciendis qui ad.",
-        "image": "p3-480x480.jpg",
+        "image": "p3-480x480.png",
         "price": 194,
         "category": "PIZZA",
         "quantity": 1,
@@ -50,7 +50,7 @@ export class PizzasService {
         "code": "kishj335v",
         "name": "Fantastic Marble Bag",
         "description": "Est eius aperiam id eveniet quidem. Quas ad minus officiis magnam. Architecto et sit quo. Quos fugit asperiores aperiam consequuntur.",
-        "image": "p4-480x480.jpg",
+        "image": "p4-480x480.png",
         "price": 104,
         "category": "PIZZA",
         "quantity": 1,
@@ -62,7 +62,7 @@ export class PizzasService {
         "code": "babylie222v",
         "name": "Small Cotton Plate",
         "description": "Rerum exercitationem corporis eum non adipisci. Cumque illum rerum sed voluptas earum harum quaerat. Ea nobis illo labore. Porro culpa atque praesentium nihil.",
-        "image": "p5-480x480.jpg",
+        "image": "p5-480x480.png",
         "price": 183,
         "category": "PIZZA",
         "quantity": 1,
@@ -74,7 +74,7 @@ export class PizzasService {
         "code": "where569v",
         "name": "Incredible Rubber Coat",
         "description": "Molestiae reiciendis dolores cumque. Ducimus rerum ut ducimus eligendi. Dolor quia occaecati sed cum.",
-        "image": "p6-480x480.jpg",
+        "image": "p6-480x480.png",
         "price": 187,
         "category": "PIZZA",
         "quantity": 1,
@@ -86,7 +86,7 @@ export class PizzasService {
         "code": "forever111v",
         "name": "Durable Steel Chair",
         "description": "Qui sit quia cum vel eos quo vero. Nulla quia ut accusamus qui veritatis. Amet non dolores odio assumenda consectetur exercitationem modi.",
-        "image": "p7-480x480.jpg",
+        "image": "p7-480x480.png",
         "price": 120,
         "category": "PIZZA",
         "quantity": 1,
@@ -98,7 +98,7 @@ export class PizzasService {
         "code": "juststo456v",
         "name": "Ergonomic Marble Lamp",
         "description": "Mollitia quaerat alias ut. Similique cumque voluptas voluptatem dolore. Vero ipsam sed facilis reprehenderit. Similique et officia culpa fugiat. Quia et pariatur et recusandae.",
-        "image": "p8-480x480.jpg",
+        "image": "p8-480x480.png",
         "price": 124,
         "category": "PIZZA",
         "quantity": 1,
@@ -110,7 +110,7 @@ export class PizzasService {
         "code": "tocrying569v",
         "name": "Mediocre Wool Computer",
         "description": "Non et fugit magni dolorum. Tempore repellendus doloremque explicabo ut cupiditate consequatur quo. Soluta ex dolor odit dolores est voluptas. Eveniet harum voluptas itaque est ut.",
-        "image": "p9-480x480.jpg",
+        "image": "p9-480x480.png",
         "price": 104,
         "category": "PIZZA",
         "quantity": 1,
@@ -122,7 +122,7 @@ export class PizzasService {
         "code": "wegotta888v",
         "name": "Lightweight Wool Car",
         "description": "Quas qui consequuntur rerum. Placeat occaecati dolores qui facere dicta at fugiat. Laudantium in et et ut deleniti. In aut neque provident sed.",
-        "image": "p10-480x480.jpg",
+        "image": "p10-480x480.png",
         "price": 199,
         "category": "PIZZA",
         "quantity": 1,
@@ -134,8 +134,8 @@ export class PizzasService {
         "code": "acvx872gc",
         "name": "Fantastic Iron Shoes",//
         "description": "Rerum quisquam dolore repellat nihil. Quia quas quia et optio. Dignissimos qui voluptatem et enim corporis nemo. Id laudantium autem est quo aut numquam cum iste.",
-        "image": "p1-480x480.jpg",//
-        "price": 187,//
+        "image": "p1-480x480.png",//
+        "price": 59,//
         "category": "PIZZA",//
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -144,9 +144,9 @@ export class PizzasService {
       {
         "id": "12",
         "code": "tx125ck42",
-        "name": "Sleek Iron Clock",
+        "name": "Delicious Two Loves",
         "description": "Qui ut neque et minima qui incidunt. Velit et provident ex itaque. Perferendis quasi ducimus et at.",
-        "image": "p2-480x480.jpg",
+        "image": "p2-480x480.png",
         "price": 198,
         "category": "PIZZA",
         "quantity": 1,
@@ -156,9 +156,9 @@ export class PizzasService {
       {
         "id": "13",
         "code": "gwuby345v",
-        "name": "Gorgeous Silk Plate",
+        "name": "Delicious Chocolate",
         "description": "Totam quam commodi explicabo omnis omnis. Necessitatibus aliquam dolore dolores et eos dolor qui. Esse consequatur reiciendis qui ad.",
-        "image": "p3-480x480.jpg",
+        "image": "p3-480x480.png",
         "price": 194,
         "category": "PIZZA",
         "quantity": 1,
@@ -168,10 +168,10 @@ export class PizzasService {
       {
         "id": "14",
         "code": "kishj335v",
-        "name": "Fantastic Marble Bag",
+        "name": "Fantastic Marwel",
         "description": "Est eius aperiam id eveniet quidem. Quas ad minus officiis magnam. Architecto et sit quo. Quos fugit asperiores aperiam consequuntur.",
-        "image": "p4-480x480.jpg",
-        "price": 104,
+        "image": "p4-480x480.png",
+        "price": 84,
         "category": "PIZZA",
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -180,9 +180,9 @@ export class PizzasService {
       {
         "id": "15",
         "code": "babylie222v",
-        "name": "Small Cotton Plate",
+        "name": "Wond Cow Strog",
         "description": "Rerum exercitationem corporis eum non adipisci. Cumque illum rerum sed voluptas earum harum quaerat. Ea nobis illo labore. Porro culpa atque praesentium nihil.",
-        "image": "p5-480x480.jpg",
+        "image": "p5-480x480.png",
         "price": 183,
         "category": "PIZZA",
         "quantity": 1,
@@ -192,9 +192,9 @@ export class PizzasService {
       {
         "id": "16",
         "code": "where569v",
-        "name": "Incredible Rubber Coat",
+        "name": "Incredible Beef and Cream",
         "description": "Molestiae reiciendis dolores cumque. Ducimus rerum ut ducimus eligendi. Dolor quia occaecati sed cum.",
-        "image": "p6-480x480.jpg",
+        "image": "p6-480x480.png",
         "price": 187,
         "category": "PIZZA",
         "quantity": 1,
@@ -204,9 +204,9 @@ export class PizzasService {
       {
         "id": "17",
         "code": "forever111v",
-        "name": "Durable Steel Chair",
+        "name": "Amazing Sheep Meat",
         "description": "Qui sit quia cum vel eos quo vero. Nulla quia ut accusamus qui veritatis. Amet non dolores odio assumenda consectetur exercitationem modi.",
-        "image": "p7-480x480.jpg",
+        "image": "p7-480x480.png",
         "price": 120,
         "category": "PIZZA",
         "quantity": 1,
@@ -216,10 +216,10 @@ export class PizzasService {
       {
         "id": "18",
         "code": "juststo456v",
-        "name": "Ergonomic Marble Lamp",
+        "name": "Ergonomic Buffalo",
         "description": "Mollitia quaerat alias ut. Similique cumque voluptas voluptatem dolore. Vero ipsam sed facilis reprehenderit. Similique et officia culpa fugiat. Quia et pariatur et recusandae.",
-        "image": "p8-480x480.jpg",
-        "price": 124,
+        "image": "p8-480x480.png",
+        "price": 134,
         "category": "PIZZA",
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -228,9 +228,9 @@ export class PizzasService {
       {
         "id": "19",
         "code": "tocrying569v",
-        "name": "Mediocre Wool Computer",
+        "name": "Mediocre Lobster",
         "description": "Non et fugit magni dolorum. Tempore repellendus doloremque explicabo ut cupiditate consequatur quo. Soluta ex dolor odit dolores est voluptas. Eveniet harum voluptas itaque est ut.",
-        "image": "p9-480x480.jpg",
+        "image": "p9-480x480.png",
         "price": 104,
         "category": "PIZZA",
         "quantity": 1,
@@ -240,9 +240,9 @@ export class PizzasService {
       {
         "id": "20",
         "code": "wegotta888v",
-        "name": "Lightweight Wool Car",
+        "name": "Gorgeous Shrimp",
         "description": "Quas qui consequuntur rerum. Placeat occaecati dolores qui facere dicta at fugiat. Laudantium in et et ut deleniti. In aut neque provident sed.",
-        "image": "p10-480x480.jpg",
+        "image": "p10-480x480.png",
         "price": 199,
         "category": "PIZZA",
         "quantity": 1,
@@ -252,10 +252,10 @@ export class PizzasService {
       {
         "id": "21",
         "code": "acvx872gc",
-        "name": "Fantastic Iron Shoes",//
+        "name": "Fantastic Octopus",//
         "description": "Rerum quisquam dolore repellat nihil. Quia quas quia et optio. Dignissimos qui voluptatem et enim corporis nemo. Id laudantium autem est quo aut numquam cum iste.",
-        "image": "p1-480x480.jpg",//
-        "price": 187,//
+        "image": "p1-480x480.png",//
+        "price": 157,//
         "category": "PIZZA",//
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -264,10 +264,10 @@ export class PizzasService {
       {
         "id": "22",
         "code": "tx125ck42",
-        "name": "Sleek Iron Clock",
+        "name": "Sleek Iron Chicken",
         "description": "Qui ut neque et minima qui incidunt. Velit et provident ex itaque. Perferendis quasi ducimus et at.",
-        "image": "p2-480x480.jpg",
-        "price": 198,
+        "image": "p2-480x480.png",
+        "price": 118,
         "category": "PIZZA",
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -276,10 +276,10 @@ export class PizzasService {
       {
         "id": "23",
         "code": "gwuby345v",
-        "name": "Gorgeous Silk Plate",
+        "name": "Gorgeous Cow Meat",
         "description": "Totam quam commodi explicabo omnis omnis. Necessitatibus aliquam dolore dolores et eos dolor qui. Esse consequatur reiciendis qui ad.",
-        "image": "p3-480x480.jpg",
-        "price": 194,
+        "image": "p3-480x480.png",
+        "price": 102,
         "category": "PIZZA",
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -288,10 +288,10 @@ export class PizzasService {
       {
         "id": "24",
         "code": "kishj335v",
-        "name": "Fantastic Marble Bag",
+        "name": "Wonderful Monkey",
         "description": "Est eius aperiam id eveniet quidem. Quas ad minus officiis magnam. Architecto et sit quo. Quos fugit asperiores aperiam consequuntur.",
-        "image": "p4-480x480.jpg",
-        "price": 104,
+        "image": "p4-480x480.png",
+        "price": 94,
         "category": "PIZZA",
         "quantity": 1,
         "inventoryStatus": "INSTOCK",
@@ -300,9 +300,9 @@ export class PizzasService {
       {
         "id": "25",
         "code": "babylie222v",
-        "name": "Small Cotton Plate",
+        "name": "Big Willy Flavour",
         "description": "Rerum exercitationem corporis eum non adipisci. Cumque illum rerum sed voluptas earum harum quaerat. Ea nobis illo labore. Porro culpa atque praesentium nihil.",
-        "image": "p5-480x480.jpg",
+        "image": "p5-480x480.png",
         "price": 183,
         "category": "PIZZA",
         "quantity": 1,
@@ -314,7 +314,7 @@ export class PizzasService {
         "code": "where569v",
         "name": "Incredible Rubber Coat",
         "description": "Molestiae reiciendis dolores cumque. Ducimus rerum ut ducimus eligendi. Dolor quia occaecati sed cum.",
-        "image": "p6-480x480.jpg",
+        "image": "p6-480x480.png",
         "price": 187,
         "category": "PIZZA",
         "quantity": 1,
@@ -324,9 +324,9 @@ export class PizzasService {
       {
         "id": "27",
         "code": "forever111v",
-        "name": "Durable Steel Chair",
+        "name": "Delicious Grass",
         "description": "Qui sit quia cum vel eos quo vero. Nulla quia ut accusamus qui veritatis. Amet non dolores odio assumenda consectetur exercitationem modi.",
-        "image": "p7-480x480.jpg",
+        "image": "p5-480x480.png",
         "price": 120,
         "category": "PIZZA",
         "quantity": 1,
@@ -338,7 +338,7 @@ export class PizzasService {
         "code": "juststo456v",
         "name": "Ergonomic Marble Lamp",
         "description": "Mollitia quaerat alias ut. Similique cumque voluptas voluptatem dolore. Vero ipsam sed facilis reprehenderit. Similique et officia culpa fugiat. Quia et pariatur et recusandae.",
-        "image": "p8-480x480.jpg",
+        "image": "p8-480x480.png",
         "price": 124,
         "category": "PIZZA",
         "quantity": 1,
@@ -350,7 +350,7 @@ export class PizzasService {
         "code": "tocrying569v",
         "name": "Mediocre Wool Computer",
         "description": "Non et fugit magni dolorum. Tempore repellendus doloremque explicabo ut cupiditate consequatur quo. Soluta ex dolor odit dolores est voluptas. Eveniet harum voluptas itaque est ut.",
-        "image": "p9-480x480.jpg",
+        "image": "p9-480x480.png",
         "price": 104,
         "category": "PIZZA",
         "quantity": 1,
@@ -362,7 +362,7 @@ export class PizzasService {
         "code": "wegotta888v",
         "name": "Lightweight Wool Car",
         "description": "Quas qui consequuntur rerum. Placeat occaecati dolores qui facere dicta at fugiat. Laudantium in et et ut deleniti. In aut neque provident sed.",
-        "image": "p10-480x480.jpg",
+        "image": "p10-480x480.png",
         "price": 199,
         "category": "PIZZA",
         "quantity": 1,
@@ -379,8 +379,13 @@ export class PizzasService {
   }
 
 
-  getPizzaByIndex(index: number): Pizza{
-    let pizza = this.pizzas[index]
+  getPizzaByIndex(index: string){
+    let pizza = {}
+    this.pizzas.forEach(piz => {
+      if(piz.id ==index ){
+        pizza = piz
+      }
+    })
     return pizza
   }
 }

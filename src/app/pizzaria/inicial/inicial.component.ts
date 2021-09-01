@@ -21,10 +21,20 @@ export class InicialComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  adicionarAoCarrinho(){
-    let pizza = this.pizzasService.getPizzaByIndex(3);
+  adicionarAoCarrinho(locale:string){
+    let pizza = this.pizzasService.getPizzaByIndex('3');
+    if(locale=="promo1"){
+      pizza = this.pizzasService.getPizzaByIndex('1');
+    } 
+    if(locale=="promo2"){
+      pizza = this.pizzasService.getPizzaByIndex('27');
+    }
+    this.setAdicionarAoCarrinho(pizza)
+  }
+  
+  setAdicionarAoCarrinho(pizza:any){
     let mensagem = this.pizzariaService.adicionarAoCarrinho(pizza)
-    this.messageService.add({severity:'success', summary:'Pizza adicionada ao carrinho', detail:mensagem, life: 1500});
-  } 
+    this.messageService.add({severity:'success', summary:'Pizza adicionada ao carrinho', detail:mensagem, life: 1500}); 
+  }
 
 }
