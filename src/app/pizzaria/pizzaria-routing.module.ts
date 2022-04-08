@@ -1,3 +1,4 @@
+import { PainelComponent } from './painel/painel.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'catalogo',
     component: CatalogoComponent
+  },
+  {
+    path: 'painel',
+    component: PainelComponent
   },
 ];
 

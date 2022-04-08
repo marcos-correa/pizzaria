@@ -33,6 +33,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { LoginComponent } from './login/login.component';
 import { ContatoComponent } from './contato/contato.component';
+import { PainelComponent } from './painel/painel.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ContatoComponent } from './contato/contato.component';
     CatalogoComponent,
     LoginComponent,
     ContatoComponent,
+    PainelComponent,
   ],
   imports: [
     CommonModule,

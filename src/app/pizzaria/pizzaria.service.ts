@@ -1,8 +1,9 @@
 import { PizzasService } from './../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Pizza } from './lista/pizza';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,14 @@ export class PizzariaService {
   }
 
   getPizzas(){
+    // this.http.get("http://localhost/api/")
     return this.pizzas
+  }
+
+  getCars(): Observable<any>{
+    return this.http.get("http://localhost/pizzaria/list").pipe(
+      map((res:any)=> res['data'])
+    )
   }
 
   getPizzasNoCarrinho(){

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Pizza } from './../pizzaria/lista/pizza';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +8,10 @@ import { Injectable } from '@angular/core';
 export class PizzasService {
 
   pizzas: Pizza[]
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
+    
     this.pizzas = [
       {
         "id": "1",
@@ -374,10 +378,28 @@ export class PizzasService {
 
   }
 
+
+
   getPizzas(): Pizza[]{
+    // TODO: this.pizzas = this.http.get('url');
+    // return this.http.get('URLBANCO');
     return this.pizzas;
   }
 
+  //TODO:
+  createPizza(pizza:Pizza){
+    return this.http.post('url',pizza);
+  }
+
+  //TODO:
+  deletePizza(pizzaId:string){
+    return this.http.post('url',pizzaId);
+  }
+
+  //TODO:
+  updatePizza(pizzaId:string,pizza:Pizza){
+    return this.http.patch('url',{pizzaId,pizza})
+  }
 
   getPizzaByIndex(index: string){
     let pizza = {}

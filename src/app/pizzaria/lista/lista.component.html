@@ -13,6 +13,9 @@
   ></app-catalogo>
 
 </div>
+
+
+
 <div *ngIf="pizzas.length > 0" class="p-5">
   <p-table #dt [value]="pizzas" [rows]="10" [paginator]="true"
     [(selection)]="selectedProducts"
