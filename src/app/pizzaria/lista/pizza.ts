@@ -10,3 +10,8 @@ export interface Pizza {
   image?:string;
   rating?:number;
 }
+
+export interface Carro {
+  model?:string;
+  price?:number;
+}

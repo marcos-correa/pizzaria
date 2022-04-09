@@ -94,8 +94,52 @@
 <!-- PRIME CRUUUUUUUUUUUUUUUUUUUUUUUUUUUUD -->
 
 <!-- <p-toast></p-toast> -->
+<hr class="w-100">
+<h3>Get</h3>
 
-<pre>{{cars | json}}</pre>
+<div>
+  <table class="w-50 ms-5">
+    <th>
+      modelo
+    </th>
+    <th>
+      preço
+    </th>
+    <tr  *ngFor="let car of cars">
+      <td>{{car?.model ? car.model : ''}}</td>
+      <td>{{car?.price ? car.price : ''}}</td>
+    </tr>
+  </table>
+</div>
+<h3>Post</h3>
+<hr class="w-100">
+<input type="text" [(ngModel)]="modelCar">
+<input type="number" [(ngModel)]="priceCar">
+<button (click)="insertCar()">inserir carro</button>
+<hr class="w-100">
+<h3>Busca por Modelo</h3>
+<input type="text" [(ngModel)]="modelId">
+<button (click)="getCarById()">buscar carro</button>
+
+<div *ngIf="selectedCar">
+  <label for="">
+    modelo
+    <input type="text" [(ngModel)]="selectedCar[0].model" >
+  </label>
+  <label for="">
+    preço
+    <input type="text" [(ngModel)]="selectedCar[0].price">
+  </label>
+  <button (click)="updateCar()">atualizar carro</button>
+</div>
+
+<hr class="w-100">
+<h3>Deletar por Modelo</h3>
+<input type="text" [(ngModel)]="deleteModelId">
+<button (click)="deleteCarById()">deletar carro</button>
+<!-- <pre>{{deleteSelectedCar | json}}</pre> -->
+
+
 <!-- <div class="card">
     <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">

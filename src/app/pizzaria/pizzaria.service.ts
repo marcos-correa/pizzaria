@@ -2,8 +2,9 @@ import { PizzasService } from './../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map, tap} from 'rxjs/operators';
-import { Pizza } from './lista/pizza';
+import { Pizza, Carro } from './lista/pizza';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,11 +38,39 @@ export class PizzariaService {
   }
 
   getCars(): Observable<any>{
-    return this.http.get("http://localhost/pizzaria/list").pipe(
+    return this.http.get("http://localhost/api/list").pipe(
       map((res:any)=> res['data'])
     )
   }
 
+  insertCar(model:string , price:number ): Observable<any>{
+    let data = {
+      model: model,
+      price: price
+    }
+    return this.http.post("http://localhost/api/store",{data}).pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+  updateCar( car:any ): Observable<any>{
+    let data = car[0]
+    return this.http.post("http://localhost/api/update",{data}).pipe(
+      map((res:any)=> res)
+    )
+  }
+
+  getCarByID(id:string): Observable<any>{
+    return this.http.get(`http://localhost/api/search.php?model=${id}`).pipe(
+      map((res:any) => res['data'])
+    )
+  }
+
+  deleteCarById(id:string): Observable<any>{
+    return this.http.delete(`http://localhost/api/delete.php?model=${id}`).pipe(
+      map((res:any) => res)
+    )
+  }
   getPizzasNoCarrinho(){
     return this.carrinho
   }

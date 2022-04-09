@@ -26,29 +26,98 @@ export class PainelComponent implements OnInit {
 
   submitted: boolean = false;
   cars: any | undefined;
+  selectedCar: any | undefined;
+  modelCar!: string;
+  priceCar!: number;
+  modelId!: string;
+  deleteModelId!: string;
   // statuses: any[];
 
   // constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.pizzas = this.pizzasService.getPizzas();
-    this.pizzariaService.getCars().subscribe({
+    this.getCars();
+    
+  }
+
+  getCars(){
+    this.pizzariaService.getCars().subscribe(
+      {
         next: this.hasResults,
         error: this.hasError
       }
     );
   }
 
-  hasResults = (res:any) => {
-    this.setCars(res);
+  getCarById(){
+    this.pizzariaService.getCarByID(this.modelId).subscribe({
+        next: this.hasSucceedGetCarById,
+        error: this.hasError
+      }
+    )
+  }
+
+  insertCar(){
+    this.pizzariaService.insertCar(this.modelCar,this.priceCar).subscribe({
+        next: this.hasSucceedInsert,
+        error: this.hasError
+      }
+    )
+  }
+  deleteCarById(){
+    this.pizzariaService.deleteCarById(this.deleteModelId).subscribe({
+        next: this.hasSucceedDelete,
+        error: this.hasError
+      }
+    )
+  }
+
+  updateCar(){
+    this.pizzariaService.updateCar(this.selectedCar).subscribe({
+        next: this.hasSucceedUpdate,
+        error: this.hasError
+      }
+    )
   }
 
   setCars(cars:any){
     this.cars = cars
   }
+  /**
+   * Sucessos
+   * @param res 
+   */ 
+  hasResults = (res:any) => {
+    this.setCars(res);
+  }
+  hasSucceedInsert = () =>{
+    alert(`Carro ${this.modelCar} inserido com sucesso`)
+  }
+  hasSucceedUpdate = () =>{
+    this.getCars()
+  }
+  hasSucceedDelete = () =>{
+    alert(`Carro ${this.modelCar} inserido com sucesso`)
+  }
+  hasSucceedGetCarById = (res:any) =>{
+    this.selectedCar = res
+  }
+
+  /**
+   * Erros
+   * @param err 
+   */
   hasError = (err:any) => {
     console.log(err)
   }
+
+
+
+
+
+
+
 
   openNew() {
     this.pizza = {price:0, quantity:0};
