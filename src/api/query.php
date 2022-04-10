@@ -28,6 +28,7 @@ class QueryBuilder
       $statement = $this->bd->prepare($sql);
 
       $statement->execute($parameters);
+
     } catch (Exception $e) {
       throw new Exception($e->getMessage());
     }
@@ -47,7 +48,6 @@ class QueryBuilder
 
   public function delete($table, $model){
     $statement = $this -> bd -> prepare("delete from {$table} where model = '{$model}' limit 1");
-    print_r($statement);
     try{
         $statement -> execute();
     }

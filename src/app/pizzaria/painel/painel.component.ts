@@ -58,6 +58,8 @@ export class PainelComponent implements OnInit {
     )
   }
 
+ 
+
   insertCar(){
     this.pizzariaService.insertCar(this.modelCar,this.priceCar).subscribe({
         next: this.hasSucceedInsert,
@@ -92,7 +94,7 @@ export class PainelComponent implements OnInit {
     this.setCars(res);
   }
   hasSucceedInsert = () =>{
-    alert(`Carro ${this.modelCar} inserido com sucesso`)
+    alert(`Cliente ${this.modelCar} inserido com sucesso`)
   }
   hasSucceedUpdate = () =>{
     this.getCars()

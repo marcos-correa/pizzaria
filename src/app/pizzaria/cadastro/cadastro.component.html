@@ -9,13 +9,13 @@
 
 
 <div class="container">
-  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="insertCliente()">
 
     <div class="row">
       <div class="col-md-7">
         <div class="form-group">
           <label for="nome" class="control-label" >Nome</label>
-          <input type="text" class="form-control" formControlName="nome" name="nome" placeholder="Nome Sobrenome" [ngClass]="aplicaCssErro('nome')">
+          <input type="text" class="form-control" formControlName="nome" name="nome" [(ngModel)]="nome" placeholder="Nome Sobrenome" [ngClass]="aplicaCssErro('nome')">
           
           <div class="invalid-feedback">
             Campo Obrigatório. Aceita apenas letras.
@@ -27,7 +27,7 @@
       <div class="col-md-5">
         <div class="form-group" >
           <label for="cpf" class="control-label">CPF</label>
-          <input type="text" class="form-control" formControlName="cpf" name="cpf" placeholder="000.000.000-00"  [ngClass]="aplicaCssErro('cpf')">  
+          <input type="text" class="form-control" formControlName="cpf" name="cpf" [(ngModel)]="cpf" placeholder="000.000.000-00"  [ngClass]="aplicaCssErro('cpf')">  
           <div class="invalid-feedback">
             Campo Obrigatório. Digite como no exemplo.
           </div>
@@ -41,7 +41,7 @@
       <div class="col-md-7">
         <div class="form-group">
           <label for="email" class="control-label">Email</label>
-          <input type="email" class="form-control" formControlName="email" name="email" placeholder="nome@email.com" [ngClass]="aplicaCssErro('email')"> 
+          <input type="email" class="form-control" formControlName="email" name="email" [(ngModel)]="email" placeholder="nome@email.com" [ngClass]="aplicaCssErro('email')"> 
           <div class="invalid-feedback">
             Campo Obrigatório. Digite no formato correto.
           </div>
@@ -51,48 +51,9 @@
       <div class="col-md-5">
         <div class="form-group" >
           <label for="telefone" class="control-label">Telefone</label>
-          <input type="text" class="form-control" formControlName="telefone" name="telefone" placeholder="00000000000" [ngClass]="aplicaCssErro('telefone')"> 
+          <input type="text" class="form-control" formControlName="telefone" name="telefone" [(ngModel)]="telefone" placeholder="00000000000" [ngClass]="aplicaCssErro('telefone')"> 
           <div class="invalid-feedback">
             Campo Obrigatório. Digite apenas os números.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-5">
-        <div class="form-group" >
-          <label for="aniversario" class="control-label">Data Nascimento</label>
-          <input type="aniversario" class="form-control" formControlName="aniversario" name="aniversario" placeholder="00/00/0000" [ngClass]="aplicaCssErro('aniversario')"> 
-          <div class="invalid-feedback">
-            Campo Obrigatório. Digite como no exemplo.
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-7">
-        <div class="form-group" >
-          <label for="senha" class="control-label">Senha</label>
-
-          <div class="d-flex align-items-center">
-            <input [type]="getTypeInput()" class="form-control" id="senha"  formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">
-
-            <span (click)="toogleType()" *ngIf="passwordType" class="eyeclass">
-              <i class="fas fa-eye"></i>  
-            </span>
-  
-  
-            <span (click)="toogleType()" *ngIf="!passwordType" class="eyeclass">
-              <i class="fas fa-eye-slash"></i>  
-            </span>
-          </div>
-
-        
-        
-          <!-- <input type="text" class="form-control" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">  -->
-          <div class="invalid-feedback">
-            Campo Obrigatório. Senha com pelo menos 6 dígitos.
           </div>
         </div>
       </div>
@@ -104,12 +65,16 @@
 
       <div class="form-group row">
         
-        <div class="col-md-6">
-          <label for="complemento" class="control-label">Complemento</label>
-          <input type="text" class="form-control" id="complemento" formControlName="complemento" [(ngModel)]="cep.complemento">
-        </div>
-  
         <div class="col-md-4" >
+          <label for="numero" class="control-label">Número</label>
+          <input type="text" class="form-control" id="numero" [(ngModel)]="numero" formControlName="numero" [ngClass]="aplicaCssErro('endereco.numero')"> 
+          <div class="invalid-feedback">
+            Campo Obrigatório. Apenas números.
+          </div>
+        </div>
+
+  
+        <div class="col-md-6" >
           <label for="cep" class="control-label">CEP</label>
           <input type="text" class="form-control" id="cep" formControlName="cep" [(ngModel)]="cep.cep"  placeholder="00000-000" [ngClass]="aplicaCssErro('endereco.cep')"> 
           <div class="invalid-feedback">
@@ -123,38 +88,67 @@
       </div>
   
       <div class="form-group row" >
-        <div class="col-md-4" >
-          <label for="numero" class="control-label">Número</label>
-          <input type="text" class="form-control" id="numero" formControlName="numero" [ngClass]="aplicaCssErro('endereco.numero')"> 
-          <div class="invalid-feedback">
-            Campo Obrigatório. Apenas números.
-          </div>
-        </div>
-
-        <div class="col-sm-8" >
+       
+        <div class="col-sm-6" >
           <label for="rua" class="control-label">Rua</label>
           <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [(ngModel)]="cep.logradouro">
         </div>
-      </div>
-  
-      <div class="form-group row">
-        <div class="col-md-5" >
+
+        <div class="col-md-6" >
           <label for="bairro" class="control-label">Bairro</label>
           <input type="text" class="form-control" id="bairro" formControlName="bairro" [(ngModel)]="cep.bairro">
         </div>
+
+      </div>
   
-        <div class="col-md-4" >
+      <div class="form-group row">
+
+  
+        <div class="col-md-6" >
           <label for="cidade" class="control-label">Cidade</label>
           <input type="text" class="form-control" id="cidade" formControlName="cidade" [(ngModel)]="cep.cidade">
         </div>
   
-        <div class="col-md-3" >
+        <div class="col-md-6" >
           <label for="estado" class="control-label">Estado</label>
           <input type="text" class="form-control" id="estado" formControlName="estado" [(ngModel)]="cep.estado">
         </div>
       </div>
     </div>
 
-    <br><button type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>  
+    <br><br>
+
+    <div class="row">
+
+      <div class="col-md-7">
+        <div class="form-group" >
+          <label for="senha" class="control-label">Senha</label>
+
+          <div class="d-flex align-items-center">
+            <input [type]="getTypeInput()" class="form-control" id="senha"  [(ngModel)]="senha" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">
+
+            <span (click)="toogleType()" *ngIf="passwordType" class="eyeclass">
+              <i class="fas fa-eye"></i>  
+            </span>
+  
+            <span (click)="toogleType()" *ngIf="!passwordType" class="eyeclass">
+              <i class="fas fa-eye-slash"></i>  
+            </span>
+          </div>
+          <!-- <input type="text" class="form-control" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">  -->
+          <div class="invalid-feedback">
+            Campo Obrigatório. Senha com pelo menos 6 dígitos.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <br>
+        <button type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>
+      </div>
+    </div>
+    
   </form>
+ 
+  
 </div>

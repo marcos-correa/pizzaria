@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from "rxjs/operators";
 import { Cep } from 'src/app/services/cep';
 import { CepService } from 'src/app/services/cep.service';
+import { PizzariaService } from '../pizzaria.service';
+import { PizzasService } from './../../services/pizzas.service';
+import { SelectionChange } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,12 +18,26 @@ export class CadastroComponent implements OnInit {
   formulario: FormGroup;
   cep = new Cep();
   passwordType:Boolean;
+  nome!: string;
+  cpf!: string;
+  email!: string;
+  telefone!: string;
+  numero!: number;
+  senha!: string;
+  deleteById!: string;
+
+  // rua!: string;
+  // bairro!: string;
+  // cidade!: string;
+  // estado!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private cepService:CepService,
-    private userService:UserService
+    private userService:UserService,
+    private pizzasService: PizzasService,
+    private pizzariaService:PizzariaService
   ) { 
 
     this.formulario = this.formBuilder.group({
@@ -28,12 +45,10 @@ export class CadastroComponent implements OnInit {
       cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
-      aniversario: ['', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)]],
       senha: ['', [Validators.required, Validators.minLength(6)] ],
       endereco: this.formBuilder.group({
         cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/) ]],
         numero: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
-        complemento: [''],
         logradouro: ['', Validators.required],
         bairro: ['', Validators.required],
         cidade: ['', Validators.required],
@@ -50,6 +65,7 @@ export class CadastroComponent implements OnInit {
   onSubmit() {
     //console.log(this.formulario);
     this.userService.cadastrarUsuario(this.formulario.value);
+    
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value)).pipe(map(res => res)).subscribe(dados => {
       console.log(dados);
       this.formulario.reset();
@@ -82,6 +98,41 @@ export class CadastroComponent implements OnInit {
       .then((cep:Cep) => this.cep = cep);
   }
 
+  insertCliente(){
+    this.pizzariaService.insertCliente(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
+        next: this.hasSucceedInsert,
+        error: this.hasError
+      }
+    )
+    this.formulario.reset();
+
+  }
+
+  deleteClienteById(){
   
+
+    this.pizzariaService.deleteClienteById(this.nome).subscribe({
+        next: this.hasSucceedDelete,
+        error: this.hasError
+      }
+    )
+  }
+
+  hasSucceedInsert = (res:any) =>{
+    alert(`Cliente ${res.nome} inserido com sucesso`)
+    //res:any res.nome
+  }
+  hasSucceedDelete = () =>{
+    alert(`Cliente ${this.nome} retirado com sucesso`)
+  }
+  /**
+   * Erros
+   * @param err 
+   */
+   hasError = (err:any) => {
+    console.log(err)
+  }
+
+
   
 }
