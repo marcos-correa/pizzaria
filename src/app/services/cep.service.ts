@@ -31,7 +31,6 @@ export class CepService {
     let cep = new Cep();
     cep.cep = cepNaresposta.cep;
     cep.logradouro = cepNaresposta.logradouro;
-    cep.complemento = cepNaresposta.complemento;
     cep.bairro = cepNaresposta.bairro;
     cep.cidade = cepNaresposta.localidade;
     cep.estado = cepNaresposta.uf;
