@@ -13,21 +13,24 @@ if (isset($postdata) && !empty($postdata)) {
   if ($nome === '' || $senha === '') {
     return http_response_code(400);
   }
+    
   
-
-
+  
   $user = $query->selectClienteByEmail('cadastro', ['email' => $email ]);
-  if (!$user){
-    if($user['senha'] == $senha){
-        echo json_encode(['data'=>['user'=>$user]]);
-      }
-      else{
-        throw new Exception("Senha inválida");
-     }
+
+  print_r($user);
+  // echo json_encode(['data'=>$user]);
+  if (!empty($user)){
+    // if($user['senha'] == $senha){
+    //     echo json_encode(['data'=>['user'=>$user]]);
+    //   }
+    //   else{
+    //     throw new Exception("Senha inválida");
+    //  }
   }
-  else{
-    throw new Exception("Usuário não encontrado");
-  }
+  // else{
+  //   throw new Exception("Usuário não encontrado");
+  // }
   
   
 } else {

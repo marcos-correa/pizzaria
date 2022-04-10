@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 import { Usuario } from '../../services/usuario'; 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,12 +42,15 @@ export class LoginComponent implements OnInit {
     
   }
 
-  hasUserLogged(){
-    alert("usuario logado")
+  hasUserLogged(res:any){
+    if(res){
+      window.localStorage.setItem('user',res);
+    }
+    // this.userService.logado = true;
   }
+
   errorLogin(){
     alert("puts")
-    
   }
   getTypeInput(){
     if(this.passwordType){

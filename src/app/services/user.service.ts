@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user';
@@ -72,19 +72,20 @@ export class UserService {
       data: usuario
     }
     return this.http.post("http://localhost/api/login",dados).pipe(
+      tap((res:any)=> console.log(res)),
       map((res:any) => res)
     )
     // let mensagem = 'Inicial'
     // if (usuario.login){
-    //   this.cadastro = this.users.filter(cad => cad.email == usuario.login)
-    //     console.log(this.cadastro);
+      // this.cadastro = this.users.filter(cad => cad.email == usuario.login)
+        // console.log(this.cadastro);
 
-    //   if(this.cadastro.length>0){
-    //     console.log(this.cadastro[0].senha);
-    //     console.log(usuario.senha);
+      // if(this.cadastro.length>0){
+        // console.log(this.cadastro[0].senha);
+        // console.log(usuario.senha);
     //     if(usuario.senha == this.cadastro[0].senha){
-    //       this.logado = true;
-    //       console.log(this.logado);
+          // this.logado = true;
+          // console.log(this.logado);
     //       this.router.navigate(['/catalogo']);
     //     }
     //     else{
