@@ -16,7 +16,6 @@
 
         public function selectClienteByEmail($table, $email){
             $statement = $this -> bd -> prepare("select * from {$table} where email = '{$email}'");
-            
             try{
                 $statement -> execute();
                 return  $statement -> fetchAll(PDO::FETCH_CLASS);

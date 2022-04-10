@@ -8,29 +8,29 @@ if (isset($postdata) && !empty($postdata)) {
   $request = json_decode($postdata);
   $email = $request->data->email;
   $senha = $request->data->senha;
-  
   // Validate.
-  if ($nome === '' || $senha === '') {
+  if ($email === '' || $senha === '') {
     return http_response_code(400);
   }
-    
   
-  
-  $user = $query->selectClienteByEmail('cadastro', ['email' => $email ]);
 
-  print_r($user);
-  // echo json_encode(['data'=>$user]);
+
+  $user = $query->selectClienteByEmail('cadastro', $email);
+ 
+  
   if (!empty($user)){
-    // if($user['senha'] == $senha){
-    //     echo json_encode(['data'=>['user'=>$user]]);
-    //   }
-    //   else{
-    //     throw new Exception("Senha inválida");
-    //  }
+      $user = $user[0];
+      //print_r($user);
+    if($user -> senha == $senha){
+        echo json_encode(['data'=>['usuario'=>$user]]);
+      }
+      else{
+       die('Senha inválida');
+     }
   }
-  // else{
-  //   throw new Exception("Usuário não encontrado");
-  // }
+  else{
+    die("Usuário não encontrado");
+  }
   
   
 } else {
