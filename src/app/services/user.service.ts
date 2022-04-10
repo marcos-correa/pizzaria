@@ -1,3 +1,6 @@
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { User } from './user';
 import { Injectable } from '@angular/core';
 
@@ -32,7 +35,8 @@ export class UserService {
   }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private http:HttpClient
   ) {
     this.logado = false
     this.users = []
@@ -63,31 +67,37 @@ export class UserService {
   }
   
 
-  logarUsuario(usuario:Usuario){
-    let mensagem = 'Inicial'
-    if (usuario.login){
-      this.cadastro = this.users.filter(cad => cad.email == usuario.login)
-        console.log(this.cadastro);
-
-      if(this.cadastro.length>0){
-        console.log(this.cadastro[0].senha);
-        console.log(usuario.senha);
-        if(usuario.senha == this.cadastro[0].senha){
-          this.logado = true;
-          console.log(this.logado);
-          this.router.navigate(['/catalogo']);
-        }
-        else{
-          mensagem = 'Senha incorreta'
-        }
-  
-      }else{
-        mensagem = 'Usuario não encontrado'
-      }
-    }else{
-      mensagem = 'Campo vazio'
+  logarUsuario(usuario:Usuario):Observable<any>{
+    let dados = {
+      data: usuario
     }
-    return mensagem;
+    return this.http.post("http://localhost/api/login",dados).pipe(
+      map((res:any) => res)
+    )
+    // let mensagem = 'Inicial'
+    // if (usuario.login){
+    //   this.cadastro = this.users.filter(cad => cad.email == usuario.login)
+    //     console.log(this.cadastro);
+
+    //   if(this.cadastro.length>0){
+    //     console.log(this.cadastro[0].senha);
+    //     console.log(usuario.senha);
+    //     if(usuario.senha == this.cadastro[0].senha){
+    //       this.logado = true;
+    //       console.log(this.logado);
+    //       this.router.navigate(['/catalogo']);
+    //     }
+    //     else{
+    //       mensagem = 'Senha incorreta'
+    //     }
+  
+    //   }else{
+    //     mensagem = 'Usuario não encontrado'
+    //   }
+    // }else{
+    //   mensagem = 'Campo vazio'
+    // }
+    // return mensagem;
   } 
   
 

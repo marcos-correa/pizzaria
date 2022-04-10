@@ -27,13 +27,25 @@ export class LoginComponent implements OnInit {
 
   fazerLogin(){
     //console.log(this.usuario);
-    let mensagem = this.userService.logarUsuario(this.usuario);
-    if(this.userService.isLogado()){
-      this.logado.emit('true')
-      this.messageService.add({severity:'success', summary:'Login Realizado', life: 3000});
-    }else{
-      this.messageService.add({severity:'error', summary:'Ops', detail:mensagem, life: 3000});
-    }
+    // let mensagem = 
+    this.userService.logarUsuario(this.usuario).subscribe({
+      next: this.hasUserLogged,
+      error: this.errorLogin
+    });
+    // if(this.userService.isLogado()){
+    //   this.logado.emit('true')
+    //   this.messageService.add({severity:'success', summary:'Login Realizado', life: 3000});
+    // }else{
+    //   this.messageService.add({severity:'error', summary:'Ops', detail:mensagem, life: 3000});
+    // }
+    
+  }
+
+  hasUserLogged(){
+    alert("usuario logado")
+  }
+  errorLogin(){
+    alert("puts")
     
   }
   getTypeInput(){
