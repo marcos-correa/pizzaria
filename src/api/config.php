@@ -7,7 +7,7 @@ return [
         'password' => '',
         'conection' => 'mysql:host=localhost',
         'options' => [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]
     ]
         ];

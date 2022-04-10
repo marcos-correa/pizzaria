@@ -1,23 +1,26 @@
 <?php
 
     $query = require ('connect.php'); //conexao banco
-    $model = $_GET['model'];
+    $nome= $_GET['nome'];
 
-   if(isset($model) && !empty($model))
+   if(isset($nome) && !empty($nome))
    {
       
 
        // Validate.
-       if($model === '')
+       if($nome === '')
        {
+       
            return http_response_code(400);
        }
    
 
-       $query ->delete("cars", $model);
+       $query ->delete("cadastro", $nome);
 
    
    }
    else{
        die('Dados inválidos');
    }
+
+    

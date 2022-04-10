@@ -2,28 +2,28 @@
 $query = require('connect.php'); //conexao banco
 // Get the posted data.
 $postdata = file_get_contents("php://input");
-
 if (isset($postdata) && !empty($postdata)) {
   // Extract the data.
 
   $request = json_decode($postdata);
-  $nome =  trim($request->data->nome);
-  $cpf =  trim($request->data->cpf);
-  $email = trim($request->data->email);
-  $telefone =  trim($request->data->telefone);
-  $cep =  trim($request->data->cep);
-  $numero =  $request->data->numero;
-  $rua =  trim($request->data->rua);
-  $bairro =  trim($request->data->bairro);
-  $cidade =  trim($request->data->cidade);
-  $estado =  trim($request->data->estado);
-  $senha =  trim($request->data->senha);
+  $nome = $request->data->nome;
+  $cpf = $request->data->cpf;
+  $email = $request->data->email;
+  $telefone = $request->data->telefone;
+  $cep = $request->data->cep;
+  $numero = $request->data->numero;
+  $rua = $request->data->rua;
+  $bairro = $request->data->bairro;
+  $cidade = $request->data->cidade;
+  $estado = $request->data->estado;
+  $senha = $request->data->senha;
   
   // Validate.
   if ($nome === '' || $cpf === '' || $email === '' || $telefone === ''|| $cep === ''|| $numero === ''|| $rua === ''|| $bairro === ''|| $cidade === ''|| $estado === '' || $senha === '') {
-    return http_response_code(Algum campo não foi preenchido);
+    return http_response_code(400);
   }
-  return http_response_code( foi preenchido);
+  
+
 
   $query->insert('cadastro', [
     'nome' => $nome,
@@ -38,6 +38,8 @@ if (isset($postdata) && !empty($postdata)) {
     'estado' => $estado,
     'senha' => $senha,
   ]);
+  
+  echo json_encode(['data'=>['nome'=>$nome]]);
 } else {
   die('Dados inválidos');
 }
