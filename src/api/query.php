@@ -14,9 +14,9 @@
 
         }
 
-        public function selectCarById($table, $model){
-            $statement = $this -> bd -> prepare("select * from {$table} where model = '{$model}'");
-            print_r($statement);
+        public function selectClienteByEmail($table, $email){
+            $statement = $this -> bd -> prepare("select * from {$table} where email = '{$email}'");
+            
             try{
                 $statement -> execute();
                 return  $statement -> fetchAll(PDO::FETCH_CLASS);

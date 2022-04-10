@@ -1,22 +1,22 @@
 <?php
 
     $query = require ('connect.php'); //conexao banco
-    $model = $_GET['model'];
+    $model = $_GET['email'];
 
-   if(isset($model) && !empty($model))
+   if(isset($email) && !empty($email))
    {
       
        
 
        // Validate.
-       if($model === '')
+       if($email === '')
        {
            return http_response_code(400);
        }
    
 
-       $car = $query ->selectCarById("cars", $model);
-       echo json_encode(['data'=>$car]);
+       $cliente = $query ->selectClienteByEmail("cadastro", $email);
+       echo json_encode(['data'=>['email'=>$email]]);
 
    
    }
