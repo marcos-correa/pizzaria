@@ -2,13 +2,12 @@
 
 // RODAR NO CMD:  "composer require lcobucci/jwt" 
 
-include 'login.php'; //pega as info do login 
-
-
+//include 'login.php'; //pega as info do login 
 function base64Erlencode($data){
     return str_replace(['+','/','-'],['-','_',''], base64_encode($data));
 } //função q o vccode n tem
 
+function gerarToken($email, $senha){
     $header =base64Erlencode ('{ "alg" : "HS256", "typ":"JWT"}');
     //O Header é um objeto JSON que define informações sobre o tipo do token (typ),
     // nesse caso JWT, e o algorítmo de criptografia usado em sua assinatura (alg), 
@@ -25,6 +24,9 @@ function base64Erlencode($data){
     $tokenGerado = $header.'.'.$payload.'.'.$signature;
 
     return $tokenGerado; 
+
+}
+
 
 ?>
 

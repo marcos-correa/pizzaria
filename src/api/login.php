@@ -1,6 +1,6 @@
 <?php
 $query = require('connect.php'); //conexao banco
-$tokenGerado = require('jwt.php');
+require('jwt.php');
 // Get the posted data.
 $postdata = file_get_contents("php://input");
 if (isset($postdata) && !empty($postdata)) {
@@ -10,6 +10,7 @@ if (isset($postdata) && !empty($postdata)) {
   $email = $request->data->email;
   $senha = $request->data->senha;
   $senha = md5($senha);
+  $tokenGerado = gerarToken($email,$senha);
 
   // Validate.
   if ($email === '' || $senha === '') {
