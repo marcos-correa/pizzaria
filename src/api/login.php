@@ -8,6 +8,8 @@ if (isset($postdata) && !empty($postdata)) {
   $request = json_decode($postdata);
   $email = $request->data->email;
   $senha = $request->data->senha;
+  $senha = md5($senha);
+
   // Validate.
   if ($email === '' || $senha === '') {
     return http_response_code(400);
@@ -22,7 +24,10 @@ if (isset($postdata) && !empty($postdata)) {
       $user = $user[0];
       //print_r($user);
     if($user -> senha == $senha){
-        echo json_encode(['data'=>['usuario'=>$user]]);
+        // ieua
+        echo json_encode(['data'=>[
+          
+          'usuario'=>$user]]);
       }
       else{
        die('Senha inválida');

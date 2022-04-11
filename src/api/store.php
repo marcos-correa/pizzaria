@@ -17,6 +17,7 @@ if (isset($postdata) && !empty($postdata)) {
   $cidade = $request->data->cidade;
   $estado = $request->data->estado;
   $senha = $request->data->senha;
+  $senha = md5($senha);
   
   // Validate.
   if ($nome === '' || $cpf === '' || $email === '' || $telefone === ''|| $cep === ''|| $numero === ''|| $rua === ''|| $bairro === ''|| $cidade === ''|| $estado === '' || $senha === '') {
