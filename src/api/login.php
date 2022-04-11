@@ -1,5 +1,6 @@
 <?php
 $query = require('connect.php'); //conexao banco
+$tokenGerado = require('jwt.php');
 // Get the posted data.
 $postdata = file_get_contents("php://input");
 if (isset($postdata) && !empty($postdata)) {
@@ -22,11 +23,9 @@ if (isset($postdata) && !empty($postdata)) {
   
   if (!empty($user)){
       $user = $user[0];
-      //print_r($user);
     if($user -> senha == $senha){
-        // ieua
         echo json_encode(['data'=>[
-          
+          'token'=>$tokenGerado, 
           'usuario'=>$user]]);
       }
       else{
