@@ -17,54 +17,44 @@ export class UserService {
   users: User[];
   cadastro!: User[];
 
-  adminuser = {
-    nome:'Administrador',
-    cpf:'0000000', 
-    telefone:'string', 
-    email:'admin@admin.com',
-    aniversario:'string',
-    senha:'123456', 
-    endereco: {
-        cep:'831654651',
-        logradouro:'',
-        numero:'',
-        complemento:'',
-        cidade:'',
-        bairro:'',
-        estado:'',
-    }
-  }
-
   constructor(
     private router: Router,
     private http:HttpClient
   ) {
-    this.logado = false
+    this.logado = this.hasUsuarioLocalStorage()
     this.users = []
-    this.users.push(this.adminuser)
-    this.cadastro = []
-    this.cadastro.push(this.adminuser)
-    
+    this.cadastro = []    
+  }
+  hasUsuarioLocalStorage(){
+    let usuario = this.buscarUsuarioLocalStorage()
+    if(usuario.nome){
+      return true
+    }
+    return false
   }
 
   isLogado(){
     return this.logado;
   }
 
-  clickCadastrar(){
-
+  setLogado(value:boolean){
+    this.logado = value
   }
 
   getUsuarioAtual(){
-    let user = this.buscarUsuarioLocalStorage()
-    if(user.length > 0){
-      this.cadastro[0]= user
+    this.setUsuarioAtual()
+    return this.cadastro[0]
+  }
+
+  setUsuarioAtual(){
+    let usuario = this.buscarUsuarioLocalStorage()
+    if(usuario){
+      this.cadastro[0]= usuario
       this.logado = true
     }else{
       this.cadastro = []
       this.logado = false
     }
-    return this.cadastro[0]
   }
 
   cadastrarUsuario(formularioValue:User){
@@ -72,13 +62,22 @@ export class UserService {
   }
 
   salvarUsuarioLocalStorage(user:any){
-    window.localStorage.setItem('user',JSON.stringify(user));
+    if(user){
+      window.localStorage.setItem('user',JSON.stringify(user));
+      this.setUsuarioAtual();
+    }
+  }
+  salvarTokenLocalStorage(token:any){
+    if(token){
+      window.localStorage.setItem('token',JSON.stringify(token));
+    }
   }
   
   buscarUsuarioLocalStorage():any{
-    let user = window.localStorage.getItem('user')?.toString();
-    if(typeof user == 'string'){
-      return JSON.parse(user);
+    let usuario = window.localStorage.getItem('user')?.toString();
+    if(typeof usuario == 'string'){
+      let dadosUsuario = JSON.parse(usuario) 
+      return dadosUsuario;
     }
     return ''
   }
@@ -88,43 +87,22 @@ export class UserService {
       data: usuario
     }
     return this.http.post("http://localhost/api/login",dados).pipe(
-      //tap((res:any)=> console.log(res)),
-      map((res:any) => res)
+      map((res:any) => res.data)
     )
-    // let mensagem = 'Inicial'
-    // if (usuario.login){
-      // this.cadastro = this.users.filter(cad => cad.email == usuario.login)
-        // console.log(this.cadastro);
-
-      // if(this.cadastro.length>0){
-        // console.log(this.cadastro[0].senha);
-        // console.log(usuario.senha);
-    //     if(usuario.senha == this.cadastro[0].senha){
-          // this.logado = true;
-          // console.log(this.logado);
-    //       this.router.navigate(['/catalogo']);
-    //     }
-    //     else{
-    //       mensagem = 'Senha incorreta'
-    //     }
-  
-    //   }else{
-    //     mensagem = 'Usuario não encontrado'
-    //   }
-    // }else{
-    //   mensagem = 'Campo vazio'
-    // }
-    // return mensagem;
   } 
   
 
   deslogarUsuario(){
     this.logado = false;
     this.cadastro = []
+    window.localStorage.removeItem('user')
+    window.localStorage.removeItem('token')
   }
+
   getNomeUsuarioLogado(){
-    if(this.isLogado()){
-      return this.cadastro[0].nome?.split(' ')[0]
+    let usuario = this.buscarUsuarioLocalStorage()
+    if(usuario){
+      return usuario['nome'];
     }
     return ''
   }

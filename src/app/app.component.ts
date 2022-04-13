@@ -26,7 +26,7 @@ export class AppComponent {
     this.modal = false;
     this.modalCadastro = false;
     this.modalLogado = false;
-    this.usuarioAtual = {}
+    this.usuarioAtual = this.userService.getUsuarioAtual()
   }
  
   getNumbers(){

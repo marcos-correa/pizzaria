@@ -23,12 +23,19 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.verificarUsuarioLogado()
+  }
+  verificarUsuarioLogado(){
+    let usuario = this.userService.buscarUsuarioLocalStorage()
+    if(usuario.name){
+      this.userService.setLogado(true)
+    }
   }
 
   fazerLogin(){
     this.userService.logarUsuario(this.usuario).subscribe({
-      next: this.hasUserLogged,
-      error: this.errorLogin
+      next: res => this.hasUserLogged(res),
+      error: err => this.errorLogin(err)
     });
     // if(this.userService.isLogado()){
     //   this.logado.emit('true')
@@ -40,15 +47,16 @@ export class LoginComponent implements OnInit {
   }
 
   hasUserLogged(res:any){
-    console.log("entrou")
-    if(res){
-      this.userService.salvarUsuarioLocalStorage(res);
-      alert(`Você está logado`)
-    }
+    this.userService.salvarUsuarioLocalStorage(res.usuario);
+    this.userService.salvarTokenLocalStorage(res.token);
+    this.userService.setUsuarioAtual();
+    this.messageService.add({severity:'success', summary:'Login Realizado', life: 3000});
+    this.logado.emit();
   }
 
-  errorLogin(){
-    alert("puts")
+  errorLogin(err:any){
+    let msg = err || "Erro ao realizar login"
+    this.messageService.add({severity:'error', summary:'Ops', detail:msg, life: 3000});
   }
   getTypeInput(){
     if(this.passwordType){
