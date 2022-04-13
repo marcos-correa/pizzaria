@@ -1,10 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { OutletContext } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 import { UserService } from 'src/app/services/user.service';
-import { Usuario } from '../../services/usuario'; 
-
 
 @Component({
   selector: 'app-login',
@@ -27,8 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   fazerLogin(){
-    //console.log(this.usuario);
-    // let mensagem = 
     this.userService.logarUsuario(this.usuario).subscribe({
       next: this.hasUserLogged,
       error: this.errorLogin

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Cep } from './cep';
+import { Cep } from '../interfaces//cep';
 // import 'rxjs/add/operator/toPromise';
 // import {map} from 'rxjs/operators';
 // import {toPromise} from 'rxjs/operators';

@@ -1,12 +1,12 @@
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './user';
+import { User } from '../interfaces/user';
 import { Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { Usuario } from './usuario';
+import { Usuario } from '../interfaces//usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -55,15 +55,19 @@ export class UserService {
   }
 
   getUsuarioAtual(){
+    let user = this.buscarUsuarioLocalStorage()
+    if(user.length > 0){
+      this.cadastro[0]= user
+      this.logado = true
+    }else{
+      this.cadastro = []
+      this.logado = false
+    }
     return this.cadastro[0]
   }
 
   cadastrarUsuario(formularioValue:User){
     this.users.push(formularioValue)
-
-
-    //console.table(this.users)
-    debugger
   }
 
   salvarUsuarioLocalStorage(user:any){

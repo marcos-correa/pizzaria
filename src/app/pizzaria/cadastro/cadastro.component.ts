@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from "rxjs/operators";
-import { Cep } from 'src/app/services/cep';
 import { CepService } from 'src/app/services/cep.service';
 import { PizzariaService } from '../pizzaria.service';
 import { PizzasService } from './../../services/pizzas.service';
 import { SelectionChange } from '@angular/cdk/collections';
+import { Cep } from 'src/app/interfaces/cep';
 
 @Component({
   selector: 'app-cadastro',
