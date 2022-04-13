@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { Usuario } from './usuario';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -83,7 +84,7 @@ export class UserService {
       data: usuario
     }
     return this.http.post("http://localhost/api/login",dados).pipe(
-      tap((res:any)=> console.log(res)),
+      //tap((res:any)=> console.log(res)),
       map((res:any) => res)
     )
     // let mensagem = 'Inicial'
@@ -153,7 +154,7 @@ export class UserService {
     }
     
     return this.http.post("http://localhost/api/store",{data}).pipe(
-      map((res:any)=> res['data'])
+      map((res:any)=> res)
     )
   }
 

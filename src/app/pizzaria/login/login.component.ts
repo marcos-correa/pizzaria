@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   hasUserLogged(res:any){
+    console.log("entrou")
     if(res){
       this.userService.salvarUsuarioLocalStorage(res);
       alert(`Você está logado`)

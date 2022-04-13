@@ -17,14 +17,14 @@ import { SelectionChange } from '@angular/cdk/collections';
 export class CadastroComponent implements OnInit {
   formulario: FormGroup;
   cep = new Cep();
-  passwordType:Boolean;
+  passwordType!:Boolean;
   nome!: string;
   cpf!: string;
   email!: string;
   telefone!: string;
   numero!: number;
-  senha!: string;
   deleteById!: string;
+  senha!: string;
 
   // rua!: string;
   // bairro!: string;
@@ -82,7 +82,7 @@ export class CadastroComponent implements OnInit {
   }
 
   getTypeInput(){
-    if(this.passwordType){
+    if(this.senha){
       return 'password'
     }else{
       return 'text'
@@ -104,7 +104,7 @@ export class CadastroComponent implements OnInit {
         error: this.hasError
       }
     )
-    this.formulario.reset();
+    //this.formulario.reset();
 
   }
 
@@ -127,9 +127,12 @@ export class CadastroComponent implements OnInit {
     )
   }
 
-  hasSucceedInsert = (res:any) =>{
-    alert(`Cliente ${res.nome} inserido com sucesso`)
-    //res:any res.nome
+ 
+  hasSucceedInsert(res:any){
+    if(res){
+      alert(`Cliente ${res} inserido com sucesso`)
+    }
+    // this.userService.logado = true;
   }
 
   hasSucceedUpdate  = (res:any) =>{
@@ -143,9 +146,12 @@ export class CadastroComponent implements OnInit {
    * Erros
    * @param err 
    */
-   hasError = (err:any) => {
-    console.log(err)
-  }
+  //  hasError = (err:any) => {
+  //   console.log(err)
+  // }
+    hasError(){
+      alert("Não foi possível fazer a operação")
+    }
 
 
   
