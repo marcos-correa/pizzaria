@@ -18,14 +18,30 @@ if (isset($postdata) && !empty($postdata)) {
   $estado = $request->data->estado;
   $senha = $request->data->senha;
   $senha = md5($senha);
-  
-  // Validate.
+  $id = "1000";
+  // Validação
+  //Falha requisição
+  try{
   if ($nome === '' || $cpf === '' || $email === '' || $telefone === ''|| $cep === ''|| $numero === ''|| $rua === ''|| $bairro === ''|| $cidade === ''|| $estado === '' || $senha === '') {
-    return http_response_code(400);
+    //return http_response_code(400);
+    throw new Exception('Dados faltando');
+  }
+  $user = $query->selectUsuarioByEmail($table, $email);
+  $user = $user[0];
+
+  if($user -> email == $email && $user -> id != $id){
+    throw new Exception('Este email já está cadastrado');
   }
   
+  $user = $query->selectUsuarioByCpf($table, $cpf);
+  $user = $user[0];
+  if ($user -> cpf == $cpf && $user -> id != $id){
+    throw new Exception('O usuário com este cpf já está cadastrado');
+  }
 
 
+
+  
   $query->update($table, [
     'nome' => $nome,
     'cpf' => $cpf,
@@ -40,7 +56,10 @@ if (isset($postdata) && !empty($postdata)) {
     'senha' => $senha,
   ]);
   
-  echo json_encode(['data'=>['nome'=>$nome]]);
+  echo json_encode(['data'=>['nome'=>$nome]]);}
+  catch(Exception $e){
+    echo 'Falha na alteração dos dados no banco: ' .  $e->getMessage();
+  }
 } else {
-  die('Dados inválidos');
+  die('Falha na requisição: ');
 }

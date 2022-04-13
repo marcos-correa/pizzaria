@@ -9,13 +9,31 @@
 
         public function selectAll($table){
             $statement = $this -> bd -> prepare("select * from {$table}");
+           try{
             $statement -> execute();
             return  $statement -> fetchAll(PDO::FETCH_CLASS);
+           }
+           catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
+           
 
         }
 
         public function selectUsuarioByEmail($table, $email){
             $statement = $this -> bd -> prepare("select * from {$table} where email = '{$email}'");
+            try{
+                $statement -> execute();
+                return  $statement -> fetchAll(PDO::FETCH_CLASS);
+            }
+            catch(Exception $e){
+                throw new Exception($e->getMessage());
+            }
+
+        }
+
+        public function selectUsuarioByCpf($table, $cpf){
+            $statement = $this -> bd -> prepare("select * from {$table} where cpf = '{$cpf}'");
             try{
                 $statement -> execute();
                 return  $statement -> fetchAll(PDO::FETCH_CLASS);
@@ -33,7 +51,8 @@
                 $statement -> execute();
             }
             catch(Exception $e){
-                throw new Exception($e->getMessage());
+                //throw new Exception($e->getMessage());
+                echo 'Falha para cancelar o cadastro: ' . $e->getMessage();
             }
 
         }
@@ -52,7 +71,8 @@
                 $statement -> execute($parameters);
             }
             catch(Exception $e){
-                throw new Exception($e->getMessage());
+                //throw new Exception($e->getMessage());
+                echo 'Falha na inserção dos dados no banco: ' . $e->getMessage();
             }
         }
 
@@ -75,7 +95,8 @@
                 $statement -> execute();
             }
             catch(Exception $e){
-                throw new Exception($e->getMessage());
+                //throw new Exception($e->getMessage());
+                echo 'Falha na atualização dos dados no banco: ' . $e->getMessage();
             }
 
         }

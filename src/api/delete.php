@@ -7,12 +7,12 @@
    {
       
 
-       // Validate.
+       // Validação
        if($id === '')
        {
        
-           return http_response_code(400);
-       }
+        die('Dados faltando');
+    }
    
 
        $query ->delete($table, $id);
@@ -20,7 +20,7 @@
    
    }
    else{
-       die('Dados inválidos');
+       die('Falha na requisição');
    }
 
     

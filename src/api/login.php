@@ -12,9 +12,10 @@ if (isset($postdata) && !empty($postdata)) {
   $senha = md5($senha);
   $tokenGerado = gerarToken($email,$senha);
 
-  // Validate.
+  try{
+  // Validação
   if ($email === '' || $senha === '') {
-    return http_response_code(400);
+    throw new Exception('Dados faltando');
   }
   
 
@@ -27,17 +28,23 @@ if (isset($postdata) && !empty($postdata)) {
     if($user -> senha == $senha){
         echo json_encode(['data'=>[
           'token'=>$tokenGerado, 
-          'usuario'=>$user]]);
+          'usuario'=>$user]]
+);
       }
       else{
-       die('Senha inválida');
+       //die('Senha inválida');
+       throw new Exception('Senha inválida');
      }
   }
   else{
-    die("Usuário não encontrado");
+    //die("Usuário não encontrado");
+    throw new Exception('Usuário não encontrado');
+  }}
+  catch(Exception $e){
+    echo 'Não foi possível fazer o login: ' .  $e->getMessage();
   }
   
   
 } else {
-  die('Dados inválidos');
+  die('Falha na requisição ');
 }
