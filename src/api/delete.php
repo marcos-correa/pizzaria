@@ -1,21 +1,21 @@
 <?php
 
     $query = require ('connect.php'); //conexao banco
-    $nome= $_GET['nome'];
+    $nome= $_GET['id'];
 
-   if(isset($nome) && !empty($nome))
+   if(isset($id) && !empty($id))
    {
       
 
        // Validate.
-       if($nome === '')
+       if($id === '')
        {
        
            return http_response_code(400);
        }
    
 
-       $query ->delete("cadastro", $nome);
+       $query ->delete($table, $id);
 
    
    }

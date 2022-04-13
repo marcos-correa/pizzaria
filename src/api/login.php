@@ -19,7 +19,7 @@ if (isset($postdata) && !empty($postdata)) {
   
 
 
-  $user = $query->selectClienteByEmail('cadastro', $email);
+  $user = $query->selectUsuarioByEmail($table, $email);
  
   
   if (!empty($user)){
@@ -39,5 +39,5 @@ if (isset($postdata) && !empty($postdata)) {
   
   
 } else {
-  die('Dados inválidos encontrado');
+  die('Dados inválidos');
 }

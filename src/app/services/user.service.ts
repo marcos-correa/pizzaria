@@ -112,4 +112,73 @@ export class UserService {
     }
     return ''
   }
+
+
+  //Serviços Cliente
+
+  getEndereco(cep:string){
+    return this.http.get(`//viacep.com.br/ws/${cep}/json`)
+    .pipe(map(res => {
+      return res;
+    })); 
+  }
+
+  //CRUD usuario
+  insertUsuario(nome:string , cpf:string, email:string , telefone:string, cep:string , numero:number, rua:string , bairro:string, cidade:string, estado:string, senha:string ): Observable<any>{
+    let data = {
+      nome: nome,
+      cpf: cpf,
+      email: email,
+      telefone: telefone,
+      cep: cep,
+      numero: numero,
+      rua: rua,
+      bairro: bairro,
+      cidade: cidade,
+      estado: estado,
+      senha: senha
+
+     
+    }
+    
+    return this.http.post("http://localhost/api/store",{data}).pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+  updateUsuario(nome:string , cpf:string, email:string , telefone:string, cep:string , numero:number, rua:string , bairro:string, cidade:string, estado:string, senha:string ): Observable<any>{
+    let data = {
+      nome: nome,
+      cpf: cpf,
+      email: email,
+      telefone: telefone,
+      cep: cep,
+      numero: numero,
+      rua: rua,
+      bairro: bairro,
+      cidade: cidade,
+      estado: estado,
+      senha: senha
+
+     
+    }
+    
+    return this.http.post("http://localhost/api/update",{data}).pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+
+  deleteUsuarioById(id:string): Observable<any>{
+    return this.http.delete(`http://localhost/api/delete.php?nome=${id}`).pipe(
+      map((res:any) => res)
+    )
+  }
+
+  getUsuarioID(id:string): Observable<any>{
+    return this.http.get(`http://localhost/api/search.php?model=${id}`).pipe(
+      map((res:any) => res['data'])
+    )
+  }
+
 }

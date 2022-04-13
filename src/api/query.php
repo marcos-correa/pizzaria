@@ -14,7 +14,7 @@
 
         }
 
-        public function selectClienteByEmail($table, $email){
+        public function selectUsuarioByEmail($table, $email){
             $statement = $this -> bd -> prepare("select * from {$table} where email = '{$email}'");
             try{
                 $statement -> execute();
@@ -26,8 +26,8 @@
 
         }
 
-        public function delete($table, $nome){
-            $statement = $this -> bd -> prepare("delete from {$table} where nome = '{$nome}'");
+        public function delete($table, $id){
+            $statement = $this -> bd -> prepare("delete from {$table} where nome = '{$id}'");
             //print_r($statement);
             try{
                 $statement -> execute();
@@ -57,7 +57,19 @@
         }
 
         public function update($table, $parameters ){
-            $statement = $this -> bd -> prepare("update {$table}  set price = '{$parameters['price']}', model = '{$parameters['model']}' where id = '{$parameters['id']}'");
+            $statement = $this -> bd -> prepare("update {$table}  set 
+            nome = '{$parameters['nome']}', 
+            cpf = '{$parameters['cpf']}', 
+            email = '{$parameters['email']}', 
+            telefone = '{$parameters['telefone']}', 
+            cep = '{$parameters['cep']}', 
+            numero = '{$parameters['numero']}', 
+            rua = '{$parameters['rua']}', 
+            bairro = '{$parameters['bairro']}', 
+            cidade = '{$parameters['cidade']}', 
+            estado = '{$parameters['estado']}', 
+            senha = '{$parameters['senha']}' 
+            where id = '{$parameters['id']}'");
             //print_r($statement);
             try{
                 $statement -> execute();

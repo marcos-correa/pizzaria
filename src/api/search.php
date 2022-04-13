@@ -1,7 +1,7 @@
 <?php
 
     $query = require ('connect.php'); //conexao banco
-    $model = $_GET['email'];
+    $cliente = $_GET['email'];
 
    if(isset($email) && !empty($email))
    {
@@ -15,8 +15,8 @@
        }
    
 
-       $cliente = $query ->selectClienteByEmail("cadastro", $email);
-       echo json_encode(['data'=>['email'=>$email]]);
+       $cliente = $query ->selectUsuarioByEmail($table, $email);
+       echo json_encode(['data'=>['nome'=>$nome]]);
 
    
    }

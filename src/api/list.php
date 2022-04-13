@@ -1,5 +1,5 @@
 <?php
     $query = require ('connect.php'); //conexao banco
-    $cars = $query ->selectAll("cars");
+    $clientes = $query ->selectAll($table);
     
-    echo json_encode(['data'=>$cars]);
+    echo json_encode(['data'=>$clientes]);
