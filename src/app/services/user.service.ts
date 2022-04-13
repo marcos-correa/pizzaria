@@ -65,7 +65,18 @@ export class UserService {
     //console.table(this.users)
     debugger
   }
+
+  salvarUsuarioLocalStorage(user:any){
+    window.localStorage.setItem('user',JSON.stringify(user));
+  }
   
+  buscarUsuarioLocalStorage():any{
+    let user = window.localStorage.getItem('user')?.toString();
+    if(typeof user == 'string'){
+      return JSON.parse(user);
+    }
+    return ''
+  }
 
   logarUsuario(usuario:Usuario):Observable<any>{
     let dados = {

@@ -44,10 +44,9 @@ export class LoginComponent implements OnInit {
 
   hasUserLogged(res:any){
     if(res){
-      window.localStorage.setItem('user',res);
+      this.userService.salvarUsuarioLocalStorage(res);
       alert(`Você está logado`)
     }
-    // this.userService.logado = true;
   }
 
   errorLogin(){
