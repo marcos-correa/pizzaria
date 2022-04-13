@@ -123,31 +123,48 @@
       <div class="col-md-7">
         <div class="form-group" >
           <label for="senha" class="control-label">Senha</label>
-
-          <div class="d-flex align-items-center">
+          <br>
             <input [type]="getTypeInput()" class="form-control" id="senha"  [(ngModel)]="senha" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">
-
-            <span (click)="toogleType()" *ngIf="passwordType" class="eyeclass">
-              <i class="fas fa-eye"></i>  
-            </span>
-  
-            <span (click)="toogleType()" *ngIf="!passwordType" class="eyeclass">
-              <i class="fas fa-eye-slash"></i>  
-            </span>
+           
+            <div class="invalid-feedback">
+              Campo Obrigatório. Senha com pelo menos 6 dígitos.
+            </div>
+            
+          
           </div>
-          <!-- <input type="text" class="form-control" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">  -->
-          <div class="invalid-feedback">
-            Campo Obrigatório. Senha com pelo menos 6 dígitos.
+          
+          
+        </div>
+
+        <div class="col-md-1">
+          <div class="form-group" >
+            <br><br>
+            <div>
+              <span (click)="toogleType()" *ngIf="passwordType" class="eyeclass">
+                <i class="fas fa-eye"></i>  
+              </span>
+    
+              <span (click)="toogleType()" *ngIf="!passwordType" class="eyeclass">
+                <i class="fas fa-eye-slash"></i>  
+              </span>
+             </div>
+  
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" >
+            <br>
+            <button (click)="insertUsuario()" type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>
           </div>
         </div>
+
+        
       </div>
 
-      <div class="col-md-5">
-        <br>
-        <button (click)="insertCliente()" type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>
-      </div>
-    </div>
+      
     
+
   </form>
  
   

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Endereco } from './endereco';
 import { PizzariaService } from './../pizzaria.service';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-endereco',
@@ -13,7 +15,8 @@ export class EnderecoComponent implements OnInit {
   valorcep:string;
   invalidcpf: boolean;
   constructor(
-    private pizzariaService: PizzariaService, 
+    private pizzariaService: PizzariaService,
+    private userService:UserService 
     ) { 
       this.endereco = {};
       this.valorcep = '';
@@ -25,7 +28,7 @@ export class EnderecoComponent implements OnInit {
 
   buscaCep(){
     if(this.isValidCep()){
-      this.pizzariaService.getEndereco(this.valorcep)
+      this.userService.getEndereco(this.valorcep)
       .subscribe((res:any)=>{
           this.endereco = res
           if(res.erro == true){
