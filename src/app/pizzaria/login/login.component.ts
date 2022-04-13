@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   hasUserLogged(res:any){
+    console.log("entrou")
     if(res){
       window.localStorage.setItem('user',res);
       alert(`Você está logado`)
