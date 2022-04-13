@@ -69,6 +69,7 @@ export class UserService {
 
   cadastrarUsuario(formularioValue:User){
     this.users.push(formularioValue)
+    debugger
   }
 
   salvarUsuarioLocalStorage(user:any){
