@@ -1,5 +1,7 @@
 <?php
   $config = require("config.php");
+  print_r($config);
+  $table =  $config['database']['table'];
   require("query.php");
 
     class Conexao {

@@ -26,7 +26,7 @@ if (isset($postdata) && !empty($postdata)) {
   
 
 
-  $query->insert('cadastro', [
+  $query->insert($table, [
     'nome' => $nome,
     'cpf' => $cpf,
     'email' => $email,

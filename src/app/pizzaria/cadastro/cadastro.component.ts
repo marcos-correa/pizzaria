@@ -98,8 +98,8 @@ export class CadastroComponent implements OnInit {
       .then((cep:Cep) => this.cep = cep);
   }
 
-  insertCliente(){
-    this.pizzariaService.insertCliente(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
+  insertUsuario(){
+    this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
         next: this.hasSucceedInsert,
         error: this.hasError
       }
@@ -108,10 +108,19 @@ export class CadastroComponent implements OnInit {
 
   }
 
-  deleteClienteById(){
-  
+  updateUsuario(){
+    this.userService.updateUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
+        next: this.hasSucceedUpdate,
+        error: this.hasError
+      }
+    )
+    this.formulario.reset();
 
-    this.pizzariaService.deleteClienteById(this.nome).subscribe({
+  }
+
+  //Para excluir pelo id preciso olhar para o storage
+  deleteUsuarioById(){
+    this.userService.deleteUsuarioById(this.nome).subscribe({
         next: this.hasSucceedDelete,
         error: this.hasError
       }
@@ -122,6 +131,11 @@ export class CadastroComponent implements OnInit {
     alert(`Cliente ${res.nome} inserido com sucesso`)
     //res:any res.nome
   }
+
+  hasSucceedUpdate  = (res:any) =>{
+    alert(`Os dados do cliente ${res.nome} foram altearados  com sucesso`)
+  }
+
   hasSucceedDelete = () =>{
     alert(`Cliente ${this.nome} retirado com sucesso`)
   }

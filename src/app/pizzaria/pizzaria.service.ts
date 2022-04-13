@@ -32,74 +32,13 @@ export class PizzariaService {
     this.descontoAplicado = false;
   }
 
+  //Serviços da aplicação
+
   getPizzas(){
     // this.http.get("http://localhost/api/")
     return this.pizzas
   }
 
-  getCars(): Observable<any>{
-    return this.http.get("http://localhost/api/list").pipe(
-      map((res:any)=> res['data'])
-    )
-  }
-
-  insertCliente(nome:string , cpf:string, email:string , telefone:string, cep:string , numero:number, rua:string , bairro:string, cidade:string, estado:string, senha:string ): Observable<any>{
-    let data = {
-      nome: nome,
-      cpf: cpf,
-      email: email,
-      telefone: telefone,
-      cep: cep,
-      numero: numero,
-      rua: rua,
-      bairro: bairro,
-      cidade: cidade,
-      estado: estado,
-      senha: senha
-
-     
-    }
-    
-    return this.http.post("http://localhost/api/store",{data}).pipe(
-      map((res:any)=> res['data'])
-    )
-  }
-  insertCar(model:string , price:number ): Observable<any>{
-    let data = {
-      model: model,
-      price: price
-    }
-    return this.http.post("http://localhost/api/store",{data}).pipe(
-      map((res:any)=> res['data'])
-    )
-  }
-
-  updateCar( car:any ): Observable<any>{
-    let data = car[0]
-    return this.http.post("http://localhost/api/update",{data}).pipe(
-      map((res:any)=> res)
-    )
-  }
-
-  
-  getCarByID(id:string): Observable<any>{
-    return this.http.get(`http://localhost/api/search.php?model=${id}`).pipe(
-      map((res:any) => res['data'])
-    )
-  }
-
-  deleteCarById(id:string): Observable<any>{
-    return this.http.delete(`http://localhost/api/delete.php?model=${id}`).pipe(
-      map((res:any) => res)
-    )
-  }
-
-  
-  deleteClienteById(nome:string): Observable<any>{
-    return this.http.delete(`http://localhost/api/delete.php?nome=${nome}`).pipe(
-      map((res:any) => res)
-    )
-  }
   getPizzasNoCarrinho(){
     return this.carrinho
   }
@@ -113,13 +52,6 @@ export class PizzariaService {
       carrinho += pizza.quantity
     }
     return carrinho
-  }
-
-  getEndereco(cep:string){
-    return this.http.get(`//viacep.com.br/ws/${cep}/json`)
-    .pipe(map(res => {
-      return res;
-    })); 
   }
 
   getFavoritas(){
@@ -191,4 +123,44 @@ export class PizzariaService {
     return index;
   } 
   
+  
+//Testes CRUD
+
+
+  getCars(): Observable<any>{
+    return this.http.get("http://localhost/api/list").pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+  insertCar(model:string , price:number ): Observable<any>{
+    let data = {
+      model: model,
+      price: price
+    }
+    return this.http.post("http://localhost/api/store",{data}).pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+  updateCar( car:any ): Observable<any>{
+    let data = car[0]
+    return this.http.post("http://localhost/api/update",{data}).pipe(
+      map((res:any)=> res)
+    )
+  }
+
+  
+  getCarByID(id:string): Observable<any>{
+    return this.http.get(`http://localhost/api/search.php?model=${id}`).pipe(
+      map((res:any) => res['data'])
+    )
+  }
+
+  deleteCarById(id:string): Observable<any>{
+    return this.http.delete(`http://localhost/api/delete.php?model=${id}`).pipe(
+      map((res:any) => res)
+    )
+  }
+
 }

@@ -9,7 +9,7 @@
 
 
 <div class="container">
-  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="insertCliente()">
+  <form class="form-horizontal" [formGroup]="formulario">
 
     <div class="row">
       <div class="col-md-7">
@@ -144,7 +144,7 @@
 
       <div class="col-md-5">
         <br>
-        <button type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>
+        <button (click)="insertCliente()" type="submit" class="btn pizzaday-footer" [disabled]="!formulario.valid">Submeter</button>
       </div>
     </div>
     
