@@ -2,14 +2,18 @@
 $query = require('connect.php'); //conexao banco
 require('jwt.php');
 // Get the posted data.
+// $vari = "vari";
+// echo json_encode($vari);
 $postdata = file_get_contents("php://input");
 if (isset($postdata) && !empty($postdata)) {
+
   // Extract the data.
 
   $request = json_decode($postdata);
   $email = $request->data->email;
   $senha = $request->data->senha;
   $senha = md5($senha);
+  $tokenGerado = gerarToken($email);
 
   try {
     // Validação
@@ -22,7 +26,6 @@ if (isset($postdata) && !empty($postdata)) {
     if (!empty($user)) {
       $user = $user[0];
       if ($user->senha == $senha) {
-        $tokenGerado = gerarToken($email);
         echo json_encode(
           ['data' => [
             'token' => $tokenGerado,
@@ -36,7 +39,7 @@ if (isset($postdata) && !empty($postdata)) {
       throw new Exception('Usuário não encontrado');
     }
   } catch (Exception $e) {
-    echo 'Não foi possível fazer o login: ' .  $e->getMessage();
+    echo json_encode('Não foi possível fazer o login: ' .  $e->getMessage());
   }
 } else {
   $code = 404;

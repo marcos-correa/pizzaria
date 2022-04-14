@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { UserService } from '../../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -37,7 +38,8 @@ export class CadastroComponent implements OnInit {
     private cepService:CepService,
     private userService:UserService,
     private pizzasService: PizzasService,
-    private pizzariaService:PizzariaService
+    private pizzariaService:PizzariaService,
+    private messageService:MessageService
   ) { 
 
     this.formulario = this.formBuilder.group({
@@ -149,8 +151,8 @@ export class CadastroComponent implements OnInit {
   //  hasError = (err:any) => {
   //   console.log(err)
   // }
-    hasError(){
-      alert("Não foi possível fazer a operação")
+    hasError(err:any){
+      this.messageService.add({severity:'error', summary:'Ops', detail:err, life: 3000});
     }
 
 
