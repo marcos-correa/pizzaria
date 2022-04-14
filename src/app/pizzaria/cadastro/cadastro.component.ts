@@ -1,14 +1,14 @@
-import { MessageService } from 'primeng/api';
-import { UserService } from '../../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map } from "rxjs/operators";
+import { MessageService } from 'primeng/api';
+import { map } from 'rxjs/operators';
+import { Cep } from 'src/app/interfaces/cep';
 import { CepService } from 'src/app/services/cep.service';
+
+import { UserService } from '../../services/user.service';
 import { PizzariaService } from '../pizzaria.service';
 import { PizzasService } from './../../services/pizzas.service';
-import { SelectionChange } from '@angular/cdk/collections';
-import { Cep } from 'src/app/interfaces/cep';
 
 @Component({
   selector: 'app-cadastro',
@@ -62,6 +62,7 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   
@@ -91,8 +92,8 @@ export class CadastroComponent implements OnInit {
 
   insertUsuario(){
     this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
-      next: res => this.hasSucceedInsert(res),
-      error: err => this.hasError(err)
+        next: (res:any) =>this.hasSucceedInsert(res),
+        error: (err:any) => this.hasError(err)
       }
     )
     //this.formulario.reset();
@@ -101,8 +102,8 @@ export class CadastroComponent implements OnInit {
 
   updateUsuario(){
     this.userService.updateUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
-        next: this.hasSucceedUpdate,
-        error: this.hasError
+        next: (res:any) => this.hasSucceedUpdate(res),
+        error: (err:any) => this.hasError(err)
       }
     )
     this.formulario.reset();
@@ -112,8 +113,8 @@ export class CadastroComponent implements OnInit {
   //Para excluir pelo id preciso olhar para o storage
   deleteUsuarioById(){
     this.userService.deleteUsuarioById(this.nome).subscribe({
-        next: this.hasSucceedDelete,
-        error: this.hasError
+        next: (res:any) => this.hasSucceedDelete(res),
+        error: (err:any) => this.hasError(err)
       }
     )
   }
@@ -134,7 +135,7 @@ export class CadastroComponent implements OnInit {
     alert(`Os dados do cliente ${res.nome} foram altearados  com sucesso`)
   }
 
-  hasSucceedDelete = () =>{
+  hasSucceedDelete = (res:any) =>{
     alert(`Cliente ${this.nome} retirado com sucesso`)
   }
   /**
@@ -144,10 +145,10 @@ export class CadastroComponent implements OnInit {
   //  hasError = (err:any) => {
   //   console.log(err)
   // }
-    hasError(err:any){
-      console.log(err.error);
-      this.messageService.add({severity:'error', summary:'Ops', detail:err.error, life: 3000});
-    }
+  hasError(err:any){
+    let msg = err.error.text || 'Erro desconhecido'
+    this.messageService.add({severity:'error', summary:'Ops', detail:msg, life: 3000});
+  }
 
 
   

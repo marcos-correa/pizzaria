@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { OutletContext, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/interfaces/usuario';
-
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

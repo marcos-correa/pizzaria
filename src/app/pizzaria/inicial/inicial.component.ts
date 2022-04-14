@@ -1,8 +1,9 @@
-import { PizzariaService } from './../pizzaria.service';
-import { PizzasService } from './../../services/pizzas.service';
 import { Component, OnInit } from '@angular/core';
-import { Pizza } from '../lista/pizza';
 import { MessageService } from 'primeng/api';
+
+import { PizzasService } from './../../services/pizzas.service';
+import { PizzariaService } from './../pizzaria.service';
+
 // import {MessageService} from 'primeng/api';
 
 @Component({
