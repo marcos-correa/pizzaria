@@ -2,7 +2,8 @@
 
 ## Informações básicas sobre o projeto:
 
-	- A aplicação baseia-se em um ecommerce de pizzas, com diversos produtos, no qual o usuário deve se cadastrar para realizar suas compras;  
+
+  - A aplicação baseia-se em um ecommerce de pizzas, com diversos produtos, no qual o usuário deve se cadastrar para realizar suas compras;  
   - A interface foi desenvolvida utilizando o framework Angular;
   - O projeto segue o padrão MVC;
   - Desenvolvemos uma API, para realizar as comunicações entre a interface e o 
@@ -16,14 +17,14 @@
   - Informações são salvas dentro do próprio navegador para que o usuário possa a vir recuperá-las;
   - Há tratamentos de erros, e exibições de mensagens para o usuário entender o processo;
   - Há validação do Token para acesso ao Painel Restrito, onde é apresentado uma lista dos usuários cadastrados. 
-	- OBS: A função base64Erlencode do JWT serve para remover certos caracteres, que no próprio site JWT, pode-se realizar a decodificação do mesmo. Sem essa função a assinatura seria inválida.
+  - OBS: A função base64Erlencode do JWT serve para remover certos caracteres, que no próprio site JWT, pode-se realizar a decodificação do mesmo. Sem essa função a assinatura seria inválida.
 
 
-## Configurações Front End Angular 
+## Configurações Frontend Angular 
 
 Esse projeto foi desenvolvido utilizando o [Angular CLI](https://github.com/angular/angular-cli) versão 12.0.2.
 
-#### Requisitos para a instalação do propjeto
+#### Requisitos para a instalação do frontend
 
     angular-cli v.12.0.2 - https://github.com/angular/angular-cli
     node v.16.10.0 - https://nodejs.org/en/
