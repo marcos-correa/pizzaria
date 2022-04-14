@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 import { PizzariaService } from './pizzaria/pizzaria.service';
 
@@ -21,6 +22,7 @@ export class AppComponent {
   constructor(
     private pizzariaService:PizzariaService,
     private userService:UserService,
+    private router:Router
   ){
     this.totalCarrinho = 0;
     this.modal = false;
@@ -32,7 +34,7 @@ export class AppComponent {
   getNumbers(){
     return this.pizzariaService.getFavoritas();
   }
-  
+ 
   getValorTotal(){
     return this.pizzariaService.getValorTotal()
   }
@@ -65,6 +67,7 @@ export class AppComponent {
   deslogar(){
     this.userService.deslogarUsuario()
     this.modalLogado = false
+    this.router.navigate([''])
   }
 
 
