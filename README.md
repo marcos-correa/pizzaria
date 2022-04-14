@@ -1,32 +1,40 @@
 # Pizzaria
 
+## Informações básicas sobre o projeto:
+
+	- A aplicação baseia-se em um ecommerce de pizzas, com diversos produtos, no qual o usuário deve se cadastrar para realizar suas compras;  
+  - A interface foi desenvolvida utilizando o framework Angular;
+  - O projeto segue o padrão MVC;
+  - Desenvolvemos uma API, para realizar as comunicações entre a interface e o 
+  - Foi implementado o CRUD com PHP na parte de cadastro e login;
+  - A criação do BD foi realizada pela interface phpMyAdmin disponibilizada pelo Xampp;
+  - O script está localizado no arquivo banco-cadastro.txt;
+  - Utilizamos a função md5 que o BD oferece na senha;
+  - O servidor está configurado local na porta 4200;
+  - O  “sistemas de Pizza” que permite o usuário montar a sua está ausente nesse primeiro projeto;
+  - Quando o usuário realiza Login nos sistemas, será gerado um código JWT, para que o mesmo possa continuar logado por determinado tempo;
+  - Informações são salvas dentro do próprio navegador para que o usuário possa a vir recuperá-las;
+  - Há tratamentos de erros, e exibições de mensagens para o usuário entender o processo;
+  - Há validação do Token para acesso ao Painel Restrito, onde é apresentado uma lista dos usuários cadastrados. 
+	- OBS: A função base64Erlencode do JWT serve para remover certos caracteres, que no próprio site JWT, pode-se realizar a decodificação do mesmo. Sem essa função a assinatura seria inválida.
+
+
 ## Configurações Front End Angular 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+Esse projeto foi desenvolvido utilizando o [Angular CLI](https://github.com/angular/angular-cli) versão 12.0.2.
 
-### Development server
+#### Requisitos para a instalação do propjeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    angular-cli v.12.0.2 - https://github.com/angular/angular-cli
+    node v.16.10.0 - https://nodejs.org/en/
+    npm v8.1.14 - https://www.npmjs.com/
+    git v2.25.1 - https://git-scm.com/
+    
+#### Como configurar o projeo
 
-### Code scaffolding
+Depois de instalar todos os requisitos, deve-se abrir o projeto na pasta que abriga o arquivo package.json e no terminal entrar com os comandos `npm start` ou `ng serve`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-### Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Após a compilação, por padrão o Frontend será disponibilizado na porta `4200`
 
 ## Configurações Backend PHP e MySQL
 
