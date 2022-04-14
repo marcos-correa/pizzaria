@@ -108,6 +108,6 @@
 
 <p-dialog [(visible)]="modalFinalizar" [style]="{width: '450px'}" header="Login necessário" [modal]="true" styleClass="p-fluid">
     Para finalizar a compra, você precisa estar logado.
-    <app-login *ngIf="!isLogado()"></app-login>
+    <app-login *ngIf="!isLogado()" [modal]="true"></app-login>
     <div *ngIf="isLogado()"> Compra finalizada</div>
 </p-dialog> 

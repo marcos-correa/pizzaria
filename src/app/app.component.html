@@ -115,7 +115,7 @@
   <ng-template pTemplate="header">
     Login
   </ng-template>
-  <app-login (logado)="fecharModal()"></app-login>
+  <app-login (logado)="fecharModal()" [modal]="true"></app-login>
 </p-dialog>
 
 <p-dialog [(visible)]="modalLogado" [style]="{width: '40vw'}">

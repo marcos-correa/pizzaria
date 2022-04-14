@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { OutletContext } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { OutletContext, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/interfaces/usuario';
 
@@ -13,12 +13,15 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
   passwordType:Boolean;
+  @Input() modal:boolean = false;
 
   @Output() logado = new EventEmitter();
   
   constructor(
     private userService:UserService,
-    public messageService: MessageService) { 
+    public messageService: MessageService,
+    private router:Router
+  ) { 
       this.passwordType = true;
     }
 
@@ -52,6 +55,9 @@ export class LoginComponent implements OnInit {
     this.userService.setUsuarioAtual();
     this.messageService.add({severity:'success', summary:'Login Realizado', life: 3000});
     this.logado.emit();
+    if(!this.modal){
+      this.router.navigate(['painel'])
+    }
   }
 
   errorLogin(err:any){
@@ -68,8 +74,6 @@ export class LoginComponent implements OnInit {
   toogleType(){
     this.passwordType = !this.passwordType
   }
-
-
 
 }
 

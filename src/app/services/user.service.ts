@@ -1,5 +1,5 @@
 import { map, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Injectable } from '@angular/core';
@@ -35,6 +35,13 @@ export class UserService {
 
   isLogado(){
     return this.logado;
+  }
+
+  verificarToken(token:any){
+    let token_ = token;
+    let {email} = this.getUsuarioAtual()
+
+    return this.http.get(`http://localhost/api/VerificaToken?token=${token_},email=${email}`)
   }
 
   setLogado(value:boolean){
@@ -159,6 +166,25 @@ export class UserService {
     }
     
     return this.http.post("http://localhost/api/update",{data}).pipe(
+      map((res:any)=> res['data'])
+    )
+  }
+
+  getUsers(): Observable<any>{
+    let token = window.localStorage.getItem('token')?.toString()
+    let auth = "Bearer "
+    let data = {
+      token:"Bearer "
+    }
+    if(token){
+      auth += JSON.parse(token)
+      data.token += JSON.parse(token)
+    }
+    let headers =  new HttpHeaders({
+        'Access-Control-Allow-Origin':'*',
+        'Authorization':auth
+    });
+    return this.http.post(`http://localhost/api/list`,{data}).pipe(
       map((res:any)=> res['data'])
     )
   }

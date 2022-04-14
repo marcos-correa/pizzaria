@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { UserService } from 'src/app/services/user.service';
 import { Pizza } from './../lista/pizza';
 import { PizzasService } from './../../services/pizzas.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +13,11 @@ import { PizzariaService } from '../pizzaria.service';
 })
 export class PainelComponent implements OnInit {
   constructor(
+    private userService: UserService,
     private pizzasService: PizzasService,
-    private pizzariaService:PizzariaService
+    private pizzariaService:PizzariaService,
+    public messageService: MessageService,
+    private router:Router
   ) {}
   pizza!: Pizza;
   pizzas: Pizza[] = [];
@@ -25,7 +31,7 @@ export class PainelComponent implements OnInit {
   selectedPizzas: Pizza[] = [];
 
   submitted: boolean = false;
-  cars: any | undefined;
+  users: any | undefined;
   selectedCar: any | undefined;
   modelCar!: string;
   priceCar!: number;
@@ -37,12 +43,12 @@ export class PainelComponent implements OnInit {
 
   ngOnInit(): void {
     this.pizzas = this.pizzasService.getPizzas();
-    this.getCars();
+    this.getUsers();
     
   }
 
-  getCars(){
-    this.pizzariaService.getCars().subscribe(
+  getUsers(){
+    this.userService.getUsers().subscribe(
       {
         next: this.hasResults,
         error: this.hasError
@@ -83,21 +89,21 @@ export class PainelComponent implements OnInit {
     )
   }
 
-  setCars(cars:any){
-    this.cars = cars
+  setUsers(users:any){
+    this.users = users
   }
   /**
    * Sucessos
    * @param res 
    */ 
   hasResults = (res:any) => {
-    this.setCars(res);
+    this.setUsers(res);
   }
   hasSucceedInsert = () =>{
     alert(`Cliente ${this.modelCar} inserido com sucesso`)
   }
   hasSucceedUpdate = () =>{
-    this.getCars()
+    this.getUsers()
   }
   hasSucceedDelete = () =>{
     alert(`Carro ${this.modelCar} inserido com sucesso`)
@@ -111,15 +117,10 @@ export class PainelComponent implements OnInit {
    * @param err 
    */
   hasError = (err:any) => {
-    console.log(err)
+    let msg = 'Você não está logado ou o seu Token expirou'
+    this.messageService.add({severity:'error', summary:'Falha na autenticação', detail:msg, life: 3000});
+    this.router.navigate(['login']);
   }
-
-
-
-
-
-
-
 
   openNew() {
     this.pizza = {price:0, quantity:0};
