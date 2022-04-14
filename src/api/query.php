@@ -64,11 +64,13 @@
                 implode(', ', array_keys($parameters)),
                 ':' . implode(', :', array_keys($parameters))
             );
+            
 
             try{
                 $statement = $this -> bd -> prepare($sql);
 
                 $statement -> execute($parameters);
+                
             }
             catch(Exception $e){
                 //throw new Exception($e->getMessage());

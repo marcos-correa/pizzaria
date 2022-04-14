@@ -54,10 +54,20 @@ if (isset($postdata) && !empty($postdata)) {
     'senha' => $senha,
   ]);
   
-  echo json_encode($nome, JSON_FORCE_OBJECT);}
+  echo json_encode('Cliente '.$nome .'inserido com sucesso', JSON_FORCE_OBJECT );
+}
 
   catch(Exception $e){
-    echo 'Falha na inserção dos dados no banco: ' .  $e->getMessage();
+    // 
+    // $code = 404;
+    // $reason = 'Falha na requisição';
+    // header("HTTP/1.0 $code $reason");
+    http_response_code(400);
+    echo json_encode('Falha na inserção dos dados no banco: '.$e->getMessage(), JSON_FORCE_OBJECT);
+    
+
+    
+   
   }
 } else {
   die('Falha na requisição ');

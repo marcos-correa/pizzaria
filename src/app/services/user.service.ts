@@ -41,7 +41,7 @@ export class UserService {
     let token_ = token;
     let {email} = this.getUsuarioAtual()
 
-    return this.http.get(`http://localhost/api/VerificaToken?token=${token_},email=${email}`)
+    return this.http.get(`/api/VerificaToken?token=${token_},email=${email}`)
   }
 
   setLogado(value:boolean){
@@ -94,7 +94,7 @@ export class UserService {
     let dados = {
       data: usuario
     }
-    return this.http.post("http://localhost/api/login",dados).pipe(
+    return this.http.post("/api/login",dados).pipe(
       map((res:any) => res.data)
     )
   } 
@@ -143,7 +143,7 @@ export class UserService {
      
     }
     
-    return this.http.post("http://localhost/api/store",{data}).pipe(
+    return this.http.post("/api/store",{data}).pipe(
       map((res:any)=> res)
     )
   }
@@ -166,7 +166,7 @@ export class UserService {
      
     }
     
-    return this.http.post("http://localhost/api/update",{data}).pipe(
+    return this.http.post("/api/update",{data}).pipe(
       map((res:any)=> res['data'])
     )
   }
@@ -185,20 +185,20 @@ export class UserService {
         'Access-Control-Allow-Origin':'*',
         'Authorization':auth
     });
-    return this.http.post(`http://localhost/api/list`,{data}).pipe(
+    return this.http.post(`/api/list`,{data}).pipe(
       map((res:any)=> res['data'])
     )
   }
 
 
   deleteUsuarioById(id:string): Observable<any>{
-    return this.http.delete(`http://localhost/api/delete.php?nome=${id}`).pipe(
+    return this.http.delete(`/api/delete.php?nome=${id}`).pipe(
       map((res:any) => res)
     )
   }
 
   getUsuarioID(id:string): Observable<any>{
-    return this.http.get(`http://localhost/api/search.php?model=${id}`).pipe(
+    return this.http.get(`/api/search.php?model=${id}`).pipe(
       map((res:any) => res['data'])
     )
   }

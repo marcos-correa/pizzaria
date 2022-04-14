@@ -1,7 +1,7 @@
 import { PizzasService } from './../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {map, tap} from 'rxjs/operators';
+import {catchError, first, map, tap} from 'rxjs/operators';
 import { Pizza, Carro } from './lista/pizza';
 import { Observable } from 'rxjs';
 
@@ -57,6 +57,18 @@ export class PizzariaService {
   getFavoritas(){
     //todo: favorite
     return this.favoritas;
+  }
+
+  getTest(): Observable<any>{
+    return this.http.get(`/api/teste`)
+    .pipe(
+      map((res:any) => res.json()),
+    );
+  }
+
+  hasError(err:any,type:any){ 
+    console.log(err, type)
+
   }
 
   adicionarAoCarrinho(pizza:Pizza){

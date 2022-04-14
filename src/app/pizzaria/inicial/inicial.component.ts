@@ -19,6 +19,9 @@ export class InicialComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.pizzariaService.getTest().subscribe({
+      next: (res:any) => {console.log("componente: "+res)}
+    })
   }
 
   adicionarAoCarrinho(locale:string){

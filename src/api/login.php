@@ -39,10 +39,12 @@ if (isset($postdata) && !empty($postdata)) {
       throw new Exception('Usuário não encontrado');
     }
   } catch (Exception $e) {
-    echo json_encode('Não foi possível fazer o login: ' .  $e->getMessage());
+    http_response_code(400);
+    echo json_encode('Não foi possível fazer o login: ' .  $e->getMessage(), JSON_FORCE_OBJECT);
   }
 } else {
   $code = 404;
   $reason = 'Falha na requisição';
   header("HTTP/1.0 $code $reason");
+  //die('Falha na requisição ');
 }
