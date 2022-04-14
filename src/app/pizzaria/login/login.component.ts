@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit {
   }
 
   errorLogin(err:any){
-    let msg = err || "Erro ao realizar login"
-    this.messageService.add({severity:'error', summary:'Ops', detail:msg, life: 3000});
+    console.log(err.error);
+    this.messageService.add({severity:'error', summary:'Ops', detail:err.error, life: 3000});
   }
   getTypeInput(){
     if(this.passwordType){

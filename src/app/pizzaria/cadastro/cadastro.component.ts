@@ -64,18 +64,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    //console.log(this.formulario);
-    this.userService.cadastrarUsuario(this.formulario.value);
-    
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value)).pipe(map(res => res)).subscribe(dados => {
-      console.log(dados);
-      this.formulario.reset();
-    },
-      (error: any) => alert('erro'));
-
-
-  }
+  
 
   aplicaCssErro(campo: any) {
     return {
@@ -102,8 +91,8 @@ export class CadastroComponent implements OnInit {
 
   insertUsuario(){
     this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
-        next: this.hasSucceedInsert,
-        error: this.hasError
+      next: res => this.hasSucceedInsert(res),
+      error: err => this.hasError(err)
       }
     )
     //this.formulario.reset();
@@ -129,10 +118,14 @@ export class CadastroComponent implements OnInit {
     )
   }
 
- 
+ /**
+   * Sucessos
+   * @param res 
+   */
   hasSucceedInsert(res:any){
     if(res){
-      alert(`Cliente ${res} inserido com sucesso`)
+      //alert(res)
+      this.messageService.add({severity:'success', summary:'Sucesso', detail:res, life: 3000});
     }
     // this.userService.logado = true;
   }
@@ -152,7 +145,8 @@ export class CadastroComponent implements OnInit {
   //   console.log(err)
   // }
     hasError(err:any){
-      this.messageService.add({severity:'error', summary:'Ops', detail:err, life: 3000});
+      console.log(err.error);
+      this.messageService.add({severity:'error', summary:'Ops', detail:err.error, life: 3000});
     }
 
 

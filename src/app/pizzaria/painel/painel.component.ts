@@ -99,19 +99,7 @@ export class PainelComponent implements OnInit {
   hasResults = (res:any) => {
     this.setUsers(res);
   }
-  hasSucceedInsert = () =>{
-    alert(`Cliente ${this.modelCar} inserido com sucesso`)
-  }
-  hasSucceedUpdate = () =>{
-    this.getUsers()
-  }
-  hasSucceedDelete = () =>{
-    alert(`Carro ${this.modelCar} inserido com sucesso`)
-  }
-  hasSucceedGetCarById = (res:any) =>{
-    this.selectedCar = res
-  }
-
+  
   /**
    * Erros
    * @param err 
@@ -122,6 +110,7 @@ export class PainelComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  //Pizzaria
   openNew() {
     this.pizza = {price:0, quantity:0};
     this.submitted = false;
@@ -226,5 +215,22 @@ export class PainelComponent implements OnInit {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
+  }
+
+
+
+  //Testes
+
+  hasSucceedInsert = () =>{
+    alert(`Cliente ${this.modelCar} inserido com sucesso`)
+  }
+  hasSucceedUpdate = () =>{
+    this.getUsers()
+  }
+  hasSucceedDelete = () =>{
+    alert(`Carro ${this.modelCar} inserido com sucesso`)
+  }
+  hasSucceedGetCarById = (res:any) =>{
+    this.selectedCar = res
   }
 }

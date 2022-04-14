@@ -147,6 +147,7 @@ export class UserService {
       map((res:any)=> res)
     )
   }
+  
 
   updateUsuario(nome:string , cpf:string, email:string , telefone:string, cep:string , numero:number, rua:string , bairro:string, cidade:string, estado:string, senha:string ): Observable<any>{
     let data = {
