@@ -1,7 +1,10 @@
 # Pizzaria
 
-## Informações básicas sobre o projeto:
+## Relatório do projeto
 
+[CLIQUE PARA ABRIR O RELATÓRIO DO PROJETO](https://docs.google.com/document/d/137GubXS3HyKLAk3oGIvqLc2T_CFyy_A9/edit?usp=sharing&ouid=115879622815069047243&rtpof=true&sd=true)
+
+## Informações básicas sobre o projeto:
 
   - A aplicação baseia-se em um ecommerce de pizzas, com diversos produtos, no qual o usuário deve se cadastrar para realizar suas compras;  
   - A interface foi desenvolvida utilizando o framework Angular;
@@ -19,6 +22,7 @@
   - Há validação do Token para acesso ao Painel Restrito, onde é apresentado uma lista dos usuários cadastrados. 
   - OBS: A função base64Erlencode do JWT serve para remover certos caracteres, que no próprio site JWT, pode-se realizar a decodificação do mesmo. Sem essa função a assinatura seria inválida.
 
+# Configurações
 
 ## Configurações Frontend Angular 
 
