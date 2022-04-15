@@ -146,7 +146,7 @@ export class CadastroComponent implements OnInit {
   //   console.log(err)
   // }
   hasError(err:any){
-    let msg = err.error.text || 'Erro desconhecido'
+    let msg = err.error || 'Erro desconhecido'
     this.messageService.add({severity:'error', summary:'Ops', detail:msg, life: 3000});
   }
 
