@@ -1,9 +1,10 @@
-import { UserService } from './../../services/user.service';
-import { PizzariaService } from './../pizzaria.service';
+import { UserService } from '../../core/services/user.service';
+import { PizzariaService } from './../../core/services/pizzaria.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import { Pizza } from './pizza';
+import { Pizza } from '../../core/interfaces/pizza';
 // import { Product } from '../../domain/product';
 // import { ProductService } from '../../service/productservice';
 // import { ConfirmationService } from 'primeng/api';

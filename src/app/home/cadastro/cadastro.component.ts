@@ -1,14 +1,15 @@
+import { PizzariaService } from './../../core/services/pizzaria.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { map } from 'rxjs/operators';
-import { Cep } from 'src/app/interfaces/cep';
-import { CepService } from 'src/app/services/cep.service';
+import { Cep } from 'src/app/core/interfaces/cep';
+import { CepService } from 'src/app/core/services/cep.service';
 
-import { UserService } from '../../services/user.service';
-import { PizzariaService } from '../pizzaria.service';
-import { PizzasService } from './../../services/pizzas.service';
+import { UserService } from '../../core/services/user.service';
+import { PizzasService } from '../../core/services/pizzas.service';
+import { GenericValidator } from 'src/app/core/utils/generic-validator';
 
 @Component({
   selector: 'app-cadastro',
@@ -44,7 +45,8 @@ export class CadastroComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
-      cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
+      cpf: ['', [Validators.required, GenericValidator.isValidCpf()]],
+      // cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
       senha: ['', [Validators.required, Validators.minLength(6)] ],
@@ -62,9 +64,8 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-  }
 
+  }
   
 
   aplicaCssErro(campo: any) {
@@ -86,7 +87,7 @@ export class CadastroComponent implements OnInit {
 
   buscar() {
     console.log("buscar");
-    this.cepService.busca(this.cep.cep)
+    this.cepService.buscarCep(this.cep.cep)
       .then((cep:Cep) => this.cep = cep);
   }
 

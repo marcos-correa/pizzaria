@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Usuario } from 'src/app/interfaces/usuario';
-import { UserService } from 'src/app/services/user.service';
+import { Usuario } from 'src/app/core/interfaces/usuario';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',

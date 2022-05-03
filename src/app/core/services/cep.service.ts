@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { Cep } from '../interfaces//cep';
+
+import { Cep } from '../interfaces/cep';
+
 // import 'rxjs/add/operator/toPromise';
 // import {map} from 'rxjs/operators';
 // import {toPromise} from 'rxjs/operators';
@@ -16,7 +18,7 @@ export class CepService {
     private http: HttpClient
   ) { }
 
-  busca(cep:string) {
+  buscarCep(cep:string) {
     console.log("busca");
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
         .toPromise()
@@ -25,16 +27,13 @@ export class CepService {
     // .map(data => this.resultado = this.converterRespostaParaCep(data));
   }
 
-  private converterRespostaParaCep(cepNaresposta:any): Cep {
-  
-    console.log("converte");
-    let cep = new Cep();
-    cep.cep = cepNaresposta.cep;
-    cep.logradouro = cepNaresposta.logradouro;
-    cep.bairro = cepNaresposta.bairro;
-    cep.cidade = cepNaresposta.localidade;
-    cep.estado = cepNaresposta.uf;
-    console.dir(cep);
-    return cep;
+  private converterRespostaParaCep(cepResponse:any): Cep {
+    return new Cep(
+      cepResponse.cep,
+      cepResponse.logradouro,
+      cepResponse.bairro,
+      cepResponse.localidade,
+      cepResponse.uf
+    )
   }
 }

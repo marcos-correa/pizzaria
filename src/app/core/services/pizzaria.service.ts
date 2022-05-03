@@ -1,8 +1,8 @@
-import { PizzasService } from './../services/pizzas.service';
+import { PizzasService } from '../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {catchError, first, map, tap} from 'rxjs/operators';
-import { Pizza, Carro } from './lista/pizza';
+import { Pizza, Carro } from '../interfaces/pizza';
 import { Observable } from 'rxjs';
 
 @Injectable({

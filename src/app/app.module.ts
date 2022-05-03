@@ -1,4 +1,4 @@
-import { PizzariaModule } from './pizzaria/pizzaria.module';
+import { PizzariaModule } from './home/pizzaria.module';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';

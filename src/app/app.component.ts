@@ -1,9 +1,7 @@
+import { PizzariaService } from './core/services/pizzaria.service';
 import { Router } from '@angular/router';
-import { UserService } from './services/user.service';
-import { PizzariaService } from './pizzaria/pizzaria.service';
-
+import { UserService } from './core/services/user.service';
 import { Component } from '@angular/core';
-
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,9 @@
+import { tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { Endereco } from './endereco';
-import { PizzariaService } from './../pizzaria.service';
-import { UserService } from '../../services/user.service';
+import { Endereco } from '../../core/interfaces/endereco';
+import { PizzariaService } from './../../core/services/pizzaria.service';
+
+import { UserService } from '../../core/services/user.service';
 
 
 @Component({
@@ -67,5 +69,6 @@ export class EnderecoComponent implements OnInit {
       this.endereco = {}
     }
   }
+
 
 }
