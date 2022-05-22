@@ -85,7 +85,6 @@ export class CadastroComponent implements OnInit {
   }
 
   buscar() {
-    console.log("buscar");
     this.cepService.busca(this.cep.cep)
       .then((cep:Cep) => this.cep = cep);
   }
