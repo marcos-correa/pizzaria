@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first, tap } from 'rxjs/operators';
 
 import { Cep } from '../interfaces/cep';
 
@@ -19,12 +20,11 @@ export class CepService {
   ) { }
 
   buscarCep(cep:string) {
-    console.log("busca");
-    return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
-        .toPromise()
-        .then(response => this.converterRespostaParaCep(response));
-        //return this.converterRespostaParaCep(response.json())});
-    // .map(data => this.resultado = this.converterRespostaParaCep(data));
+    let requisicao = this.http.get(`https://viacep.com.br/ws/${cep}/json/`);
+    return requisicao.pipe(
+      first(),
+      tap(response=> this.converterRespostaParaCep(response)
+    ));
   }
 
   private converterRespostaParaCep(cepResponse:any): Cep {

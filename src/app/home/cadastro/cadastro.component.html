@@ -26,11 +26,20 @@
 
       <div class="col-md-5">
         <div class="form-group" >
-          <label for="cpf" class="control-label">CPF</label>
-          <input type="text" class="form-control" formControlName="cpf" name="cpf" [(ngModel)]="cpf" placeholder="000.000.000-00"  [ngClass]="aplicaCssErro('cpf')">  
+          <label for="cpf" class="control-label" >CPF</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          [mask]="'000.000.000-00'" 
+          formControlName="cpf" 
+          name="cpf" 
+          [(ngModel)]="cpf" placeholder="Digite o CPF"  
+          [ngClass]="aplicaCssErro('cpf')">  
           <div class="invalid-feedback">
-            Campo Obrigatório. Digite como no exemplo.
+            <div *ngIf="!cpf">Campo Obrigatório</div>
+            <div *ngIf="cpf">CPF inválido</div>
           </div>
+
         </div>
       </div>
 
@@ -74,19 +83,29 @@
         </div>
 
   
+        <!-- <div class="col-md-6">
+          <pre>{{this.numeroCep.value | json}}</pre>
+        </div> -->
         <div class="col-md-6" >
           <label for="cep" class="control-label">CEP</label>
-          <input type="text" class="form-control" id="cep" formControlName="cep" [(ngModel)]="cep.cep"  placeholder="00000-000" [ngClass]="aplicaCssErro('endereco.cep')"> 
+          <!-- formControlName="cep"  -->
+          <!-- id="cep"  -->
+          <input 
+            type="text" 
+            class="form-control" 
+            [formControl]="numeroCep"  
+            [mask]="'00000-000'"placeholder="00000-000" 
+            [ngClass]="aplicaCssErro('endereco.cep')"> 
+
           <div class="invalid-feedback">
-            Campo obrigatório. Digite como no exemplo.
+            CEP não existente.
           </div>
         </div>
         
         <div class="col-md-2 d-flex align-items-end">
-          <button type="button" class="btn btn-todos" (click)="buscar()">Buscar Cep</button>
+          <button type="button" class="btn btn-todos" (click)="buscarCEP(this.buscarCEP.toString())">Buscar Cep</button>
         </div>
       </div>
-  
       <div class="form-group row" >
        
         <div class="col-sm-6" >
@@ -106,12 +125,12 @@
   
         <div class="col-md-6" >
           <label for="cidade" class="control-label">Cidade</label>
-          <input type="text" class="form-control" id="cidade" formControlName="cidade" [(ngModel)]="cep.cidade">
+          <input type="text" class="form-control" id="localidade" formControlName="localidade" [(ngModel)]="cep.localidade">
         </div>
   
         <div class="col-md-6" >
           <label for="estado" class="control-label">Estado</label>
-          <input type="text" class="form-control" id="estado" formControlName="estado" [(ngModel)]="cep.estado">
+          <input type="text" class="form-control" id="estado" formControlName="estado" [(ngModel)]="cep.uf">
         </div>
       </div>
     </div>
@@ -155,3 +174,5 @@
  
   
 </div>
+
+

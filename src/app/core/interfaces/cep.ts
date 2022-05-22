@@ -3,6 +3,8 @@ export class Cep{
   logradouro:string;
   numero:string='';
   cidade:string='';
+  localidade:string='';
+  uf:string='';
   bairro:string='';
   estado:string='';
 
@@ -10,6 +12,8 @@ export class Cep{
     cep:string = '',
     numero:string = '',
     cidade:string = '',
+    localidade:string = '',
+    uf:string = '',
     bairro:string = '',
     estado:string = '',
   ){
@@ -18,5 +22,7 @@ export class Cep{
     this.cidade = '';
     this.bairro = '';
     this.estado = '';
+    this.localidade = ''
+    this.uf = ''
   }
 }

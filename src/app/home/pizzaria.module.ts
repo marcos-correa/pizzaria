@@ -32,6 +32,8 @@ import { LoginComponent } from './login/login.component';
 import { ContatoComponent } from './contato/contato.component';
 import { PainelComponent } from './painel/painel.component';
 import { PizzariaService } from '../core/services/pizzaria.service';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { PizzariaService } from '../core/services/pizzaria.service';
     DropdownModule,
     ProgressBarModule,
     // FormBuilder,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
 
   ],
   exports:[
