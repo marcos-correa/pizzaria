@@ -17,7 +17,6 @@ export class CepService {
   ) { }
 
   busca(cep:string) {
-    console.log("busca");
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
         .toPromise()
         .then(response => this.converterRespostaParaCep(response));
@@ -27,14 +26,12 @@ export class CepService {
 
   private converterRespostaParaCep(cepNaresposta:any): Cep {
   
-    console.log("converte");
     let cep = new Cep();
     cep.cep = cepNaresposta.cep;
     cep.logradouro = cepNaresposta.logradouro;
     cep.bairro = cepNaresposta.bairro;
     cep.cidade = cepNaresposta.localidade;
     cep.estado = cepNaresposta.uf;
-    console.dir(cep);
     return cep;
   }
 }
