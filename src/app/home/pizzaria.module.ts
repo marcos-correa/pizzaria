@@ -5,15 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PizzariaRoutingModule } from './pizzaria-routing.module';
 import { InicialComponent } from './inicial/inicial.component';
 import { ListaComponent } from './lista/lista.component';
-import { PizzariaService } from './pizzaria.service';
 import { ButtonModule } from 'primeng/button';
 import {ToolbarModule} from 'primeng/toolbar';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
-
 
 
 
@@ -34,6 +31,9 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { LoginComponent } from './login/login.component';
 import { ContatoComponent } from './contato/contato.component';
 import { PainelComponent } from './painel/painel.component';
+import { PizzariaService } from '../core/services/pizzaria.service';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -62,7 +62,8 @@ import { PainelComponent } from './painel/painel.component';
     DropdownModule,
     ProgressBarModule,
     // FormBuilder,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
 
   ],
   exports:[

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { Usuario } from '../interfaces//usuario';
+import { Usuario } from '../interfaces/usuario';
 
 
 @Injectable({

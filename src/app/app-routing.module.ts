@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pizzaria/pizzaria.module').then(m => m.PizzariaModule)
+    loadChildren: () => import('./home/pizzaria.module').then(m => m.PizzariaModule)
   }
 ];
 

@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { UserService } from 'src/app/services/user.service';
-import { Pizza } from './../lista/pizza';
-import { PizzasService } from './../../services/pizzas.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { Pizza } from '../../core/interfaces/pizza';
+import { PizzasService } from '../../core/services/pizzas.service';
 import { Component, OnInit } from '@angular/core';
-import { PizzariaService } from '../pizzaria.service';
+import { PizzariaService } from './../../core/services/pizzaria.service';
+
 
 @Component({
   selector: 'app-painel',

@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
-import { Pizza } from '../lista/pizza';
-import { PizzariaService } from './../pizzaria.service';
+import { Pizza } from '../../core/interfaces/pizza';
+import { PizzariaService } from './../../core/services/pizzaria.service';
+
 
 @Component({
   selector: 'app-catalogo',

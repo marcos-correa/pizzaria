@@ -1,14 +1,15 @@
+import { PizzariaService } from './../../core/services/pizzaria.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { map } from 'rxjs/operators';
-import { Cep } from 'src/app/interfaces/cep';
-import { CepService } from 'src/app/services/cep.service';
+import { distinctUntilChanged, filter, last, map, tap } from 'rxjs/operators';
+import { Cep } from 'src/app/core/interfaces/cep';
+import { CepService } from 'src/app/core/services/cep.service';
 
-import { UserService } from '../../services/user.service';
-import { PizzariaService } from '../pizzaria.service';
-import { PizzasService } from './../../services/pizzas.service';
+import { UserService } from '../../core/services/user.service';
+import { PizzasService } from '../../core/services/pizzas.service';
+import { GenericValidator } from 'src/app/core/utils/generic-validator';
 
 @Component({
   selector: 'app-cadastro',
@@ -26,6 +27,8 @@ export class CadastroComponent implements OnInit {
   numero!: number;
   deleteById!: string;
   senha!: string;
+  numeroCep?: FormControl = new FormControl()//BS
+
 
   // rua!: string;
   // bairro!: string;
@@ -44,16 +47,18 @@ export class CadastroComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
-      cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
+      cpf: ['', [Validators.required, GenericValidator.isValidCpf()]],
+      // cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
       senha: ['', [Validators.required, Validators.minLength(6)] ],
       endereco: this.formBuilder.group({
-        cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/) ]],
+        cep: ['', [Validators.required, Validators.minLength(8) ]],
+        // cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/) ]],
         numero: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
         logradouro: ['', Validators.required],
         bairro: ['', Validators.required],
-        cidade: ['', Validators.required],
+        localidade: ['', Validators.required],
         estado: ['', Validators.required]
       }),
       
@@ -62,10 +67,26 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.numeroCep.valueChanges
+    .pipe( //rxjs
+      distinctUntilChanged(),
+      tap( console.log),
+      tap( value => this.resetCepValues()),
+      map(value => value.trim()),
+      filter(value => value.length > 7),
+    )
+    .subscribe({
+      next: (value)=>this.buscarCEP(value),
+      error: (value) =>console.log
+    }); 
   }
-
-  
+  resetCepValues(){
+    this.cep.localidade=''
+    this.cep.estado=''
+    this.cep.logradouro=''
+    this.cep.bairro=''
+    this.cep.uf=''
+  }
 
   aplicaCssErro(campo: any) {
     return {
@@ -84,13 +105,23 @@ export class CadastroComponent implements OnInit {
     this.passwordType = !this.passwordType
   }
 
-  buscar() {
-    this.cepService.busca(this.cep.cep)
-      .then((cep:Cep) => this.cep = cep);
+  buscarCEP(numeroCep:string) {
+    this.cepService.buscarCep(numeroCep)
+      // .pipe(
+      //   last()
+      // )
+      .subscribe({
+        next: (endereco:any) => this.setCep(endereco)
+      });
+      // .then((cep:Cep) => this.cep = cep);
+  }
+
+  setCep(endereco:Cep){
+    this.cep = endereco
   }
 
   insertUsuario(){
-    this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.cidade, this.cep.estado, this.senha).subscribe({
+    this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.localidade, this.cep.uf, this.senha).subscribe({
         next: (res:any) =>this.hasSucceedInsert(res),
         error: (err:any) => this.hasError(err)
       }
