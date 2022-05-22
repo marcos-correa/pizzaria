@@ -44,7 +44,8 @@ export class PainelComponent implements OnInit {
 
   ngOnInit(): void {
     this.pizzas = this.pizzasService.getPizzas();
-    this.getUsers();
+    
+    // this.getUsers();
     
   }
 

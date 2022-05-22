@@ -31,7 +31,7 @@
           type="text" 
           class="form-control" 
           [mask]="'000.000.000-00'" 
-          formControlName="cpf" 
+          formControlName="cpf"
           name="cpf" 
           [(ngModel)]="cpf" placeholder="Digite o CPF"  
           [ngClass]="aplicaCssErro('cpf')">  
@@ -82,18 +82,16 @@
           </div>
         </div>
 
-  
-        <!-- <div class="col-md-6">
-          <pre>{{this.numeroCep.value | json}}</pre>
-        </div> -->
         <div class="col-md-6" >
           <label for="cep" class="control-label">CEP</label>
           <!-- formControlName="cep"  -->
-          <!-- id="cep"  -->
           <input 
+            id="cep" 
             type="text" 
             class="form-control" 
-            [formControl]="numeroCep"  
+            formControlName="cep"
+            [formControl]="numeroCep"
+            [ngModel]="cep.cep"
             [mask]="'00000-000'"placeholder="00000-000" 
             [ngClass]="aplicaCssErro('endereco.cep')"> 
 

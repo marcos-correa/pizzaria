@@ -27,7 +27,8 @@ export class CadastroComponent implements OnInit {
   numero!: number;
   deleteById!: string;
   senha!: string;
-  numeroCep?: FormControl = new FormControl()//BS
+  // numeroCep!: string//BS
+  numeroCep: FormControl = new FormControl()//BS
 
 
   // rua!: string;
@@ -89,6 +90,9 @@ export class CadastroComponent implements OnInit {
   }
 
   aplicaCssErro(campo: any) {
+    // if(!this.formulario.get(campo)?.valid){
+    //   console.log(campo)
+    // }
     return {
       'is-invalid': !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched
     };
@@ -107,9 +111,6 @@ export class CadastroComponent implements OnInit {
 
   buscarCEP(numeroCep:string) {
     this.cepService.buscarCep(numeroCep)
-      // .pipe(
-      //   last()
-      // )
       .subscribe({
         next: (endereco:any) => this.setCep(endereco)
       });
@@ -117,6 +118,7 @@ export class CadastroComponent implements OnInit {
   }
 
   setCep(endereco:Cep){
+    console.log(endereco)
     this.cep = endereco
   }
 
