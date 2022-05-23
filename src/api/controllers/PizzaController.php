@@ -124,7 +124,7 @@ use Symfony\Component\Validator\Validation;
             }
         }
 
-        public function selecList(){
+        public function selectList(){
             try{
                 $list = $this -> pizza -> selectAll();
                 if(!empty($list)) {   

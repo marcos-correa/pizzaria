@@ -119,7 +119,6 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 
                 foreach($this -> attributes as $attribute){
                     $statement -> bindValue(":$attribute", $this ->{$attribute});}
-                var_dump($statement);
                 $statement -> execute(); //bindParam com vetor
             }
             catch(Exception $e){
