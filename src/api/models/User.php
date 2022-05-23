@@ -13,10 +13,7 @@
         /**
          * @var string
          * @Assert\NotBlank(message="O campo nome não pode estar vazio")
-         * @Assert\Regex(
-         * pattern = "/^[a-z ]+$/i",
-         * message="O campo nome {{ value }} só pode conter letras"
-        * )
+         * @Assert\Type("string", message="O campo nome  está inválido")
          */
         public $nome;
         
@@ -24,8 +21,14 @@
          * @var string
          * @Assert\NotBlank(message="O campo cpf não pode estar vazio")
          * @Assert\Regex(
-         * pattern = "/^(\d{3}\.){2}\d{3}\-\d{2}$/",
+         * pattern = "/^[0-9]+$/",
          * message="O campo cpf {{ value }}  está inválido"
+         * )
+         * @Assert\Length(
+         * min = 11,    
+         * minMessage = "O campo cpf {{ value }}  está inválido"
+         * max = 11,    
+         * maxMessage = "O campo cpf {{ value }}  está inválido"
          * )
          */
         public $cpf;
@@ -40,10 +43,12 @@
 
         /**
          * @var string
-         * @Assert\Regex(
-         * pattern="/^(\d{5}-\d{3}$)/",
-         * message="O campo cep {{ value }}  está inválido"
-        * )
+         * @Assert\Length(
+         * min = 8,    
+         * minMessage = "O campo cep {{ value }}  está inválido"
+         * max = 8,    
+         * maxMessage = "O campo cep {{ value }}  está inválido"
+         * )
          * @Assert\NotBlank(message="O campo cep não pode estar vazio")
          */
         public $cep;
