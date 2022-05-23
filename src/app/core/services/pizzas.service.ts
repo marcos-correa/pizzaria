@@ -8,7 +8,7 @@ import { ALL_PIZZAS } from '../mocks/all-pizzas.constants';
 })
 export class PizzasService {
 
-  pizzas: Pizza[]
+  pizzas: Pizza[];
   constructor(
     private http: HttpClient
   ) {
