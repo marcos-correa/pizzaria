@@ -91,7 +91,7 @@ export class PainelComponent implements OnInit {
   resetPizza(){
     this.pizza={
       price:0,
-      quantity:0,
+      // quantity:0,
     }
 
   }
@@ -170,7 +170,7 @@ export class PainelComponent implements OnInit {
 
       this.pizzas = [...this.pizzas];
       this.productDialog = false;
-      this.pizza = {quantity:0,price:0};
+      this.pizza = {price:0};
     }
   }
 

@@ -48,8 +48,10 @@ export class PizzariaService {
   
   getTotalPizzasNoCarrinho(){
     let carrinho = 0;
+
+    // todo quantity pizza
     for(let pizza of this.carrinho){
-      carrinho += pizza.quantity
+      carrinho += 1
     }
     return carrinho
   }
@@ -77,9 +79,9 @@ export class PizzariaService {
       let pizza_existe_no_carrinho = this.carrinho.filter(piz => piz.id == pizza.id)//[{}] length == 1
       if(pizza_existe_no_carrinho.length>0){
         let i = this.findIndexById(pizza.id);
-        this.carrinho[i].quantity++
+        // this.carrinho[i].quantity++
       }else{
-        pizza.quantity = 1;
+        // pizza.quantity = 1;
         this.carrinho.push(pizza)
       }
       mensagem = 'Pizza adicionada ao carrinho'
@@ -91,7 +93,7 @@ export class PizzariaService {
   valorTotalCarrinho(){
     this.valorTotal = 0;
     for(let pizza of this.carrinho){
-      this.valorTotal += pizza.quantity*pizza.price
+      this.valorTotal += 1*pizza.price
       this.valorTotalComDesconto = this.valorTotal;
     }
     if(this.descontoAplicado){
