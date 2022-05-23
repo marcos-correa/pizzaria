@@ -20,14 +20,14 @@ export class PainelComponent implements OnInit {
     public messageService: MessageService,
     private router:Router
   ) {}
-  pizza!: Pizza;
+  pizza: Pizza;
   pizzas: Pizza[] = [];
 
-  // productDialog: boolean;
+  productDialog: boolean = false;
 
   // products: Product[];
 
-  // product: Product;
+  // product: Pizza;
 
   selectedPizzas: Pizza[] = [];
 
@@ -44,7 +44,7 @@ export class PainelComponent implements OnInit {
 
   ngOnInit(): void {
     this.pizzas = this.pizzasService.getPizzas();
-    this.getUsers();
+    // this.getUsers();
     
   }
 
@@ -55,39 +55,6 @@ export class PainelComponent implements OnInit {
         error: this.hasError
       }
     );
-  }
-
-  getCarById(){
-    this.pizzariaService.getCarByID(this.modelId).subscribe({
-        next: this.hasSucceedGetCarById,
-        error: this.hasError
-      }
-    )
-  }
-
- 
-
-  insertCar(){
-    this.pizzariaService.insertCar(this.modelCar,this.priceCar).subscribe({
-        next: this.hasSucceedInsert,
-        error: this.hasError
-      }
-    )
-  }
-  deleteCarById(){
-    this.pizzariaService.deleteCarById(this.deleteModelId).subscribe({
-        next: this.hasSucceedDelete,
-        error: this.hasError
-      }
-    )
-  }
-
-  updateCar(){
-    this.pizzariaService.updateCar(this.selectedCar).subscribe({
-        next: this.hasSucceedUpdate,
-        error: this.hasError
-      }
-    )
   }
 
   setUsers(users:any){
@@ -112,10 +79,21 @@ export class PainelComponent implements OnInit {
   }
 
   //Pizzaria
+
+
+
   openNew() {
-    this.pizza = {price:0, quantity:0};
+    this.resetPizza()
+    // this.pizza = {price:0, quantity:0};
     this.submitted = false;
-    // this.productDialog = true;
+    this.productDialog = true;
+  }
+  resetPizza(){
+    this.pizza={
+      price:0,
+      quantity:0,
+    }
+
   }
 
   deleteSelectedProducts() {
@@ -140,7 +118,7 @@ export class PainelComponent implements OnInit {
 
   editProduct(pizza: Pizza) {
     this.pizza = { ...pizza };
-    // this.productDialog = true;
+    this.productDialog = true;
   }
 
   deleteProduct(pizza: Pizza) {
@@ -162,7 +140,7 @@ export class PainelComponent implements OnInit {
   }
 
   hideDialog() {
-    // this.productDialog = false;
+    this.productDialog = false;
     this.submitted = false;
   }
 
@@ -172,26 +150,26 @@ export class PainelComponent implements OnInit {
     if (this.pizza.name?.trim()) {
       if (this.pizza.id) {
         this.pizzas[this.findIndexById(this.pizza.id)] = this.pizza;
-        // this.messageService.add({
-        //   severity: 'success',
-        //   summary: 'Successful',
-        //   detail: 'Product Updated',
-        //   life: 3000,
-        // });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Product Updated',
+          life: 3000,
+        });
       } else {
         this.pizza.id = this.createId();
         this.pizza.image = 'product-placeholder.svg';
         this.pizzas.push(this.pizza);
-        // this.messageService.add({
-        //   severity: 'success',
-        //   summary: 'Successful',
-        //   detail: 'Product Created',
-        //   life: 3000,
-        // });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Product Created',
+          life: 3000,
+        });
       }
 
       this.pizzas = [...this.pizzas];
-      // this.productDialog = false;
+      this.productDialog = false;
       this.pizza = {quantity:0,price:0};
     }
   }

@@ -32,7 +32,24 @@ import { LoginComponent } from './login/login.component';
 import { ContatoComponent } from './contato/contato.component';
 import { PainelComponent } from './painel/painel.component';
 import { PizzariaService } from '../core/services/pizzaria.service';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import {ToastModule} from 'primeng/toast';
+// import {CalendarModule} from 'primeng/calendar';
+// import {SliderModule} from 'primeng/slider';
+// import {MultiSelectModule} from 'primeng/multiselect';
+// import {ContextMenuModule} from 'primeng/contextmenu';
+// import {DialogModule} from 'primeng/dialog';
+// import {ButtonModule} from 'primeng/button';
+// import {DropdownModule} from 'primeng/dropdown';
+// import {ProgressBarModule} from 'primeng/progressbar';
+// import {FileUploadModule} from 'primeng/fileupload';
+// import {ToolbarModule} from 'primeng/toolbar';
+// import {RatingModule} from 'primeng/rating';
+// import {RadioButtonModule} from 'primeng/radiobutton';
+// import {InputNumberModule} from 'primeng/inputnumber';
+// import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
@@ -46,17 +63,20 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LoginComponent,
     ContatoComponent,
     PainelComponent,
+
   ],
   imports: [
     CommonModule,
     PizzariaRoutingModule,
     FormsModule,
-    
+    ConfirmDialogModule,
+    ToastModule,
     ButtonModule,
     ToolbarModule,
     TableModule,
     DialogModule,
     InputNumberModule,
+    InputTextModule,
     InputTextareaModule,
     FileUploadModule,
     DropdownModule,
@@ -68,6 +88,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   ],
   exports:[
     LoginComponent
-  ]
+  ],
+  providers:[MessageService, ConfirmationService]
 })
 export class PizzariaModule { }

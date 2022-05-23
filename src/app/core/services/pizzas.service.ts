@@ -16,9 +16,10 @@ export class PizzasService {
   }
 
 
-
-  getPizzas(): Pizza[]{
-    // TODO: this.pizzas = this.http.get('url');
+// TODO: 
+  getPizzas(): Pizza[]{ // data
+    // return this.pizzas = this.http.get('/api/Pizza/url');
+    // dataq->todas->t
     // return this.http.get('URLBANCO');
     return this.pizzas;
   }
