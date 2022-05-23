@@ -26,12 +26,22 @@
          * )
          * @Assert\Length(
          * min = 11,    
-         * minMessage = "O campo cpf {{ value }}  está inválido"
+         * minMessage = "O campo cpf {{ value }}  está inválido",
          * max = 11,    
          * maxMessage = "O campo cpf {{ value }}  está inválido"
          * )
          */
         public $cpf;
+
+        /**
+         * @var numeric
+         * @Assert\NotBlank(message="O campo telefone não pode estar vazio")
+         * @Assert\Regex(
+         * pattern="/^[0-9]+$/",
+         * message="O campo telefone {{ value }} só pode conter números."
+        * )         
+         */
+        public $telefone;
 
          /**
          * @var string
@@ -45,7 +55,7 @@
          * @var string
          * @Assert\Length(
          * min = 8,    
-         * minMessage = "O campo cep {{ value }}  está inválido"
+         * minMessage = "O campo cep {{ value }}  está inválido",
          * max = 8,    
          * maxMessage = "O campo cep {{ value }}  está inválido"
          * )

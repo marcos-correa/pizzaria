@@ -12,7 +12,7 @@ if (isset($postdata) && !empty($postdata)) {
   $request = json_decode($postdata);
   $email = $request->data->email;
   $senha = $request->data->senha;
-  $senha = md5($senha);
+  $senha = md5($senha); 
   $tokenGerado = gerarToken($email);
 
   try {
@@ -48,3 +48,7 @@ if (isset($postdata) && !empty($postdata)) {
   header("HTTP/1.0 $code $reason");
   //die('Falha na requisição ');
 }
+
+//recebe senha hasheada e email
+//busca senha no banco hasheada e compara
+//se bateu manda token
