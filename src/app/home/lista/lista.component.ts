@@ -125,7 +125,7 @@ export class ListaComponent implements OnInit {
   }
 
   novaPizza() {
-    this.pizza = { quantity: 0, price: 0 };
+    this.pizza = {price: 0 };
     this.submitted = false;
     this.modalFinalizar = true;
   }

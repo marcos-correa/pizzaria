@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from 'src/app/core/services/user.service';
 import { Pizza } from '../../core/interfaces/pizza';
 import { PizzasService } from '../../core/services/pizzas.service';
@@ -17,17 +17,18 @@ export class PainelComponent implements OnInit {
     private userService: UserService,
     private pizzasService: PizzasService,
     private pizzariaService:PizzariaService,
+    private confirmationService:ConfirmationService,
     public messageService: MessageService,
     private router:Router
   ) {}
-  pizza!: Pizza;
+  pizza: Pizza;
   pizzas: Pizza[] = [];
 
-  // productDialog: boolean;
+  productDialog: boolean = false;
 
   // products: Product[];
 
-  // product: Product;
+  // product: Pizza;
 
   selectedPizzas: Pizza[] = [];
 
@@ -40,13 +41,20 @@ export class PainelComponent implements OnInit {
   deleteModelId!: string;
   // statuses: any[];
 
-  // constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.pizzas = this.pizzasService.getPizzas();
+    this.getAllPizzas();
     
     // this.getUsers();
     
+  }
+
+  getAllPizzas(){
+    this.pizzasService.getPizzas().pipe().subscribe({
+      next: (res:any) =>{
+        this.pizzas = res.data;
+      }
+    });
   }
 
   getUsers(){
@@ -56,39 +64,6 @@ export class PainelComponent implements OnInit {
         error: this.hasError
       }
     );
-  }
-
-  getCarById(){
-    this.pizzariaService.getCarByID(this.modelId).subscribe({
-        next: this.hasSucceedGetCarById,
-        error: this.hasError
-      }
-    )
-  }
-
- 
-
-  insertCar(){
-    this.pizzariaService.insertCar(this.modelCar,this.priceCar).subscribe({
-        next: this.hasSucceedInsert,
-        error: this.hasError
-      }
-    )
-  }
-  deleteCarById(){
-    this.pizzariaService.deleteCarById(this.deleteModelId).subscribe({
-        next: this.hasSucceedDelete,
-        error: this.hasError
-      }
-    )
-  }
-
-  updateCar(){
-    this.pizzariaService.updateCar(this.selectedCar).subscribe({
-        next: this.hasSucceedUpdate,
-        error: this.hasError
-      }
-    )
   }
 
   setUsers(users:any){
@@ -113,10 +88,21 @@ export class PainelComponent implements OnInit {
   }
 
   //Pizzaria
+
+
+
   openNew() {
-    this.pizza = {price:0, quantity:0};
+    this.resetPizza()
+    // this.pizza = {price:0, quantity:0};
     this.submitted = false;
-    // this.productDialog = true;
+    this.productDialog = true;
+  }
+  resetPizza(){
+    this.pizza={
+      price:0,
+      // quantity:0,
+    }
+
   }
 
   deleteSelectedProducts() {
@@ -141,29 +127,40 @@ export class PainelComponent implements OnInit {
 
   editProduct(pizza: Pizza) {
     this.pizza = { ...pizza };
-    // this.productDialog = true;
+    this.productDialog = true;
   }
 
   deleteProduct(pizza: Pizza) {
-    // this.confirmationService.confirm({
-    //   message: 'Are you sure you want to delete ' + product.name + '?',
-    //   header: 'Confirm',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   accept: () => {
-    //     this.products = this.products.filter((val) => val.id !== product.id);
-    //     this.product = {};
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Successful',
-    //       detail: 'Product Deleted',
-    //       life: 3000,
-    //     });
-    //   },
-    // });
+    let id = pizza.id;
+    
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + pizza.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.pizzasService.deletePizza(id).subscribe({
+            next:()=>{
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: 'Product Deleted',
+                life: 3000,
+              });
+            },
+            error:(err)=>{
+              alert(err)
+            },
+            complete:()=>{
+              this.getAllPizzas();
+            }
+          })
+        
+      },
+    });
   }
 
   hideDialog() {
-    // this.productDialog = false;
+    this.productDialog = false;
     this.submitted = false;
   }
 
@@ -173,28 +170,56 @@ export class PainelComponent implements OnInit {
     if (this.pizza.name?.trim()) {
       if (this.pizza.id) {
         this.pizzas[this.findIndexById(this.pizza.id)] = this.pizza;
-        // this.messageService.add({
-        //   severity: 'success',
-        //   summary: 'Successful',
-        //   detail: 'Product Updated',
-        //   life: 3000,
-        // });
+        this.editPizza();
       } else {
-        this.pizza.id = this.createId();
-        this.pizza.image = 'product-placeholder.svg';
-        this.pizzas.push(this.pizza);
-        // this.messageService.add({
-        //   severity: 'success',
-        //   summary: 'Successful',
-        //   detail: 'Product Created',
-        //   life: 3000,
-        // });
+        this.pizza.image = 'p1-480x480.png';
+        this.pizza.code = this.createId();
+        this.pizza.category = "PIZZA";
+        this.createNewPizza();
       }
-
-      this.pizzas = [...this.pizzas];
-      // this.productDialog = false;
-      this.pizza = {quantity:0,price:0};
     }
+  }
+
+  editPizza(){
+    this.pizzasService.updatePizza(this.pizza).subscribe({
+      next:()=>{
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: `A pizza ${this.pizza.name} foi deletada`,
+          life: 3000,
+        });
+      },
+      error:()=>{
+        alert('oops')
+      },
+      complete:()=>{
+        this.productDialog = false
+        this.resetPizza();
+      }
+    })
+
+   
+  }
+  createNewPizza(){
+    this.pizzasService.createPizza(this.pizza).subscribe({
+      next:()=>{
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Product Created',
+          life: 3000,
+        });
+        this.getAllPizzas();
+      },
+      error:()=>{
+        alert('oops')
+      },
+      complete:()=>{
+        this.productDialog = false
+        this.resetPizza();
+      }
+    })
   }
 
   findIndexById(id: string): number {

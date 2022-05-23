@@ -141,6 +141,8 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 
         abstract public function validatesUpdate($object);
 
+        abstract public function validatesDelete($object);
+
         public function validatesParameters($object){
             $errors=array();
 
