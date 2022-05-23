@@ -16,27 +16,20 @@ export class PizzasService {
   }
 
 
-// TODO: 
-  getPizzas(): Pizza[]{ // data
-    // return this.pizzas = this.http.get('/api/Pizza/url');
-    // dataq->todas->t
-    // return this.http.get('URLBANCO');
-    return this.pizzas;
+  getPizzas(){ // data
+    return this.http.get('/api/Pizza/Lista');
   }
 
-  //TODO:
   createPizza(pizza:Pizza){
-    return this.http.post('url',pizza);
+    return this.http.post('/api/Pizza/Cadastro',{data:pizza});
   }
 
-  //TODO:
   deletePizza(pizzaId:string){
-    return this.http.post('url',pizzaId);
+    return this.http.post('/api/Pizza/Cancelar-Cadastro',{data:{id:pizzaId}});
   }
 
-  //TODO:
-  updatePizza(pizzaId:string,pizza:Pizza){
-    return this.http.patch('url',{pizzaId,pizza})
+  updatePizza(pizza:Pizza){
+    return this.http.post('/api/Pizza/Atualizar-Cadastro',{data:pizza});
   }
 
   getPizzaByIndex(index: string){

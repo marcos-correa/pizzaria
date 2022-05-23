@@ -22,7 +22,7 @@ export class PizzariaService {
     private http: HttpClient,
     private pizzasService: PizzasService
   ) { 
-    this.pizzas = this.pizzasService.getPizzas()
+    // this.pizzas = this.pizzasService.getPizzas()
     this.carrinho = []
 
 

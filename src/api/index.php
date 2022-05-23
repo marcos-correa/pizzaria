@@ -18,7 +18,7 @@
     Router::post('api/Pizza/Atualizar-Cadastro', 'PizzaController@updatePizza');
     Router::post('api/Pizza/Cancelar-Cadastro', 'PizzaController@deletePizza');
     Router::get('api/Pizza/Busca', 'PizzaController@selectPizza');
-    Router::get('api/Pizza/Lista', 'PizzaController@selecPizza');
+    Router::get('api/Pizza/Lista', 'PizzaController@selecList');
 
 
 

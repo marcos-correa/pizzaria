@@ -89,6 +89,9 @@ export class CadastroComponent implements OnInit {
   }
 
   aplicaCssErro(campo: any) {
+    if(!this.formulario.get(campo)?.valid){
+      console.log(campo)
+    }
     return {
       'is-invalid': !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched
     };

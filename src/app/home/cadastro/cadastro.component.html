@@ -88,12 +88,13 @@
         </div> -->
         <div class="col-md-6" >
           <label for="cep" class="control-label">CEP</label>
-          <!-- formControlName="cep"  -->
           <!-- id="cep"  -->
+          <!-- [(ngModel)]="numeroCep" -->
           <input 
             type="text" 
             class="form-control" 
-            [formControl]="numeroCep"  
+            formControlName="cep" 
+            [formControl]="numeroCep" 
             [mask]="'00000-000'"placeholder="00000-000" 
             [ngClass]="aplicaCssErro('endereco.cep')"> 
 

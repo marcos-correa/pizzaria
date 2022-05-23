@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from 'src/app/core/services/user.service';
 import { Pizza } from '../../core/interfaces/pizza';
 import { PizzasService } from '../../core/services/pizzas.service';
@@ -17,6 +17,7 @@ export class PainelComponent implements OnInit {
     private userService: UserService,
     private pizzasService: PizzasService,
     private pizzariaService:PizzariaService,
+    private confirmationService:ConfirmationService,
     public messageService: MessageService,
     private router:Router
   ) {}
@@ -40,12 +41,20 @@ export class PainelComponent implements OnInit {
   deleteModelId!: string;
   // statuses: any[];
 
-  // constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.pizzas = this.pizzasService.getPizzas();
+    this.getAllPizzas();
+    
     // this.getUsers();
     
+  }
+
+  getAllPizzas(){
+    this.pizzasService.getPizzas().pipe().subscribe({
+      next: (res:any) =>{
+        this.pizzas = res.data;
+      }
+    });
   }
 
   getUsers(){
@@ -122,21 +131,32 @@ export class PainelComponent implements OnInit {
   }
 
   deleteProduct(pizza: Pizza) {
-    // this.confirmationService.confirm({
-    //   message: 'Are you sure you want to delete ' + product.name + '?',
-    //   header: 'Confirm',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   accept: () => {
-    //     this.products = this.products.filter((val) => val.id !== product.id);
-    //     this.product = {};
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Successful',
-    //       detail: 'Product Deleted',
-    //       life: 3000,
-    //     });
-    //   },
-    // });
+    let id = pizza.id;
+    
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + pizza.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.pizzasService.deletePizza(id).subscribe({
+            next:()=>{
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: 'Product Deleted',
+                life: 3000,
+              });
+            },
+            error:(err)=>{
+              alert(err)
+            },
+            complete:()=>{
+              this.getAllPizzas();
+            }
+          })
+        
+      },
+    });
   }
 
   hideDialog() {
@@ -150,28 +170,56 @@ export class PainelComponent implements OnInit {
     if (this.pizza.name?.trim()) {
       if (this.pizza.id) {
         this.pizzas[this.findIndexById(this.pizza.id)] = this.pizza;
+        this.editPizza();
+      } else {
+        this.pizza.image = 'p1-480x480.png';
+        this.pizza.code = this.createId();
+        this.pizza.category = "PIZZA";
+        this.createNewPizza();
+      }
+    }
+  }
+
+  editPizza(){
+    this.pizzasService.updatePizza(this.pizza).subscribe({
+      next:()=>{
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Product Updated',
+          detail: `A pizza ${this.pizza.name} foi deletada`,
           life: 3000,
         });
-      } else {
-        this.pizza.id = this.createId();
-        this.pizza.image = 'product-placeholder.svg';
-        this.pizzas.push(this.pizza);
+      },
+      error:()=>{
+        alert('oops')
+      },
+      complete:()=>{
+        this.productDialog = false
+        this.resetPizza();
+      }
+    })
+
+   
+  }
+  createNewPizza(){
+    this.pizzasService.createPizza(this.pizza).subscribe({
+      next:()=>{
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
           detail: 'Product Created',
           life: 3000,
         });
+        this.getAllPizzas();
+      },
+      error:()=>{
+        alert('oops')
+      },
+      complete:()=>{
+        this.productDialog = false
+        this.resetPizza();
       }
-
-      this.pizzas = [...this.pizzas];
-      this.productDialog = false;
-      this.pizza = {price:0};
-    }
+    })
   }
 
   findIndexById(id: string): number {

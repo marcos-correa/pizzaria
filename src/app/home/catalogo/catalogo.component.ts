@@ -47,33 +47,33 @@ export class CatalogoComponent implements OnInit {
     this.selectedOrder =  {label: "Nome", value: "name"};
   }
   alterarOrdem(order:any){
-    if(order.value == 'price'){
-      this.pizzas = this.pizzas.sort((a:Pizza,b:Pizza)=>{
-        if(a.price && b.price){
-          if(a.price < b.price){
-            return -1
-          }
-          if(a.price > b.price){
-            return 1
-          }
-        }
-        return 0
-      })
-    }
-    if(order.value == 'name'){
-      this.pizzas = this.pizzas.sort((a:Pizza,b:Pizza)=>{
-        if(a.name && b.name){
-          if(a.name < b.name){
-            return -1
-          }
-          if(a.name > b.name){
-            return 1
-          }
-        }
-        return 0
-      })
+    // if(order.value == 'price'){
+    //   this.pizzas = this.pizzas.sort((a:Pizza,b:Pizza)=>{
+    //     if(a.price && b.price){
+    //       if(a.price < b.price){
+    //         return -1
+    //       }
+    //       if(a.price > b.price){
+    //         return 1
+    //       }
+    //     }
+    //     return 0
+    //   })
+    // }
+    // if(order.value == 'name'){
+    //   this.pizzas = this.pizzas.sort((a:Pizza,b:Pizza)=>{
+    //     if(a.name && b.name){
+    //       if(a.name < b.name){
+    //         return -1
+    //       }
+    //       if(a.name > b.name){
+    //         return 1
+    //       }
+    //     }
+    //     return 0
+    //   })
 
-    }
+    // }
   }
   adicionarAoCarrinho(pizza:Pizza){
     let mensagem = this.pizzariaService.adicionarAoCarrinho(pizza)
