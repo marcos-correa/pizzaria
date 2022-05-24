@@ -7,7 +7,7 @@
 
 
     class User extends Query{
-
+        //---------------logado ou não
         public $id;
        
         /**
@@ -190,6 +190,38 @@
 
             return $errors;
             }
+
+        public function validatesLogin($email, $senha){
+            try{
+                
+                if ($email === '' || $senha === '') {
+                    throw new Exception('Dados faltando');
+                    
+                  }
+
+                $user = $this->selectByParameter('email', $email);
+
+                if (empty($user)) {
+                    throw new Exception('Usuário com este email não foi encontrado');
+                   
+                }
+                else{
+                    $user = $user[0];
+                    if ($user->senha != $senha) {
+                        throw new Exception('Senha inválida para este usuário');
+                        
+                    }
+                }
+                return $user;
+
+            }
+            catch (Exception $e) {
+                throw new Exception($e->getMessage()); 
+          }
+
+
+            
+        }
             
             
         
