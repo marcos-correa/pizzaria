@@ -32,6 +32,12 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 
         abstract public function attributes(): array;
 
+        abstract public function validatesInsert($object);
+
+        abstract public function validatesUpdate($object);
+
+        abstract public function validatesDelete($object);
+        
         public function selectAll(){
             $statement = $this -> bd -> prepare("select * from {$this -> table}");
            try{
@@ -136,11 +142,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
             return $this->serializer->deserialize($dados, $classe, 'json');
         }
 
-        abstract public function validatesInsert($object);
-
-        abstract public function validatesUpdate($object);
-
-        abstract public function validatesDelete($object);
+        
 
         public function validatesParameters($object){
             $errors=array();

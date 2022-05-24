@@ -13,14 +13,16 @@ use Symfony\Component\Validator\Validation;
 
     class UserController{
         
-        protected User $user;
+        public User $user;
         public Request $request;
+        public Auth $auth;
         
 
         public function __construct()
         {
             $this -> user = new User();
             $this -> request = new Request();
+            $this -> auth = new Auth();
             
         }
 
@@ -32,6 +34,7 @@ use Symfony\Component\Validator\Validation;
 
                 $dados = $this -> request -> jsonData();
                 $this -> user = $this -> user -> loadData($dados, User::class);
+                //--------------$this -> user ->  senha
                 $errors = $this -> user -> validatesParameters($this -> user);
                 
                 if(empty($errors))//se vazio insere
@@ -40,6 +43,9 @@ use Symfony\Component\Validator\Validation;
                     if(empty($errors)){
                         $this -> user -> insert();
                         new Response(200, ["Inserção com sucesso"]);
+                        //session set 
+                        //-------response redirect 
+
                     }
                     else{
                         new Response(400, $errors[0]);
@@ -141,9 +147,29 @@ use Symfony\Component\Validator\Validation;
             }
         }
 
-        public function home(){
-            require("views/cadastro.view.php");
+        
+
+        public function login(){
+            try{
+                $dados = $this -> request -> objectData();
+                $user = $this -> user -> validatesLogin($dados -> email, $dados -> senha );
+                $tokenGerado = $this -> auth ->gerarToken($dados -> email);
+
+                new Response(200, [
+                    'token' => $tokenGerado,
+                    'usuario' => $user
+                  ]);
+                       
+            }
+ 
+            catch(Exception $e){
+                new Response(400, ['Falha no login -> ' . $e->getMessage()]);
+               
+            }
         }
 
         
     }
+
+    //get sessio para redirect
+    //setflash
