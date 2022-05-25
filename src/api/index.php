@@ -12,8 +12,7 @@
     Router::post('api/User/Cancelar-Cadastro', 'UserController@deleteUser');
     Router::get('api/User/Busca', 'UserController@selectUser');
     Router::get('api/User/Lista', 'UserController@selecList');
-
-
+    Router::post('api/User/Login', 'UserController@login');
     Router::post('api/Pizza/Cadastro', 'PizzaController@inserirPizza');
     Router::post('api/Pizza/Atualizar-Cadastro', 'PizzaController@updatePizza');
     Router::post('api/Pizza/Cancelar-Cadastro', 'PizzaController@deletePizza');
