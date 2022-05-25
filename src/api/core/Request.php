@@ -18,12 +18,13 @@
                     return $this -> request -> data;
                 }
                 else{
-                    throw new Exception("Sem dados na requisição");
+                    new Response(400, ['Sem dados de requisição ']);
+                    die;
                 }
             }
             catch(Exception $e){
-                throw new Exception("Falha na requisição dos dados -> " . $e->getMessage());
-               
+                new Response(400, ['Falha na requisição dos dados -> '. $e->getMessage()]);
+                die;
             }     
         }
 
