@@ -1,8 +1,8 @@
+import { PizzasService } from './../../core/services/pizzas.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { Pizza } from '../../core/interfaces/pizza';
-import { PizzariaService } from './../../core/services/pizzaria.service';
 
 
 @Component({
@@ -28,10 +28,14 @@ export class CatalogoComponent implements OnInit {
   @Input() showTitle: Boolean;
 
   constructor(
-    private pizzariaService: PizzariaService,
+    private pizzasService: PizzasService,
     public messageService: MessageService
   ) { 
-    this.pizzas = this.pizzariaService.getPizzas();//todas as pizzas [{}{}]
+    this.pizzasService.getPizzas().subscribe({
+      next:(res:any) =>{
+        this.pizzas = res.data
+      }
+    });//todas as pizzas [{}{}]
     this.alterarOrdem({label: "Nome", value: "name"});
     this.modal = false;
 
@@ -76,7 +80,7 @@ export class CatalogoComponent implements OnInit {
     // }
   }
   adicionarAoCarrinho(pizza:Pizza){
-    let mensagem = this.pizzariaService.adicionarAoCarrinho(pizza)
+    let mensagem = "this.pizzariaService.adicionarAoCarrinho(pizza)"
     this.messageService.add({severity:'success', summary:'Pizza adicionada ao carrinho', detail:mensagem, life: 1500});
   } 
 
