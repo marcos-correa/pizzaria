@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Validation;
             $this -> user = new User();
             $this -> request = new Request();
             $this -> auth = new Auth();
-            
+            //$this -> registerMiddleware(new AuthMiddleware());
         }
 
         
