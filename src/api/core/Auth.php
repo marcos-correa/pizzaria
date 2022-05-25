@@ -44,12 +44,10 @@
   }
   
     public function verificaTokenBody($bearer_){
-      var_dump($bearer_);
       if (isset($bearer_) && $bearer_ != null) {
-        //$bearer = explode (' ', $bearer_);
-        
-        $token = explode('.', $bearer_);
-        var_dump($token);
+
+        $bearer = explode (' ', $bearer_);
+        $token = explode('.', $bearer[1]);
         $header = $token[0];
         $payload = $token[1];
         $sign = $token[2];

@@ -25,7 +25,7 @@ class ApiVerification implements IMiddleware
         try{
             $token = $this -> requisicao -> dados -> token;
 
-
+           
             if( !$this -> auth -> verificaTokenBody($token)){
                 new Response(400, ['Sem acesso a esta rota ']);
                 die;

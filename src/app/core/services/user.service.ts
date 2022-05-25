@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,30 +20,19 @@ export class UserService {
 
   constructor(
     private router: Router,
-    private http:HttpClient
+    private http:HttpClient,
+    private authenticationService:AuthenticationService
   ) {
-    this.logado = this.hasUsuarioLocalStorage()
+    this.logado = this.authenticationService.hasUsuarioLocalStorage()
     this.users = []
     this.cadastro = []    
-  }
-  hasUsuarioLocalStorage(){
-    let usuario = this.buscarUsuarioLocalStorage()
-    if(usuario.nome){
-      return true
-    }
-    return false
   }
 
   isLogado(){
     return this.logado;
   }
 
-  verificarToken(token:any){
-    let token_ = token;
-    let {email} = this.getUsuarioAtual()
-
-    return this.http.get(`/api/VerificaToken?token=${token_},email=${email}`)
-  }
+  
 
   setLogado(value:boolean){
     this.logado = value
@@ -94,7 +84,7 @@ export class UserService {
     let dados = {
       data: usuario
     }
-    return this.http.post("/api/login",dados).pipe(
+    return this.http.post("/api/User/Login",dados).pipe(
       map((res:any) => res.data)
     )
   } 
@@ -170,22 +160,6 @@ export class UserService {
       map((res:any)=> res['data'])
     )
   }
-
-  getUsers(): Observable<any>{
-    let token = window.localStorage.getItem('token')?.toString()
-    let auth = "Bearer "
-    let data = {
-      token:"Bearer "
-    }
-    if(token){
-      auth += JSON.parse(token)
-      data.token += JSON.parse(token)
-    }
-    return this.http.post(`/api/list`,{data}).pipe(
-      map((res:any)=> res['data'])
-    )
-  }
-
 
   deleteUsuarioById(id:string): Observable<any>{
     return this.http.delete(`/api/delete.php?nome=${id}`).pipe(

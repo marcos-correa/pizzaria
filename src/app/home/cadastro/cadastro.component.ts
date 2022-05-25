@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PizzariaService } from './../../core/services/pizzaria.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -43,7 +44,8 @@ export class CadastroComponent implements OnInit {
     private userService:UserService,
     private pizzasService: PizzasService,
     private pizzariaService:PizzariaService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private router:Router
   ) { 
 
     this.formulario = this.formBuilder.group({
@@ -125,7 +127,6 @@ export class CadastroComponent implements OnInit {
         error: (err:any) => this.hasError(err)
       }
     )
-    //this.formulario.reset();
 
   }
 
@@ -158,6 +159,8 @@ export class CadastroComponent implements OnInit {
       msg = res.data[0]
     }
     this.messageService.add({severity:'success', summary:'Sucesso', detail:msg, life: 3000});
+    this.formulario.reset();
+    this.router.navigate(['login'])
   }
 
   hasSucceedUpdate  = (res:any) =>{
@@ -171,16 +174,9 @@ export class CadastroComponent implements OnInit {
    * Erros
    * @param err 
    */
-  //  hasError = (err:any) => {
-  //   console.log(err)
-  // }
   hasError(err:any){
-    // alert(err./error.data[0])
     let msg = err.error.data[0];
-    console.log(msg)
     this.messageService.add({severity:'error', summary:'Ops', detail:err.error.data[0], life: 3000});
   }
-
-
   
 }

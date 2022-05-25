@@ -104,7 +104,7 @@
          * 
          */
         public $estado;
-
+        
         /**
          * @var string
          * @Assert\NotBlank(message="O campo senha não pode estar vazio")
@@ -114,10 +114,9 @@
          * )
          */
         public $senha;
-
+        
         public $table;
         
-
 
 
         public function __construct(){
@@ -131,7 +130,7 @@
         }
 
         public function attributes(): array{
-            return ['id','nome', 'cpf', 'email', 'cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'senha'];
+            return ['id','nome', 'cpf', 'email', 'cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'senha', 'telefone'];
         }
 
         public function validatesInsert($object){

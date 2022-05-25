@@ -43,10 +43,13 @@ export class PainelComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllPizzas();
-    
-    // this.getUsers();
-    
+    this.verificarUsuarioLogado()
+    this.getAllPizzas();    
+  }
+  verificarUsuarioLogado(){
+    if(!this.userService.isLogado()){
+      this.router.navigate(['login']);
+    }
   }
 
   getAllPizzas(){
@@ -55,15 +58,6 @@ export class PainelComponent implements OnInit {
         this.pizzas = res.data;
       }
     });
-  }
-
-  getUsers(){
-    this.userService.getUsers().subscribe(
-      {
-        next: this.hasResults,
-        error: this.hasError
-      }
-    );
   }
 
   setUsers(users:any){
@@ -186,7 +180,7 @@ export class PainelComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: `A pizza ${this.pizza.name} foi deletada`,
+          detail: `A pizza ${this.pizza.name} foi atualizada`,
           life: 3000,
         });
       },
@@ -251,9 +245,7 @@ export class PainelComponent implements OnInit {
   hasSucceedInsert = () =>{
     alert(`Cliente ${this.modelCar} inserido com sucesso`)
   }
-  hasSucceedUpdate = () =>{
-    this.getUsers()
-  }
+
   hasSucceedDelete = () =>{
     alert(`Carro ${this.modelCar} inserido com sucesso`)
   }

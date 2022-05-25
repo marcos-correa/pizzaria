@@ -1,151 +1,131 @@
-<hr class="w-100">
-<div class="container" hidden>
-
-  <div style="font-size:30px" class="mb-4">Lista de usuários cadastrados</div>
-
-  <div>
-    <table class="w-100">
-      <th>
-        Nome
-      </th>
-      <th>
-        Email
-      </th>
-      <tr *ngFor="let user of users">
-        <td>{{user?.nome ? user.nome : ''}}</td>
-        <td>{{user?.email ? user.email : ''}}</td>
-      </tr>
-    </table>
-  </div>
-</div>
-<hr class="w-100">
-
 <!-- TABELA CRUD -->
-<div class="px-5" *ngIf="this.pizzas">
-  <div class="card">
-    <p-toolbar styleClass="mb-4">
-      <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-          (click)="openNew()"></button>
-        <button pButton pRipple [label]="'Delete'" icon="pi pi-trash" class="p-button-danger"
-          (click)="deleteSelectedProducts()" [disabled]="!selectedPizzas || !selectedPizzas.length"></button>
-      </ng-template>
+<div class="w-100">
 
-      <ng-template pTemplate="right">
-        <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
-          class="mr-2 inline-block"></p-fileUpload>
-        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-      </ng-template>
-    </p-toolbar>
+<div class="container-md">
 
-    <p-table #dt [value]="pizzas" [rows]="10" [paginator]="true"
-      [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
-      [(selection)]="selectedPizzas" [rowHover]="true" dataKey="id"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-      <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-          <h5 class="m-0">Manage Products</h5>
-          <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <!-- <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." /> -->
-          </span>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th style="width: 3rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
-          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
-          </th>
-          <th>Image</th>
-          <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon>
-          </th>
-          <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon>
-          </th>
-          <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
-          </th>
-          <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
-          </th>
-          <th></th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-pizza>
-        <tr>
-          <td>
-            <p-tableCheckbox [value]="pizza"></p-tableCheckbox>
-          </td>
-          <td>{{pizza.name}}</td>
-          <td><img [src]="'assets/images/' + pizza.image" [alt]="pizza.name" width="100"
-              class="shadow-4" /></td>
-          <td>{{pizza.price | currency:'USD'}}</td>
-          <td>{{pizza.category}}</td>
-          <!-- <td><p-rating [ngModel]="pizza.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
-          <td><span
-              [class]="'product-badge status-' + (pizza.inventoryStatus ? pizza.inventoryStatus.toLowerCase() : '')">{{pizza.inventoryStatus}}</span>
-          </td>
-          <td>
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-              (click)="editProduct(pizza)"></button>
-            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-              (click)="deleteProduct(pizza)"></button>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="summary">
-        <div class="flex align-items-center justify-content-between">
-          In total there are {{pizzas ? pizzas.length : 0 }} pizzas.
-        </div>
-      </ng-template>
-    </p-table>
+  <div class="px-5" *ngIf="this.pizzas">
+    <h2 class="my-5">Lista de pizzas cadastradas no sistema</h2>
+    <div class="card">
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+          <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+          <button pButton pRipple [label]="'Delete'" icon="pi pi-trash" class="p-button-danger"
+            (click)="deleteSelectedProducts()" [disabled]="!selectedPizzas || !selectedPizzas.length"></button>
+        </ng-template>
+
+        <!-- <ng-template [hidden]="true" pTemplate="right">
+          <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+            class="mr-2 inline-block"></p-fileUpload>
+          <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template> -->
+      </p-toolbar>
+
+      <p-table #dt [value]="pizzas" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+        [(selection)]="selectedPizzas" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h5 class="m-0">Gerencie as pizzas</h5>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th>Image</th>
+            <th pSortableColumn="price">Preço <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th pSortableColumn="category">Categoria <p-sortIcon field="category"></p-sortIcon>
+            </th>
+            <th pSortableColumn="rating">Descrição </th>
+            <th pSortableColumn="inventoryStatus">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pizza>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="pizza"></p-tableCheckbox>
+            </td>
+            <td>{{pizza.name}}</td>
+            <td><img [src]="'assets/images/' + pizza.image" [alt]="pizza.name" width="100" class="shadow-4" /></td>
+            <td>{{pizza.price | currency:'R$ '}}</td>
+            <td>{{pizza.category}}</td>
+            <td>{{pizza.description}}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                (click)="editProduct(pizza)"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                (click)="deleteProduct(pizza)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            Exitem {{pizzas ? pizzas.length : 0 }} pizzas cadastradas.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
-</div>
 
-<!-- MODAL DIALOGO -->
-<p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+  <!-- MODAL DIALOGO -->
+  <p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" header="Product Details" [modal]="true"
+    styleClass="p-fluid">
     <ng-template pTemplate="content">
       <div class="d-flex justify-content-center">
-        <img [src]="'assets/images/' + pizza.image" [style]="{width:'200px'}" [alt]="pizza.image" class="product-image" *ngIf="pizza.image">
+        <img [src]="'assets/images/' + pizza.image" [style]="{width:'200px'}" [alt]="pizza.image" class="product-image"
+          *ngIf="pizza.image">
       </div>
-        <div class="field">
-            <label for="name">Name
-              <input type="text" pInputText id="name" [(ngModel)]="pizza.name" required autofocus />
-            </label>
-            <!-- <small class="p-error" *ngIf="submitted && !pizza.name">Name is required.</small> -->
-        </div>
-        <div class="field">
-            <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="pizza.description" required rows="3" cols="20"></textarea>
-        </div>
-        <div class="field">
-            <!-- <label for="inventoryStatus">Inventory Status</label> -->
-            <!-- <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
+      <div class="field">
+        <label for="name">Name
+          <input type="text" pInputText id="name" [(ngModel)]="pizza.name" required autofocus />
+        </label>
+        <!-- <small class="p-error" *ngIf="submitted && !pizza.name">Name is required.</small> -->
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="pizza.description" required rows="3"
+          cols="20"></textarea>
+      </div>
+      <div class="field">
+        <!-- <label for="inventoryStatus">Inventory Status</label> -->
+        <!-- <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
                 <ng-template let-option pTemplate="item">
                     <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
                 </ng-template>
             </p-dropdown> -->
-        </div>
+      </div>
 
-        <div class="field">
-            <label class="mb-3">Category</label>
-            <div class="formgrid grid">
-              PIZZA
-            </div>
-        </div>
-
+      <div class="field">
+        <label class="mb-3">Category</label>
         <div class="formgrid grid">
-            <div class="field col">
-                <label for="price">Price</label>
-                <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-            </div>
+          PIZZA
         </div>
+      </div>
+
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="price">Price</label>
+          <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency"  currency="BRL" currencyDisplay="code" locale="pt-BR">
+          </p-inputNumber>
+        </div>
+      </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
     </ng-template>
-</p-dialog>
+  </p-dialog>
+</div>
+</div>
+
+
 <p-toast></p-toast>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

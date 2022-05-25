@@ -38,14 +38,7 @@ export class LoginComponent implements OnInit {
     this.userService.logarUsuario(this.usuario).subscribe({
       next: res => this.hasUserLogged(res),
       error: err => this.errorLogin(err)
-    });
-    // if(this.userService.isLogado()){
-    //   this.logado.emit('true')
-    //   this.messageService.add({severity:'success', summary:'Login Realizado', life: 3000});
-    // }else{
-    //   this.messageService.add({severity:'error', summary:'Ops', detail:mensagem, life: 3000});
-    // }
-    
+    });    
   }
 
   hasUserLogged(res:any){
