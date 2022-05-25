@@ -2,7 +2,7 @@
 
   class Auth{
 
-
+    
 
     public function base64Erlencode($data){
       return str_replace(['+','/','-'],['-','_',''], base64_encode($data));
@@ -44,9 +44,12 @@
   }
   
     public function verificaTokenBody($bearer_){
+      var_dump($bearer_);
       if (isset($bearer_) && $bearer_ != null) {
-        $bearer = explode (' ', $bearer_);
-        $token = explode('.', $bearer[1]);
+        //$bearer = explode (' ', $bearer_);
+        
+        $token = explode('.', $bearer_);
+        var_dump($token);
         $header = $token[0];
         $payload = $token[1];
         $sign = $token[2];
