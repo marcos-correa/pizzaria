@@ -143,7 +143,7 @@ export class UserService {
      
     }
     
-    return this.http.post("/api/store",{data}).pipe(
+    return this.http.post("/api/User/Cadastro",{data}).pipe(
       map((res:any)=> res)
     )
   }
@@ -181,10 +181,6 @@ export class UserService {
       auth += JSON.parse(token)
       data.token += JSON.parse(token)
     }
-    let headers =  new HttpHeaders({
-        'Access-Control-Allow-Origin':'*',
-        'Authorization':auth
-    });
     return this.http.post(`/api/list`,{data}).pipe(
       map((res:any)=> res['data'])
     )

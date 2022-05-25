@@ -21,7 +21,7 @@ export class PizzasService {
   }
 
   createPizza(pizza:Pizza){
-    return this.http.post('/api/Pizza/Cadastro',{data:pizza});
+    return this.http.post('/api/Pizza/Cadastro',{data:pizza, token:''});
   }
 
   deletePizza(pizzaId:string){

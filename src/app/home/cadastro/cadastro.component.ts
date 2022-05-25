@@ -90,9 +90,6 @@ export class CadastroComponent implements OnInit {
   }
 
   aplicaCssErro(campo: any) {
-    // if(!this.formulario.get(campo)?.valid){
-    //   console.log(campo)
-    // }
     return {
       'is-invalid': !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched
     };
@@ -118,7 +115,7 @@ export class CadastroComponent implements OnInit {
   }
 
   setCep(endereco:Cep){
-    console.log(endereco)
+    endereco.cep = this.numeroCep.value // para tirar o - do viacep
     this.cep = endereco
   }
 
@@ -156,11 +153,11 @@ export class CadastroComponent implements OnInit {
    * @param res 
    */
   hasSucceedInsert(res:any){
-    if(res){
-      //alert(res)
-      this.messageService.add({severity:'success', summary:'Sucesso', detail:res, life: 3000});
+    let msg = "Usuario inserido com sucesso"
+    if(res.data[0]){
+      msg = res.data[0]
     }
-    // this.userService.logado = true;
+    this.messageService.add({severity:'success', summary:'Sucesso', detail:msg, life: 3000});
   }
 
   hasSucceedUpdate  = (res:any) =>{
@@ -178,8 +175,10 @@ export class CadastroComponent implements OnInit {
   //   console.log(err)
   // }
   hasError(err:any){
-    let msg = err.error || 'Erro desconhecido'
-    this.messageService.add({severity:'error', summary:'Ops', detail:msg, life: 3000});
+    // alert(err./error.data[0])
+    let msg = err.error.data[0];
+    console.log(msg)
+    this.messageService.add({severity:'error', summary:'Ops', detail:err.error.data[0], life: 3000});
   }
 
 

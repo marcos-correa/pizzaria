@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <div class="container-fluid topo-contato">
   <div class="d-flex justify-content-center titulo-contato">
       <h1 class= titulo-contato>Ainda sem cadastro?</h1>
@@ -81,7 +83,6 @@
             Campo Obrigatório. Apenas números.
           </div>
         </div>
-
         <div class="col-md-6" >
           <label for="cep" class="control-label">CEP</label>
           <!-- formControlName="cep"  -->
@@ -91,7 +92,7 @@
             class="form-control" 
             formControlName="cep"
             [formControl]="numeroCep"
-            [ngModel]="cep.cep"
+            [(ngModel)]="cep.cep"
             [mask]="'00000-000'"placeholder="00000-000" 
             [ngClass]="aplicaCssErro('endereco.cep')"> 
 
