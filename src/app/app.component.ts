@@ -15,6 +15,7 @@ export class AppComponent {
   modalCadastro: Boolean;
   modalLogado: Boolean;
   usuarioAtual: any;
+  logado:boolean = false
 
 
   constructor(
@@ -69,11 +70,9 @@ export class AppComponent {
   }
 
 
-  fecharModal(){
+  usuarioLogado(){
     this.modal = false
     this.modalCadastro = false
-    
-    // this.modalLogado = false
   }
 
   getNomeUsuarioLogado(){

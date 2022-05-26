@@ -56,7 +56,8 @@ export class PainelComponent implements OnInit {
     this.pizzasService.getPizzas().pipe().subscribe({
       next: (res:any) =>{
         this.pizzas = res.data;
-      }
+      },
+      error: () => this.hasError
     });
   }
 
@@ -128,21 +129,26 @@ export class PainelComponent implements OnInit {
     let id = pizza.id;
     
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + pizza.name + '?',
-      header: 'Confirm',
+      message: 'Você tem certeza que deseja deletar a pizza "' + pizza.name + '"?',
+      header: 'Excluir Pizza',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this.pizzasService.deletePizza(id).subscribe({
             next:()=>{
               this.messageService.add({
                 severity: 'success',
-                summary: 'Successful',
-                detail: 'Product Deleted',
+                summary: 'Sucesso',
+                detail: 'A pizza '+ pizza.name +' foi excluída',
                 life: 3000,
               });
             },
             error:(err)=>{
-              alert(err)
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Erro ao excluir',
+                detail: 'Não foi possível deletar a pizza '+ pizza.name,
+                life: 3000,
+              });
             },
             complete:()=>{
               this.getAllPizzas();
@@ -166,12 +172,17 @@ export class PainelComponent implements OnInit {
         this.pizzas[this.findIndexById(this.pizza.id)] = this.pizza;
         this.editPizza();
       } else {
-        this.pizza.image = 'p1-480x480.png';
+        this.pizza.image = this.getRandomImagePizza();
         this.pizza.code = this.createId();
         this.pizza.category = "PIZZA";
         this.createNewPizza();
       }
     }
+  }
+
+  getRandomImagePizza(){
+    let number = Math.floor(Math.random()*(10-1+1)+1);
+    return `p${number.toString()}-480x480.png`
   }
 
   editPizza(){
@@ -185,11 +196,17 @@ export class PainelComponent implements OnInit {
         });
       },
       error:()=>{
-        alert('oops')
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao atualizar a pizza "'+this.pizza.name+'".',
+          life: 3000,
+        });
       },
       complete:()=>{
         this.productDialog = false
         this.resetPizza();
+        this.getAllPizzas();
       }
     })
 
@@ -200,18 +217,23 @@ export class PainelComponent implements OnInit {
       next:()=>{
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Created',
+          summary: 'Sucesso',
+          detail: 'A pizza "'+this.pizza.name+'" foi criada.',
           life: 3000,
         });
-        this.getAllPizzas();
       },
       error:()=>{
-        alert('oops')
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao criar a pizza "'+this.pizza.name+'".',
+          life: 3000,
+        });
       },
       complete:()=>{
         this.productDialog = false
         this.resetPizza();
+        this.getAllPizzas();
       }
     })
   }
@@ -236,20 +258,5 @@ export class PainelComponent implements OnInit {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
-  }
-
-
-
-  //Testes
-
-  hasSucceedInsert = () =>{
-    alert(`Cliente ${this.modelCar} inserido com sucesso`)
-  }
-
-  hasSucceedDelete = () =>{
-    alert(`Carro ${this.modelCar} inserido com sucesso`)
-  }
-  hasSucceedGetCarById = (res:any) =>{
-    this.selectedCar = res
   }
 }

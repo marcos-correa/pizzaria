@@ -33,7 +33,7 @@
 
     <ul class="row flavor-content p-0">
 
-      <li *ngFor="let pizza of pizzas ; let i = index" class="col-3 mb-3">
+      <li *ngFor="let pizza of pizzas ; let i = index" [ngClass]="{'col-3': quantidade != 3,'col-4':quantidade == 3 }"class=" mb-3">
         <div *ngIf="i <= quantidade">
           <div class="flavor-item">
             <div class="flavor-item-container d-flex flex-column">
@@ -43,8 +43,8 @@
                     <i class="far fa-heart"></i>
                   </div>
                 </button>
-                <button class="btn flavor view eye">
-                  <div class="view-icon" (click)="toggleModal(pizza)">
+                <button class="btn flavor view eye"  (click)="toggleModal(pizza)">
+                  <div class="view-icon" >
                     <i class="far fa-eye"></i>
                   </div>
                 </button>
@@ -55,8 +55,8 @@
                   comprar
                 </button>
               </div>
-              <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="" (click)="toggleModal(pizza)">
-              <p class="mb-0 item-flavor-title" (click)="toggleModal(pizza)">
+              <img width="270" src="{{'../../../assets/images/'+pizza.image}}" alt="Foto de uma pizza">
+              <p class="mb-0 item-flavor-title">
                 {{pizza.name}}
               </p>
               <div class="d-flex">
@@ -65,7 +65,7 @@
                 </p>
               </div>
               <p class="item-flavor-price">
-                {{pizza.price}}
+                R$ {{pizza.price}}
               </p>
               <button (click)="adicionarAoCarrinho(pizza)" class="btn flavor">
                 <div class=" chart-button-icon">
@@ -96,14 +96,18 @@
 <p-dialog #modalId [(visible)]="modal" [style]="{width: '40vw'}">
   <ng-template pTemplate="header">
     <p class="mb-0 item-flavor-title">
-      Nome: {{pizza?.name}}
+      DETALHES DA PIZZA {{ pizza?.name }}
     </p>
   </ng-template>
   <div class="row justify-content-between">
       
     <div class="col-md-7">
+
+      <p class="mb-0 item-flavor-title">
+        {{ pizza?.name }}
+      </p>
       <p class="item-flavor-price">
-        Preço: R$ {{pizza?.price}}
+        R$ {{pizza?.price}}
       </p>
 
       <p class="item-flavor-subtitle mr-1">

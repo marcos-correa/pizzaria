@@ -50,11 +50,15 @@ export class LoginComponent implements OnInit {
     if(!this.modal){
       this.router.navigate(['painel'])
     }
+    if(this.router.url === '/cadastro'){
+      this.router.navigate(['/'])
+    }
+
   }
 
   errorLogin(err:any){
     console.log(err.error);
-    this.messageService.add({severity:'error', summary:'Ops', detail:err.error, life: 3000});
+    this.messageService.add({severity:'error', summary:'Erro ao realizar o Login', detail:err.error, life: 3000});
   }
   getTypeInput(){
     if(this.passwordType){

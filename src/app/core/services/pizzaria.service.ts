@@ -95,7 +95,7 @@ export class PizzariaService {
   valorTotalCarrinho(){
     this.valorTotal = 0;
     for(let pizza of this.carrinho){
-      this.valorTotal += 1*pizza.price
+      this.valorTotal += pizza.quantity*pizza.price
       this.valorTotalComDesconto = this.valorTotal;
     }
     if(this.descontoAplicado){

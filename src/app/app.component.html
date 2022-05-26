@@ -6,7 +6,7 @@
             <div class="info-address">
               <div class="icon">
                 <img src="../../../assets/svg/map-marker.svg" class="iconify">
-                <span>Corso Itali Aa Naples, Az 85022</span>
+                <span>Antônio Saad, 2510 - Ponta Grossa - PR</span>
               </div>
 
 
@@ -16,10 +16,10 @@
               <div class="order mr-2">
                 <img src="../../../assets/svg/scooter.svg" class="iconify scooter">
                 <span>
-                  Call and Order: 
+                  Ligue e peça: 
                   <a class="text-white text-decoration-none" href="#">
                     <span class="bold">
-                      +1 718-904-4450
+                      (42) 987654321 - Ponta Grossa
                     </span>
                   </a>
                 </span>
@@ -62,20 +62,23 @@
                 </button>
  
                 <button  [routerLink]="'catalogo'" type="button" class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Pizzas
+                  Cardápio
                 </button>
 
-                <button [routerLink]="'cadastro'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Cadastro
-                </button>
-
+                
                 <button [routerLink]="'contato'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Contato
                 </button>
-
-                <button [routerLink]="'painel'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Painel restrito
+                
+                <button *ngIf="!isLogado(); else painelRestrito"[routerLink]="'cadastro'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Cadastro
                 </button>
+
+                <ng-template #painelRestrito >
+                  <button #painelRestrito [routerLink]="'painel'" type="button"  class="btn btn-danger drop-pizz" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Painel restrito
+                  </button>
+                </ng-template>
               </div>
               <div class="col-auto navbar-sec d-flex align-items-center">
                 <div class="d-flex align-items-center">
@@ -115,7 +118,7 @@
   <ng-template pTemplate="header">
     Login
   </ng-template>
-  <app-login (logado)="fecharModal()" [modal]="true"></app-login>
+  <app-login (logado)="usuarioLogado()" [modal]="true"></app-login>
 </p-dialog>
 
 <p-dialog [(visible)]="modalLogado" [style]="{width: '40vw'}">
@@ -141,5 +144,7 @@
 </p-dialog>
 
 <router-outlet></router-outlet>
+
+<div hidden style="background-color:#00000020" class="py-5 w-100">_</div>
 
 <p-toast></p-toast>

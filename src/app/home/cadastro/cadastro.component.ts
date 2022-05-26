@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { distinctUntilChanged, filter, last, map, tap } from 'rxjs/operators';
+import { delay, distinctUntilChanged, filter, last, map, tap } from 'rxjs/operators';
 import { Cep } from 'src/app/core/interfaces/cep';
 import { CepService } from 'src/app/core/services/cep.service';
 
@@ -124,7 +124,7 @@ export class CadastroComponent implements OnInit {
   insertUsuario(){
     this.userService.insertUsuario(this.nome, this.cpf, this.email , this.telefone, this.cep.cep , this.numero, this.cep.logradouro, this.cep.bairro, this.cep.localidade, this.cep.uf, this.senha).subscribe({
         next: (res:any) =>this.hasSucceedInsert(res),
-        error: (err:any) => this.hasError(err)
+        error: (err:any) => this.hasError(err),
       }
     )
 
@@ -160,6 +160,7 @@ export class CadastroComponent implements OnInit {
     }
     this.messageService.add({severity:'success', summary:'Sucesso', detail:msg, life: 3000});
     this.formulario.reset();
+    delay(1500);
     this.router.navigate(['login'])
   }
 

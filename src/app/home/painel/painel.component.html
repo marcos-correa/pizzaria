@@ -1,5 +1,5 @@
 <!-- TABELA CRUD -->
-<div class="w-100">
+<div class="w-100 mb-5">
 
 <div class="container-md">
 
@@ -8,9 +8,9 @@
     <div class="card">
       <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
-          <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+          <button pButton pRipple label="Nova pizza" icon="pi pi-plus" class="p-button-success mr-2"
             (click)="openNew()"></button>
-          <button pButton pRipple [label]="'Delete'" icon="pi pi-trash" class="p-button-danger"
+          <button pButton pRipple [label]="'Excluir'" icon="pi pi-trash" class="p-button-danger"
             (click)="deleteSelectedProducts()" [disabled]="!selectedPizzas || !selectedPizzas.length"></button>
         </ng-template>
 
@@ -40,7 +40,7 @@
             <th>Image</th>
             <th pSortableColumn="price">Preço <p-sortIcon field="price"></p-sortIcon>
             </th>
-            <th pSortableColumn="category">Categoria <p-sortIcon field="category"></p-sortIcon>
+            <th pSortableColumn="category">Categoria
             </th>
             <th pSortableColumn="rating">Descrição </th>
             <th pSortableColumn="inventoryStatus">Ações</th>
@@ -74,7 +74,7 @@
   </div>
 
   <!-- MODAL DIALOGO -->
-  <p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" header="Product Details" [modal]="true"
+  <p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" [header]="'Detalhes da Pizza'" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
       <div class="d-flex justify-content-center">
@@ -82,39 +82,30 @@
           *ngIf="pizza.image">
       </div>
       <div class="field">
-        <label for="name">Name
+        <label for="name">Nome
           <input type="text" pInputText id="name" [(ngModel)]="pizza.name" required autofocus />
         </label>
         <!-- <small class="p-error" *ngIf="submitted && !pizza.name">Name is required.</small> -->
       </div>
       <div class="field">
-        <label for="description">Description</label>
+        <label for="description">Descrição</label>
         <textarea id="description" pInputTextarea [(ngModel)]="pizza.description" required rows="3"
           cols="20"></textarea>
       </div>
-      <div class="field">
-        <!-- <label for="inventoryStatus">Inventory Status</label> -->
-        <!-- <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
-                <ng-template let-option pTemplate="item">
-                    <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                </ng-template>
-            </p-dropdown> -->
-      </div>
 
       <div class="field">
-        <label class="mb-3">Category</label>
-        <div class="formgrid grid">
-          PIZZA
-        </div>
+        <label for="price">Valor</label>
+        <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency"  currency="BRL" currencyDisplay="code" locale="pt-BR">
+        </p-inputNumber>
       </div>
 
-      <div class="formgrid grid">
+      <!-- <div class="formgrid grid">
         <div class="field col">
           <label for="price">Price</label>
           <p-inputNumber id="price" [(ngModel)]="pizza.price" mode="currency"  currency="BRL" currencyDisplay="code" locale="pt-BR">
           </p-inputNumber>
         </div>
-      </div>
+      </div> -->
     </ng-template>
 
     <ng-template pTemplate="footer">
