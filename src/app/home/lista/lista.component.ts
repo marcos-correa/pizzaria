@@ -1,3 +1,4 @@
+import { PizzaNoCarrinho } from './../../core/interfaces/pizza-carrinho';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
@@ -19,9 +20,9 @@ export class ListaComponent implements OnInit {
   modalFinalizar: boolean;
   // selectedProducts: any[];
   submitted: boolean;
-  pizza!: Pizza;
+  pizza!: PizzaNoCarrinho;
 
-  pizzas: Pizza[];
+  pizzas: PizzaNoCarrinho[];
   // product: Product;
   selectedProducts: any[];
   productName: string;

@@ -1,3 +1,4 @@
+import { PizzaNoCarrinho } from './../interfaces/pizza-carrinho';
 import { PizzasService } from '../services/pizzas.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,7 @@ export class PizzariaService {
   favoritas:number;
   
   pizzas:Pizza[];
-  carrinho: Pizza[];
+  carrinho: PizzaNoCarrinho[];
 
 
   valorTotal: number;
@@ -51,7 +52,7 @@ export class PizzariaService {
 
     // todo quantity pizza
     for(let pizza of this.carrinho){
-      carrinho += 1
+      carrinho += pizza.quantity
     }
     return carrinho
   }
@@ -74,15 +75,16 @@ export class PizzariaService {
   }
 
   adicionarAoCarrinho(pizza:Pizza){
+    let pizza_:PizzaNoCarrinho = pizza;
     let mensagem = ''
-    if (pizza.id){
-      let pizza_existe_no_carrinho = this.carrinho.filter(piz => piz.id == pizza.id)//[{}] length == 1
+    if (pizza_.id){
+      let pizza_existe_no_carrinho = this.carrinho.filter(piz => piz.id == pizza_.id)//[{}] length == 1
       if(pizza_existe_no_carrinho.length>0){
-        let i = this.findIndexById(pizza.id);
-        // this.carrinho[i].quantity++
+        let i = this.findIndexById(pizza_.id);
+        this.carrinho[i].quantity++
       }else{
-        // pizza.quantity = 1;
-        this.carrinho.push(pizza)
+        pizza_.quantity = 1;
+        this.carrinho.push(pizza_)
       }
       mensagem = 'Pizza adicionada ao carrinho'
     }
