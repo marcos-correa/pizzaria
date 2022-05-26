@@ -3,12 +3,7 @@
 
     class Request{
 
-        public $dados;
         
-        public function __construct()
-            {
-                $this -> dados = $this -> validate();
-            }
 
         public function validate(){
             try{
