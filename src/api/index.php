@@ -2,11 +2,23 @@
 
     require("vendor/autoload.php");
     use Pecee\SimpleRouter\SimpleRouter as Router;
-  
+    use Pecee\Http\Request as Requisicao;
     //Router::csrfVerifier(new CsrfVerifier());
    
     //rotas seguras 
     //var_dump(Router::router()->getCsrfVerifier()->getTokenProvider()->getToken());
+
+    Router::error(function(Requisicao $request, \Exception $exception) {
+
+      switch($exception->getCode()) {
+          // Page not found
+          case 404:
+            new Response(404, ['Rota não encontrada']);
+            die;
+              
+      }
+      
+  });
 
     Router::group(['middleware' => ApiVerification::class], function () {
         Router::post('api/User/Atualizar-Cadastro', 'UserController@updateUser');

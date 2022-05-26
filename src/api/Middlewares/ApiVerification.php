@@ -23,7 +23,7 @@ class ApiVerification implements IMiddleware
 	{
 		// Do authentication
         try{
-            $token = $this -> requisicao -> dados -> token;
+            $token = $this -> requisicao -> objectData() -> token;
 
            
             if( !$this -> auth -> verificaTokenBody($token)){
