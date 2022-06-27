@@ -14,7 +14,7 @@
   <form class="form-horizontal" [formGroup]="formulario">
 
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-5">
         <div class="form-group">
           <label for="nome" class="control-label" >Nome</label>
           <input type="text" class="form-control" formControlName="nome" name="nome" [(ngModel)]="nome" placeholder="Nome Sobrenome" [ngClass]="aplicaCssErro('nome')">
@@ -26,7 +26,7 @@
         
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="form-group" >
           <label for="cpf" class="control-label" >CPF</label>
           <input 
@@ -44,6 +44,23 @@
 
         </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group" >
+          <label for="nascimento" class="control-label">Data Nascimento</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          formControlName="nascimento"
+          name="nascimento" 
+          [(ngModel)]="nascimento" placeholder="Digite a data"  
+          [ngClass]="aplicaCssErro('nascimento')">  
+          <div class="invalid-feedback">
+            <div *ngIf="!nascimento">Campo Obrigatório</div>
+            <div *ngIf="nascimento">Data de nascimento inválida</div>
+          </div>
+        </div>
+      </div>
+      
 
     </div>
   

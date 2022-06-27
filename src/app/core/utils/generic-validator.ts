@@ -55,4 +55,42 @@ export class GenericValidator {
       return null;
     };
   }
+
+  static isValidNascimento() {
+    return (control: AbstractControl): Validators => {
+      const nascimento = control.value;
+      let regex = /(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+      console.log(nascimento)
+      if (regex.test(nascimento)) {
+        let parts = nascimento.split("/");
+        let dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+        let dtCurrent = new Date();
+       
+        if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 18) {
+          return { nascimentoNotValid: true };
+        }
+
+        if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+  
+          //CD: 11/06/2018 and DB: 15/07/2000. Will turned 18 on 15/07/2018.
+          if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+            return { nascimentoNotValid: true };
+          }
+          if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+              //CD: 11/06/2018 and DB: 15/06/2000. Will turned 18 on 15/06/2018.
+              if (dtCurrent.getDate() < dtDOB.getDate()) {
+                return { nascimentoNotValid: true };
+              }
+          }
+        }
+      
+      return null;
+       
+        } else {
+          return { nascimentoNotValid: true };
+        }
+      };
+      
+    
+  }
 }

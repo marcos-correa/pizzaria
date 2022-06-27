@@ -28,6 +28,7 @@ export class CadastroComponent implements OnInit {
   numero!: number;
   deleteById!: string;
   senha!: string;
+  nascimento!: string;
   // numeroCep!: string//BS
   numeroCep: FormControl = new FormControl()//BS
 
@@ -51,10 +52,11 @@ export class CadastroComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.pattern("[a-zA-Z ]*")]],
       cpf: ['', [Validators.required, GenericValidator.isValidCpf()]],
+      nascimento: ['',[Validators.required, GenericValidator.isValidNascimento()]],
       // cpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern("[0-9]+$")]],
-      senha: ['', [Validators.required, Validators.minLength(6)] ],
+      senha: ['', [Validators.required, Validators.minLength(8)] ],
       endereco: this.formBuilder.group({
         cep: ['', [Validators.required, Validators.minLength(8) ]],
         // cep: ['', [Validators.required, Validators.pattern(/^\d{5}-\d{3}$/) ]],
