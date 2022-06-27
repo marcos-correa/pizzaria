@@ -52,7 +52,7 @@
           class="form-control" 
           formControlName="nascimento"
           name="nascimento" 
-          [(ngModel)]="nascimento" placeholder="Digite a data"  
+          [(ngModel)]="nascimento" placeholder="00/00/0000"  
           [ngClass]="aplicaCssErro('nascimento')">  
           <div class="invalid-feedback">
             <div *ngIf="!nascimento">Campo Obrigatório</div>
@@ -163,7 +163,7 @@
             <input [type]="getTypeInput()" class="form-control" id="senha"  [(ngModel)]="senha" formControlName="senha" name="senha" [ngClass]="aplicaCssErro('senha')">
            
             <div class="invalid-feedback">
-              Campo Obrigatório. Senha com pelo menos 6 dígitos.
+              Campo Obrigatório. Senha com pelo menos 8 dígitos.
             </div> 
       
           
