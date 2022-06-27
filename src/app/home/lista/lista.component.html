@@ -1,10 +1,11 @@
 
-<div *ngIf="pizzas.length == 0" class="flavor-header mt-4">
+<div *ngIf="pizzas.length == 0" class="flavor-header mt-4 container">
   <p class="flavor-title">
     Seu carrinho ainda está vazio. =(
   </p>
   <h2>Nossas sugestões:</h2>
   <app-catalogo 
+    class="w-100"
     [quantidade]="3" 
     [showOrder]="false"
     [showTitle]="false"

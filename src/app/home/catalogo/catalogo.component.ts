@@ -88,6 +88,14 @@ export class CatalogoComponent implements OnInit {
       }
     }
   }
+
+  getQuantidade(){
+    if(this.quantidade == 3){
+      return 'col-4'
+    }else{
+      return 'col-3'
+    }
+  }
   adicionarAoCarrinho(pizza: Pizza) {
     let mensagem = this.pizzariaService.adicionarAoCarrinho(pizza);
     this.messageService.add({

@@ -32,8 +32,7 @@
     </div>
 
     <ul class="row flavor-content p-0">
-
-      <li *ngFor="let pizza of pizzas ; let i = index" [ngClass]="{'col-3': quantidade != 3,'col-4':quantidade == 3 }"class=" mb-3">
+      <li *ngFor="let pizza of pizzas ; let i = index" [ngClass]="getQuantidade()" class=" mb-3">
         <div *ngIf="i <= quantidade">
           <div class="flavor-item">
             <div class="flavor-item-container d-flex flex-column">
