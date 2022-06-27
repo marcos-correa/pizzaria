@@ -24,15 +24,18 @@
         Router::post('api/User/Atualizar-Cadastro', 'UserController@updateUser');
         Router::post('api/User/Cancelar-Cadastro', 'UserController@deleteUser');
         
-        Router::post('api/Pizza/Cadastro', 'PizzaController@inserirPizza');
-        Router::post('api/Pizza/Atualizar-Cadastro', 'PizzaController@updatePizza');
-        Router::post('api/Pizza/Cancelar-Cadastro', 'PizzaController@deletePizza');
+        
         
         // Router::get('api/Pizza/Lista', 'PizzaController@selectList');
         
       });
     Router::get('api/Pizza/Busca', 'PizzaController@selectPizza');
     Router::post('api/Pizza/Lista', 'PizzaController@selectList');
+    Router::post('api/Pizza/Cadastro', 'PizzaController@inserirPizza');
+    Router::post('api/Pizza/Atualizar-Cadastro', 'PizzaController@updatePizza');
+    Router::post('api/Pizza/Cancelar-Cadastro', 'PizzaController@deletePizza');
+
+
     Router::get('api/User/Lista', 'UserController@selecList');
     Router::get('api/User/Busca', 'UserController@selectUser');
     Router::post('api/User/Login', 'UserController@login');
