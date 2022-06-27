@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Pizza } from '../../core/interfaces/pizza';
 import { PizzariaService } from './../../core/services/pizzaria.service';
 import { PizzasService } from './../../core/services/pizzas.service';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-catalogo',
@@ -16,6 +17,7 @@ export class CatalogoComponent implements OnInit {
     { label: 'Nome', value: 'name' },
     { label: 'Preço', value: 'price' },
   ];
+
 
   @Input() quantidade: Number;
   selectedOrder: any;
@@ -55,8 +57,14 @@ export class CatalogoComponent implements OnInit {
     this.margem = true;
   }
 
+  items: MenuItem[];
+  home:MenuItem
   ngOnInit(): void {
     this.selectedOrder = { label: 'Nome', value: 'name' };
+    this.items = [
+      {label:'Cardápio'},
+    ]
+    this.home = {icon: 'pi pi-home', routerLink: '/'};
   }
   alterarOrdem(order: any) {
     if (this.pizzas) {

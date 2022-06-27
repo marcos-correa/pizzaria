@@ -49,6 +49,8 @@ import {ToastModule} from 'primeng/toast';
 // import {InputNumberModule} from 'primeng/inputnumber';
 // import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { SharedModule } from '../shared/shared.module';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -81,6 +83,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     FileUploadModule,
     DropdownModule,
     ProgressBarModule,
+    BreadcrumbModule,
     // FormBuilder,
     ReactiveFormsModule,
     NgxMaskModule.forRoot()

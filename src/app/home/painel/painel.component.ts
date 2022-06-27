@@ -1,5 +1,6 @@
+import { HOME } from 'src/app/shared/constants/breadcrumbs';
 import { Router } from '@angular/router';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, MenuItem } from 'primeng/api';
 import { UserService } from 'src/app/core/services/user.service';
 import { Pizza } from '../../core/interfaces/pizza';
 import { PizzasService } from '../../core/services/pizzas.service';
@@ -41,10 +42,15 @@ export class PainelComponent implements OnInit {
   deleteModelId!: string;
   // statuses: any[];
 
-
+  home = HOME;
+  items: MenuItem[];
+  
   ngOnInit(): void {
     this.verificarUsuarioLogado()
     this.getAllPizzas();    
+    this.items = [
+      {label:'Painel restrito'}
+    ]
   }
   verificarUsuarioLogado(){
     if(!this.userService.isLogado()){

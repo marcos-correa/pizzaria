@@ -1,6 +1,8 @@
+import { MenuItem } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HOME } from 'src/app/shared/constants/breadcrumbs';
 
 @Component({
   selector: 'app-contato',
@@ -19,7 +21,12 @@ export class ContatoComponent implements OnInit {
       mensagem: ['', [Validators.required] ]})
    }
 
+  home = HOME;
+  items: MenuItem[];
   ngOnInit(): void {
+    this.items = [
+      {label:'Contato'}
+    ]
   }
 
   onSubmit() {

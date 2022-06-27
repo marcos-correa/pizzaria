@@ -1,6 +1,7 @@
+import { HOME } from 'src/app/shared/constants/breadcrumbs';
 import { PizzaNoCarrinho } from './../../core/interfaces/pizza-carrinho';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, MenuItem } from 'primeng/api';
 
 import { Pizza } from '../../core/interfaces/pizza';
 import { UserService } from '../../core/services/user.service';
@@ -54,7 +55,13 @@ export class ListaComponent implements OnInit {
     this.descontoAplicado = false;
   }
 
+  home = HOME;
+  items: MenuItem[];
+ 
   ngOnInit(): void {
+    this.items = [
+      {label:'Carrinho'}
+    ]
     this.getDescontoAplicado();
   }
 
